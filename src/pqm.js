@@ -255,17 +255,21 @@ const pqm = (function () {
    * Check for equality with another quantity
    *
    * @param {Quantity} otherQuantity Other quantity to check for equality with
-   * @param {number} decFrac Decimal fraction (sig figs) for equality check
+   * @param {number} tolerance Maximum difference between quantity magnitudes 
+   *                           that can be considered equal. default=0
    * @return {boolean} Returns true if quantities are equal, false if not
    */
-  Quantity.prototype.equals = function(otherQuantity, decFrac) {
+  Quantity.prototype.equals = function(otherQuantity, tolerance) {
+
     if (!this.sameDimensions(otherQuantity)) {
       return false;
-    } else if (!floatEq(this.getMagnitude(), otherQuantity.getMagnitude(), decFrac)) {
-      return false;
-    } else {
-      return true;
     }
+    let mag1 = this.getMagnitude();
+    let mag2 = otherQuantity.getMagnitude();
+    if (!floatEq(mag1, mag2, tolerance)) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -829,8 +833,28 @@ const pqm = (function () {
     },
   };
 
+  /**
+   * Compare the equality of two floats using an optional user supplied 
+   * tolerance.
+   *
+   * @param {Number} num1 First number to compare
+   * @param {Number} num2 Second number to compare
+   * @param {Number} tolerance Maximum difference between values that can be 
+   *                           considered equal. default=0
+   * @returns {Boolean} If the numbers are equal or not
+   */
+  function floatEq(num1, num2, tolerance) {
+    if (typeof(decFrac) == "undefined") {
+      tolerance = 0;
+    }
+    var diff = Math.abs(num2 - num1);
+    return (diff <= tolerance);
+  }
+
+
   return {
     Quantity: Quantity,
     units: standardUnits,
   };
+
 })();
