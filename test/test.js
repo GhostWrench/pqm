@@ -31,5 +31,12 @@ runTest("Test basic arithmetic functions", results, function() {
     if (!quot.equals(expectedQuot, 1e-10)) {
         return "Division of two quantities failed";
     }
+    // Exponentiation
+    let expectedExpn = new pqm.Quantity(4, {length: 2});
+    let expn = v2.power(2);
+    if (!expn.equals(expectedExpn, 1e-10)) {
+        return "Exponentiation by integer failed";
+    } 
+    // All tests passed, return Pass value
     return "Pass";
 });

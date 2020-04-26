@@ -202,9 +202,7 @@ const pqm = (function () {
     let newMagnitude = 1.0 / this.getMagnitude();
     let newDimensions = this.getDimensions();
     for (let dim in newDimensions) {
-      if (newDimensions[dim] != 0) {
-        newDimensions[dim] = -newDimensions[dim];
-      }
+      newDimensions[dim] = -newDimensions[dim];
     }
     return (new Quantity(newMagnitude, newDimensions));
   };
@@ -233,7 +231,7 @@ const pqm = (function () {
   * @returns {Quantity} Physical quantity raised to provided power
   */
   Quantity.prototype.power = function(power) {
-    if (!isInteger_(power)) {
+    if (!Number.isInteger(power)) {
       throw "Cannot have units with fractional powers";
     }
     if (this.getOffset() != 0 && power > 1) {
