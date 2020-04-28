@@ -40,3 +40,46 @@ runTest("Test basic arithmetic functions", results, function() {
     // All tests passed, return Pass value
     return "Pass";
 });
+
+// Test various operations and conversions
+runTest("Add and convert simple units", results, function() {
+    let v1 = pqm.quantity(10, "ft");
+    let v2 = pqm.quantity(10, "yd");
+    let v3 = v1.add(v2);
+    let expected = pqm.quantity(40, "ft");
+    if (!v3.equals(expected)) {
+        return "Add equals failed";
+    }
+    if (v3.in("ft") != 40) {
+        return "Add in failed"
+    }
+    return "Pass";
+});
+
+runTest("Subtract and convert simple units", results, function() {
+    let v1 = pqm.quantity(10, "ft");
+    let v2 = pqm.quantity(10, "yd");
+    let v3 = v1.subtract(v2);
+    let expected = pqm.quantity(-20, "ft");
+    if (!v3.equals(expected)) {
+        return "Subtract equals failed";
+    }
+    if (v3.in("ft") != -20) {
+        return "Subtract in failed";
+    }
+    return "Pass";
+});
+
+runTest("Multiply and convert simple units", results, function() {
+    let v1 = pqm.quantity(10, "ft");
+    let v2 = pqm.quantity(10, "yd");
+    let v3 = v1.multiply(v2);
+    let expected = pqm.quantity(300, "ft^2");
+    if (!v3.equals(expected, 1e-10)) {
+        return "Multiply equals failed";
+    }
+    if (v3.in("ft^2") != 300) {
+        return "Multiply in failed";
+    }
+    return "Pass";
+});

@@ -271,6 +271,27 @@ const pqm = (function () {
   }
 
   /**
+  * Get the magnitude of the physical quantity with the supplied unit
+  *
+  * @param {string} unitString Unit to get the magnitude of the Quantity in 
+  * @return {number} Magnitude of the quantity in the new unit
+  */
+  Quantity.prototype.in = function(unitString) {
+
+    convertQuantity = quantity(1, unitString);
+    if (!this.sameDimensions(convertQuantity)) {
+      throw "Cannot convert units that are not alike";
+    }
+    // Get the current magnitude without the offset
+    var currentMagnitude = this.getMagnitude() + this.getOffset();
+    // Subtract off the offset of the new unit
+    var newMagnitude = currentMagnitude - convertQuantity.getOffset();
+    // Finally, divide by the magnitude of the new unit
+    var newMagnitude = newMagnitude / convertQuantity.getMagnitude();
+    return newMagnitude;
+  };
+
+  /**
    * Combined list of all units, conversion factors and unit descriptions
    * Each entry should have the following fields
    *
@@ -831,6 +852,115 @@ const pqm = (function () {
     },
   };
 
+  const standardPrefixes = {
+    y: 1e-24, // yocto
+    z: 1e-21, // zepto
+    a: 1e-18, // atto
+    f: 1e-15, // femto
+    p: 1e-12, // pico
+    n: 1e-9, // nano
+    u: 1e-6, // micro
+    m: 1e-3, // milli
+    c: 1e-2, // centi
+    d: 1e-1, // deci
+    da: 1e1, // deca
+    h: 1e2, // hecto
+    k: 1e3, // kilo
+    M: 1e6, // mega
+    G: 1e9, // giga
+    T: 1e12, // tera
+    P: 1e15, // peta
+    E: 1e18, // exa
+    Z: 1e21, // zetta
+    Y: 1e24, // yotta
+    Ki: Math.pow(2, 10), // Kilo(byte)
+    Mi: Math.pow(2, 20),
+    Gi: Math.pow(2, 30),
+    Ti: Math.pow(2, 40),
+    Pi: Math.pow(2, 50),
+    Ei: Math.pow(2, 60),
+    Zi: Math.pow(2, 70),
+    Yi: Math.pow(2, 80)
+  };
+
+  /**
+  * Parse a string to get it's representation as a physical quantity.
+  * 
+  * @param {Number} magnitude Magnitude of the quantity to return
+  * @param {string} unitString String representation of the desired unit. This
+  *                            can be compound (e.g. "ft lb / s"), can include
+  *                            powers with "^" (e.g. "in^2 / s^2"), and can also
+  *                            include standard prefixes using brackets "[]" 
+  *                            (e.g. "[k]g / [m]m"). It cannot include 
+  *                            parenthesis "()", any values the follow a "/" 
+  *                            will be inverted in the returned unit (e.g. 
+  *                            "1 / s m" == "s^-1 m^-1")
+  * @return {Quantity} The unit of measurement as  
+  */
+  function quantity(magnitude, unitString) {
+    const unitRegex = /^(?:\[(\D+)\])?(1|\D+)(?:\^([\-\d]+))?$/;
+    let returnQuantity = new Quantity(1);
+    let sections = unitString.split("/");
+    if (sections.length > 2) {
+      throw "Cannot parse unit with 2 or more '/' symbols";
+    }
+    for (let si=0; si<sections.length; si++) {
+      let unitSyms = sections[si].trim().split(/\s+/g);
+      for (let ui=0; ui<unitSyms.length; ui++) {
+        let matches = unitRegex.exec(unitSyms[ui]);
+        if (!matches) {
+          throw "Cannot convert \"" + unitSyms[ui] + "\" to a valid unit";
+        }
+        // Get the prefix and make sure that is an actual prefix
+        let prefix = matches[1];
+        let prefixValue;
+        if (prefix) {
+          prefixValue = standardPrefixes[prefix];
+          if (!prefixValue) {
+            throw prefix + " is not a valid prefix";
+          }
+        } else {
+          prefixValue = 1;
+        }
+        if (si == 1) {
+          prefixValue = 1 / prefixValue;
+        }
+        // Match the unit and get it's value
+        let unitStr = matches[2];
+        if (!unitStr) {
+          throw "Error parsing unit: \"" + unitString + "\"";
+        }
+        let unitQuantity = standardUnits[unitStr];
+        if (unitQuantity) {
+          unitQuantity = unitQuantity.quant.copy();
+        } else {
+          throw "\"" + unitStr + "\" is not a valid unit";
+        }
+        if (si == 1) {
+          unitQuantity = unitQuantity.inverse();
+        }
+        // Get the power of the unit and invert it if in section 1 (si==1)
+        let power = matches[3];
+        let powerValue;
+        if (power) {
+          powerValue = parseInt(power);
+          if (!powerValue) {
+            throw power + " is not a valid unit power";
+          }
+        } else {
+          powerValue = 1;
+        }
+        // Multiply through the prefixes and powers to get the appropriate
+        // quantity
+        unitQuantity = unitQuantity.multiply(prefixValue);
+        unitQuantity = unitQuantity.power(powerValue);
+        returnQuantity = returnQuantity.multiply(unitQuantity);
+      }
+    }
+    // Multiply through by magnitude and return
+    return returnQuantity.multiply(magnitude);
+  };
+
   /**
    * Compare the equality of two floats using an optional user supplied 
    * tolerance.
@@ -845,14 +975,13 @@ const pqm = (function () {
     if (typeof(decFrac) == "undefined") {
       tolerance = 0;
     }
-    var diff = Math.abs(num2 - num1);
+    let diff = Math.abs(num2 - num1);
     return (diff <= tolerance);
   }
 
-
   return {
     Quantity: Quantity,
-    units: standardUnits,
+    quantity: quantity,
   };
 
 })();
