@@ -972,11 +972,10 @@ const pqm = (function () {
    * @returns {Boolean} If the numbers are equal or not
    */
   function floatEq(num1, num2, tolerance) {
-    if (typeof(decFrac) == "undefined") {
+    if (typeof(tolerance) == "undefined") {
       tolerance = 0;
     }
-    let diff = Math.abs(num2 - num1);
-    return (diff <= tolerance);
+    return Math.abs(num2 - num1) <= tolerance;
   }
 
   return {
