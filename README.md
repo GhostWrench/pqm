@@ -3,14 +3,14 @@ Physical Quantities and Measures (PQM)
 
 PQM is a node.js and browser javascript library for dealing with numbers with
 units like "10 meters". With it you can create variables that represent these
-physical quantities and us them in math almost like a normal numeric variable.
+physical quantities and use them for math just like a normal numeric variable.
 
 Create a physical quantity variable
 --------------------------------------------------------------------------------
 
 ### Create a basic quantity
 
-Use the `pqm.quantity` constructor to create a physial quantity variable
+Use the `pqm.quantity` constructor to create a physial quantity
 
 ```javascript
 let q = pqm.quantity(10, "m");
@@ -46,10 +46,12 @@ let q = pqm.quantity(10, "g m^2 s^-3");
 ### Create a quantity with unit prefixes
 
 Unit prefixes such as "k" or "m" can be added to units by enclosing them in 
-brackets. 
+brackets. The brackets are required to decrease the complexity and increase
+performance of this module, as well as eliminating the possiblility of unit
+"collisions" where the wrong unit might accidentally be used.
 
 ```javascript
-let q = pqm.quantity(10, "[k]m / [m]s")
+let q = pqm.quantity(10, "[k]m / [m]s");
 ```
 
 Convert quantities to a different unit of measure
@@ -105,3 +107,11 @@ q1.equals(q2); // false
 q1.power(2).equals(q2); // false
 q1.power(2).divide(10).equals(q2); // true
 ```
+
+Inverting a quantity
+
+```javascript
+let q1 = pqm.quantity(10, "m");
+let q2 = pqm.quantity(0.1, "1 / m");
+
+q1.invert().equals(q2); // True

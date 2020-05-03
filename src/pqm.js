@@ -842,6 +842,7 @@ const pqm = (function () {
       quant: new Quantity(Math.PI/180),
       desc: "Degree, dimensionless quantity equal to 1/360 of a revolution",
     },
+    // Frequency Units
     Hz: {
       quant: new Quantity(2*Math.PI, {time: -1}),
       desc: "Hertz, unit of frequency defined as 1 rev/sec",
@@ -900,61 +901,63 @@ const pqm = (function () {
   function quantity(magnitude, unitString) {
     const unitRegex = /^(?:\[(\D+)\])?(1|\D+)(?:\^([\-\d]+))?$/;
     let returnQuantity = new Quantity(1);
-    let sections = unitString.split("/");
-    if (sections.length > 2) {
-      throw "Cannot parse unit with 2 or more '/' symbols";
-    }
-    for (let si=0; si<sections.length; si++) {
-      let unitSyms = sections[si].trim().split(/\s+/g);
-      for (let ui=0; ui<unitSyms.length; ui++) {
-        let matches = unitRegex.exec(unitSyms[ui]);
-        if (!matches) {
-          throw "Cannot convert \"" + unitSyms[ui] + "\" to a valid unit";
-        }
-        // Get the prefix and make sure that is an actual prefix
-        let prefix = matches[1];
-        let prefixValue;
-        if (prefix) {
-          prefixValue = standardPrefixes[prefix];
-          if (!prefixValue) {
-            throw prefix + " is not a valid prefix";
+    if (unitString) {
+      let sections = unitString.split("/");
+      if (sections.length > 2) {
+        throw "Cannot parse unit with 2 or more '/' symbols";
+      }
+      for (let si=0; si<sections.length; si++) {
+        let unitSyms = sections[si].trim().split(/\s+/g);
+        for (let ui=0; ui<unitSyms.length; ui++) {
+          let matches = unitRegex.exec(unitSyms[ui]);
+          if (!matches) {
+            throw "Cannot convert \"" + unitSyms[ui] + "\" to a valid unit";
           }
-        } else {
-          prefixValue = 1;
-        }
-        if (si == 1) {
-          prefixValue = 1 / prefixValue;
-        }
-        // Match the unit and get it's value
-        let unitStr = matches[2];
-        if (!unitStr) {
-          throw "Error parsing unit: \"" + unitString + "\"";
-        }
-        let unitQuantity = standardUnits[unitStr];
-        if (unitQuantity) {
-          unitQuantity = unitQuantity.quant.copy();
-        } else {
-          throw "\"" + unitStr + "\" is not a valid unit";
-        }
-        if (si == 1) {
-          unitQuantity = unitQuantity.inverse();
-        }
-        // Get the power of the unit and invert it if in section 1 (si==1)
-        let power = matches[3];
-        let powerValue;
-        if (power) {
-          powerValue = parseInt(power);
-          if (!powerValue) {
-            throw power + " is not a valid unit power";
+          // Get the prefix and make sure that is an actual prefix
+          let prefix = matches[1];
+          let prefixValue;
+          if (prefix) {
+            prefixValue = standardPrefixes[prefix];
+            if (!prefixValue) {
+              throw prefix + " is not a valid prefix";
+            }
+          } else {
+            prefixValue = 1;
           }
-        } else {
-          powerValue = 1;
+          if (si == 1) {
+            prefixValue = 1 / prefixValue;
+          }
+          // Match the unit and get it's value
+          let unitStr = matches[2];
+          if (!unitStr) {
+            throw "Error parsing unit: \"" + unitString + "\"";
+          }
+          let unitQuantity = standardUnits[unitStr];
+          if (unitQuantity) {
+            unitQuantity = unitQuantity.quant.copy();
+          } else {
+            throw "\"" + unitStr + "\" is not a valid unit";
+          }
+          if (si == 1) {
+            unitQuantity = unitQuantity.invert();
+          }
+          // Get the power of the unit and invert it if in section 1 (si==1)
+          let power = matches[3];
+          let powerValue;
+          if (power) {
+            powerValue = parseInt(power);
+            if (!powerValue) {
+              throw power + " is not a valid unit power";
+            }
+          } else {
+            powerValue = 1;
+          }
+          // Multiply through the prefixes and powers to get the appropriate
+          // quantity
+          unitQuantity = unitQuantity.multiply(prefixValue);
+          unitQuantity = unitQuantity.power(powerValue);
+          returnQuantity = returnQuantity.multiply(unitQuantity);
         }
-        // Multiply through the prefixes and powers to get the appropriate
-        // quantity
-        unitQuantity = unitQuantity.multiply(prefixValue);
-        unitQuantity = unitQuantity.power(powerValue);
-        returnQuantity = returnQuantity.multiply(unitQuantity);
       }
     }
     // Multiply through by magnitude and return
@@ -980,6 +983,7 @@ const pqm = (function () {
 
   return {
     quantity: quantity,
+    standardUnits: standardUnits,
   };
 
 })();

@@ -115,3 +115,23 @@ runTest("Multiply complex units and convert", results, function() {
     }
     return "Pass";
 });
+
+runTest("Quantity inversion and unitless quantities", results, function() {
+    let v1 = pqm.quantity(10, "m");
+    let v2 = v1.invert();
+    let v3 = pqm.quantity(1).divide(v1);
+    let expected = pqm.quantity(0.1, "1 / m");
+    if (!v2.equals(expected)) {
+        return "Invert (type 1) equals did not work";
+    }
+    if (v2.in("1 / m") != 0.1) {
+        return "Invert (type 1) in did not work";
+    }
+    if (!v3.equals(expected)) {
+        return "Invert (type 2) equals did not work";
+    }
+    if (v3.in("1 / m") != 0.1) {
+        return "Invert (type 2) in did not work";
+    }
+    return "Pass";
+});
