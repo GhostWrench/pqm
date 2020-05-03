@@ -979,7 +979,6 @@ const pqm = (function () {
   }
 
   return {
-    Quantity: Quantity,
     quantity: quantity,
   };
 
