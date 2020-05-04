@@ -278,7 +278,7 @@ const pqm = (function () {
   */
   Quantity.prototype.in = function(unitString) {
 
-    convertQuantity = quantity(1, unitString);
+    let convertQuantity = quantity(1, unitString);
     if (!this.sameDimensions(convertQuantity)) {
       throw "Cannot convert units that are not alike";
     }
@@ -298,7 +298,7 @@ const pqm = (function () {
    * quant: Quantity value describing the unit
    * desc: A description of the unit
    */
-  const standardUnits = {
+  const units = {
     // Singular Unit
     "1": {
       quant: new Quantity(1),
@@ -853,7 +853,7 @@ const pqm = (function () {
     },
   };
 
-  const standardPrefixes = {
+  const prefixes = {
     y: 1e-24, // yocto
     z: 1e-21, // zepto
     a: 1e-18, // atto
@@ -917,7 +917,7 @@ const pqm = (function () {
           let prefix = matches[1];
           let prefixValue;
           if (prefix) {
-            prefixValue = standardPrefixes[prefix];
+            prefixValue = prefixes[prefix];
             if (!prefixValue) {
               throw prefix + " is not a valid prefix";
             }
@@ -932,7 +932,7 @@ const pqm = (function () {
           if (!unitStr) {
             throw "Error parsing unit: \"" + unitString + "\"";
           }
-          let unitQuantity = standardUnits[unitStr];
+          let unitQuantity = units[unitStr];
           if (unitQuantity) {
             unitQuantity = unitQuantity.quant.copy();
           } else {
@@ -983,7 +983,9 @@ const pqm = (function () {
 
   return {
     quantity: quantity,
-    standardUnits: standardUnits,
+    units: units,
   };
 
 })();
+
+export default pqm;

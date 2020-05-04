@@ -2,6 +2,8 @@
  * All tests for PQM
  */
 
+import pqm from "../src/pqm.js";
+
 results = document.getElementById('results');
 
 // Test various operations and conversions
