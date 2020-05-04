@@ -1,5 +1,5 @@
-const http = require('http');
-const fs = require('fs');
+import http from 'http';
+import fs from 'fs';
 
 const HOSTNAME = '127.0.0.1';
 const PORT = 8080;
@@ -31,5 +31,5 @@ http.createServer((request, response) => {
         response.end()
     })
 }).listen(PORT, HOSTNAME, () => {
-    console.log(`Server running at http://${HOSTNAME}:${PORT}/test/test.html`);
+    console.log(`Test page running at http://${HOSTNAME}:${PORT}/test/browser/test.html`);
 })
