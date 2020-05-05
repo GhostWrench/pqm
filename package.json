@@ -1,0 +1,29 @@
+{
+  "name": "pqm",
+  "version": "0.1.0",
+  "description": "PQM is a node.js and browser javascript library for dealing with numbers with units like \"10 meters\". With it you can create variables that represent these hysical quantities and use them for math just like a normal numeric variable.",
+  "main": "src/pqm.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/node/test.js",
+    "testbrowser": "node test/browser/testserver.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GhostWrench/pqm.git"
+  },
+  "keywords": [
+    "units of measure",
+    "physical quantities",
+    "dimensional analysis"
+  ],
+  "author": "GhostWrench",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/GhostWrench/pqm/issues"
+  },
+  "homepage": "https://github.com/GhostWrench/pqm#readme"
+}
