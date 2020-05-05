@@ -300,557 +300,143 @@ const pqm = (function () {
    */
   const units = {
     // Singular Unit
-    "1": {
-      quant: new Quantity(1),
-      desc : "Unit non-dimensional quantity",
-    },
+    "1": new Quantity(1),
     // Mass units
-    kg: {
-      quant: new Quantity(1, {mass: 1}),
-      desc : "Kilogram, SI unit for mass, same as '[k]g'",
-    },
-    g: {
-      quant: new Quantity(1e-3, {mass: 1}),
-      desc : "Gram, unit of mass defined as 1e-3 kg",
-    },
-    u: {
-      quant: new Quantity(1.66053878200000E-27, {mass: 1}),
-      desc : ("Atomic Mass Unit, approximately the mass of one proton or " +
-              "neutron"),
-    },
-    AMU: {
-      quant: new Quantity(1.66053878200000E-27, {mass: 1}),
-      desc : "Atomic Mass Unit, same as 'u'",
-    },
-    grain: {
-      quant: new Quantity(6.47989100000000E-05, {mass: 1}),
-      desc : ("Grain, mass equivalent to a single ideal seed of a cereal, " +
-              "in particular wheat or barley"),
-    },
-    ozm: {
-      quant: new Quantity(2.83495231250000E-02, {mass: 1}),
-      desc : "Ounce Mass, imperial unit equal to 1/16 of a Pound Mass",
-    },
-    lbm: {
-      quant: new Quantity(4.53592370000000E-01, {mass: 1}),
-      desc : ("Pound Mass, primary unit of mass in the imperial and US " +
-              "customary unit system"),
-    },
-    stone: {
-      quant: new Quantity(6.35029318000000E+00, {mass: 1}),
-      desc : "Stone, imperial unit equal to 14 Pounds Mass",
-    },
-    sg: {
-      quant: new Quantity(1.45939029372064E+01, {mass: 1}),
-      desc : "Slug, same as 'slug'",
-    },
-    cwt: {
-      quant: new Quantity(4.53592370000000E+01, {mass: 1}),
-      desc : ("Short Hundredweight, mass unit typically used in the US that " + 
-              "is equal to 100 lbm"),
-    },
-    uk_cwt: {
-      quant: new Quantity(5.08023454400000E+01, {mass: 1}),
-      desc : ("Long Hundredweight, mass unit typically used in the UK that " +
-              "is equal to 8 stone"),
-    },
-    ton: {
-      quant: new Quantity(9.07184740000000E+02, {mass: 1}),
-      desc : "Ton, US customary mass unit that is equal to 2000 lbm",
-    },
-    uk_ton: {
-      quant: new Quantity(1.01604690880000E+03, {mass: 1}),
-      desc : ("UK Ton, English customary mass unit that is equal to 20 Long " +
-              "Hundredweight or 160 Stone"),
-    },
-    slug: {
-      quant: new Quantity(1.45939029372064E+01, {mass: 1}),
-      desc: "Slug, Imperial unit defined as 1 lbf / Standard Gravity",
-    },
+    kg: new Quantity(1, {mass: 1}), // Only allowed "prefix unit" without prefix
+    g: new Quantity(1e-3, {mass: 1}),
+    u: new Quantity(1.66053878200000E-27, {mass: 1}),
+    AMU: new Quantity(1.66053878200000E-27, {mass: 1}),
+    grain: new Quantity(6.47989100000000E-05, {mass: 1}),
+    ozm: new Quantity(2.83495231250000E-02, {mass: 1}),
+    lbm: new Quantity(4.53592370000000E-01, {mass: 1}),
+    stone: new Quantity(6.35029318000000E+00, {mass: 1}),
+    sg: new Quantity(1.45939029372064E+01, {mass: 1}),
+    cwt: new Quantity(4.53592370000000E+01, {mass: 1}),
+    uk_cwt: new Quantity(5.08023454400000E+01, {mass: 1}),
+    ton: new Quantity(9.07184740000000E+02, {mass: 1}),
+    uk_ton: new Quantity(1.01604690880000E+03, {mass: 1}),
+    slug: new Quantity(1.45939029372064E+01, {mass: 1}),
     // Length Units
-    m: {
-      quant: new Quantity(1, {length: 1}),
-      desc : "Meter, SI Unit for length",
-    },
-    ang: {
-      quant: new Quantity(1.00000000000000E-10, {length: 1}),
-      desc : "Angstrom, Unit of measure equal to 10^-10 meters",
-    },
-    picapt: {
-      quant: new Quantity(3.52777777777778E-04, {length: 1}),
-      desc : "Pica Point, length used in typography equal to 1/12 of a pica",
-    },
-    pica: {
-      quant: new Quantity(4.23333333333333E-03, {length: 1}),
-      desc : "Pica, length used in typography equal to 1/6 of an inch",
-    },
-    "in": {
-      quant: new Quantity(2.54000000000000E-02, {length: 1}),
-      desc : "Inch, Imperial unit of length equal to 1/12 of a foot",
-    },
-    ft: {
-      quant: new Quantity(3.04800000000000E-01, {length: 1}),
-      desc : "Foot, Standard Imperial unit of length",
-    },
-    yd: {
-      quant: new Quantity(9.14400000000000E-01, {length: 1}),
-      desc : "Yard, Imperial unit of length equal to 3 foot",
-    },
-    ell: {
-      quant: new Quantity(1.14300000000000E+00, {length: 1}),
-      desc : ("Ell / Cubit, Approximate length of a man's arm from elbow " + 
-              "to the tip of the fingers"),
-    },
-    mi: {
-      quant: new Quantity(1.60934400000000E+03, {length: 1}),
-      desc : "Mile, Imperial unit of length equal to 5280 ft",
-    },
-    survey_mi: {
-      quant: new Quantity((1200/3937)*5280, {length: 1}),
-      desc: "Survey Mile, Imperial unit of length equal to 5280 Survey Feet",
-    },
-    Nmi: {
-      quant: new Quantity(1.85200000000000E+03, {length: 1}),
-      desc : ("Nautical Mile, Length approximately 1/60 of a degree of " +
-              "latitude, formally defined as 1852 meters"),
-    },
-    league: {
-      quant: new Quantity(5.55600000000000E+03, {length: 1}),
-      desc: ("League, originally represented the distance a person could " +
-             "walk in one day. The most recent common usage was in maritime " +
-             "where it is equal to 3 nautical miles"),
-    },
-    ly: {
-      quant: new Quantity(9.46073047258080E+15, {length: 1}),
-      desc : ("Light Year, the length of travel of light in one year, used " +
-              "in astronomical scales"),
-    },
-    parsec: {
-      quant: new Quantity(3.08567758128155E+16, {length: 1}),
-      desc : "Parsec, defined as 648 000 / pi Astronomical units",
-    },
-    survey_ft: {
-      quant: new Quantity(1200/3937, {length: 1}),
-      desc : ("Survey Foot, Very close to a foot of length but defined as " +
-              "1200/3937 meters instead of 0.3048 meters"),
-    },
-    au: {
-      quant: new Quantity(1.49597870700000E+11, {length: 1}),
-      desc: "Astronomical Unit, approximate distance from the Earth to the Sun",
-    },
+    m: new Quantity(1, {length: 1}),
+    ang: new Quantity(1.00000000000000E-10, {length: 1}),
+    picapt: new Quantity(3.52777777777778E-04, {length: 1}),
+    pica: new Quantity(4.23333333333333E-03, {length: 1}),
+    "in": new Quantity(2.54000000000000E-02, {length: 1}),
+    ft: new Quantity(3.04800000000000E-01, {length: 1}),
+    yd: new Quantity(9.14400000000000E-01, {length: 1}),
+    ell: new Quantity(1.14300000000000E+00, {length: 1}),
+    mi: new Quantity(1.60934400000000E+03, {length: 1}),
+    survey_mi: new Quantity((1200/3937)*5280, {length: 1}),
+    Nmi: new Quantity(1.85200000000000E+03, {length: 1}),
+    league: new Quantity(5.55600000000000E+03, {length: 1}),
+    ly: new Quantity(9.46073047258080E+15, {length: 1}),
+    parsec: new Quantity(3.08567758128155E+16, {length: 1}),
+    survey_ft: new Quantity(1200/3937, {length: 1}),
+    au: new Quantity(1.49597870700000E+11, {length: 1}),
     // Time units
-    sec: {
-      quant: new Quantity(1, {time: 1}),
-      desc : ("Second, time that is Approximately 1/86400 of a stellar day, " +
-              "formally defined based on the duration of 9 192 631 770 state " +
-              "transitions of the caesium-133 atom at 0 K"),
-    },
-    s: {
-      quant: new Quantity(1, {time: 1}),
-      desc : "Second, same as 'sec'",
-    },
-    min: {
-      quant: new Quantity(6.00000000000000E+01, {time: 1}),
-      desc : "Minute, defined as 60 seconds",
-    },
-    hr: {
-      quant: new Quantity(3.60000000000000E+03, {time: 1}),
-      desc : "Hour, defined as 60 minutes",
-    },
-    day: {
-      quant: new Quantity(8.64000000000000E+04, {time: 1}),
-      desc : "Day, defined as 24 hours",
-    },
-    yr: {
-      quant: new Quantity(3.15576000000000E+07, {time: 1}),
-      desc : "Year, defined as 365 days",
-    },
-    stellar_day: {
-      quant: new Quantity(8.637641003520000E+04, {time: 1}),
-      desc: "Stellar Day, approximate time for the earth to make one rotation",
-    },
-    K: {
-      quant: new Quantity(1, {temperature: 1}),
-      desc : "Kelvin, SI unit of temperature with 0 defined as absolute zero",
-    },
-    degF: {
-      quant: new Quantity(5.55555555555543E-01, {temperature: 1}, 2.55372222222222E+02),
-      desc: ("Fahrenheit, Temperature scale that is approximately 32 at the " +
-             "melting point of ice and 212 at the boiling point of water"),
-    },
-    degC: {
-      quant: new Quantity(1, {temperature: 1}, 2.73150000000000E+02),
-      desc: ("Celsius, temperature unit with a similar scale to Kelvin, but " +
-             "with the 0 approximately defined as the melting point of ice"),
-    },
-    Rank: {
-      quant: new Quantity(5.55555555555543E-01, {temperature: 1}),
-      desc: ("Rankine, temperature units with the same scale as Fahrenheit " +
-             "but with 0 at absolute 0"),
-    },
-    Reau: {
-      quant: new Quantity(1.25000000000000E+00, {temperature: 1}, 2.73150000000000E+02),
-      desc: ("Reaumur, temperature scale that is approximately 0 at the " +
-             "melting point of ice and 80 at the boiling point of water"),
-    },
+    sec: new Quantity(1, {time: 1}),
+    s: new Quantity(1, {time: 1}),
+    min: new Quantity(6.00000000000000E+01, {time: 1}),
+    hr: new Quantity(3.60000000000000E+03, {time: 1}),
+    day: new Quantity(8.64000000000000E+04, {time: 1}),
+    yr: new Quantity(3.15576000000000E+07, {time: 1}),
+    stellar_day: new Quantity(8.637641003520000E+04, {time: 1}),
+    K: new Quantity(1, {temperature: 1}),
+    degF: new Quantity(5.55555555555543E-01, {temperature: 1}, 2.55372222222222E+02),
+    degC: new Quantity(1, {temperature: 1}, 2.73150000000000E+02),
+    Rank: new Quantity(5.55555555555543E-01, {temperature: 1}),
+    Reau: new Quantity(1.25000000000000E+00, {temperature: 1}, 2.73150000000000E+02),
     // Velocity Units
-    mph: {
-      quant: new Quantity(4.47040000000000E-01, {length: 1, time: -1}),
-      desc: "Miles per Hour, velocity at which a mile is traveled every hour",
-    },
-    kn: {
-      quant: new Quantity(5.14444444444444E-01, {length: 1, time: -1}),
-      desc: "Knot, velocity at which a Nautical mile is traveled every hour",
-    },
-    admkn: {
-      quant: new Quantity(5.14773333333333E-01, {length: 1, time: -1}),
-      desc: ("Admiralty Knot, knot based on the old UK definition of a " +
-             "Nautical mile (1853.184 m)"),
-    },
-    c: {
-      quant: new Quantity(2.99792458000000E+8, {length: 1, time: -1}),
-      desc: ("Speed of Light, unit of velocity defined by how fast light " +
-             "travels"),
-    },
+    mph: new Quantity(4.47040000000000E-01, {length: 1, time: -1}),
+    kn: new Quantity(5.14444444444444E-01, {length: 1, time: -1}),
+    admkn: new Quantity(5.14773333333333E-01, {length: 1, time: -1}),
+    c: new Quantity(2.99792458000000E+8, {length: 1, time: -1}),
     // Acceleration Units
-    grav: {
-      quant: new Quantity(9.80665000000000E+00, {length: 1, time: -2}),
-      desc: ("Standard Gravity, approximate acceleration of gravity at the " +
-             "surface of the earth"),
-    },
+    grav: new Quantity(9.80665000000000E+00, {length: 1, time: -2}),
     // Pressure Units
-    Pa: {
-      quant: new Quantity(1, {mass: 1, length: -1, time: -2}),
-      desc: "Pascal, SI unit for pressure defined as 1 N/m^2",
-    },
-    mmHg: {
-      quant: new Quantity(1.33322000000000E+02, {mass: 1, length: -1, time: -2}),
-      desc: ("Millimeter of mercury, pressure defined as the pressure " +
-             "applied by 1 mm of Hg at 1 standard gravity"),
-    },
-    Torr: {
-      quant: new Quantity(1.33322368421053E+02, {mass: 1, length: -1, time: -2}),
-      desc: ("Torr, Slightly different definition of Millimeter of mercury, " +
-             "very close to the same scale"),
-    },
-    psi: {
-      quant: new Quantity(6.89475729316836E+03, {mass: 1, length: -1, time: -2}),
-      desc: "Pounds per square inch, unit for pressure defined as lbf / in^2",
-    },
-    atm: {
-      quant: new Quantity(1.01325000000000E+05, {mass: 1, length: -1, time: -2}),
-      desc: ("Atmosphere, pressure that is approximately the mean air " +
-             "pressure at sea level"),
-    },
-    bar: {
-      quant: new Quantity(1.00000e5, {mass: 1, length: -1, time: -2}),
-      desc: ("Bar, unit of pressure defined as 100 000 Pa. This makes it " +
-             "very close to 1 Atmosphere"),
-    },
-    inHg: {
-      quant: new Quantity(3.38638866666670E+03, {mass: 1, length: -1, time: -2}),
-      desc: ("Inches of Mercury, pressure defined as the pressure applied " +
-             "by 1 inch of Hg at 1 standard gravity"),
-    },
+    Pa: new Quantity(1, {mass: 1, length: -1, time: -2}),
+    mmHg: new Quantity(1.33322000000000E+02, {mass: 1, length: -1, time: -2}),
+    Torr: new Quantity(1.33322368421053E+02, {mass: 1, length: -1, time: -2}),
+    psi: new Quantity(6.89475729316836E+03, {mass: 1, length: -1, time: -2}),
+    atm: new Quantity(1.01325000000000E+05, {mass: 1, length: -1, time: -2}),
+    bar: new Quantity(1.00000e5, {mass: 1, length: -1, time: -2}),
+    inHg: new Quantity(3.38638866666670E+03, {mass: 1, length: -1, time: -2}),
     // Force Units
-    N: {
-      quant: new Quantity(1, {mass: 1, length: 1, time: -2}),
-      desc: "Newton, SI unit for force defined as 1 [k]g m / s^2",
-    },
-    dyn: {
-      quant: new Quantity(1.00000000000000E-05, {mass: 1, length: 1, time: -2}),
-      desc: "Dyne, CGS unit for force defined as 1 g [c]m / s^2",
-    },
-    pond: {
-      quant: new Quantity(9.80665000000000E-03, {mass: 1, length: 1, time: -2}),
-      desc: ("Pond, force defined as the amount of force exerted by standard " +
-             "gravity on a 1 [k]g mass"),
-    },
-    lbf: {
-      quant: new Quantity(4.44822161526050E+00, {mass: 1, length: 1, time: -2}),
-      desc: ("Pounds force, defined as the amount of force exerted by " +
-             "standard gravity on a 1 lbm mass"),
-    },
-    ozf: {
-      quant: new Quantity(2.78013850953781E-01, {mass: 1, length: 1, time: -2}),
-      desc: "Ounce Force, equal to 1/16 lbf",
-    },
+    N: new Quantity(1, {mass: 1, length: 1, time: -2}),
+    dyn: new Quantity(1.00000000000000E-05, {mass: 1, length: 1, time: -2}),
+    pond: new Quantity(9.80665000000000E-03, {mass: 1, length: 1, time: -2}),
+    lbf: new Quantity(4.44822161526050E+00, {mass: 1, length: 1, time: -2}),
+    ozf: new Quantity(2.78013850953781E-01, {mass: 1, length: 1, time: -2}),
     // Energy Units
-    J: {
-      quant: new Quantity(1, {mass: 1, length: 2, time: -2}),
-      desc: "Joule, SI unit for energy defined as 1 N m",
-    },
-    eV: {
-      quant: new Quantity(1.60217648700000E-19, {mass: 1, length: 2, time: -2}),
-      desc: ("Electron Volt, Energy gain of an electron after passing " +
-             "through a 1 Volt potential"),
-    },
-    erg: {
-      quant: new Quantity(1.00000000000000E-07, {mass: 1, length: 2, time: -2}),
-      desc: "Erg, CGS unit for energy defined as 1 dyn cm",
-    },
-    Cal: {
-      quant: new Quantity(4.18680000000000E+00, {mass: 1, length: 2, time: -2}),
-      desc: ("Calorie / Kilocalorie, defined as the amount of energy to " +
-             "raise the temperature of 1 kg of water 1 degree Celsius"),
-    },
-    BTU: {
-      quant: new Quantity(1.05505585262000E+03, {mass: 1, length: 2, time: -2}),
-      desc: ("British Thermal Unit, defined as the amount of energy to " +
-             "raise the temperature of 1 lbm of water 1 degree Fahrenheit"),
-    },
-    Wh: {
-      quant: new Quantity(3.60000000000000E+03, {mass: 1, length: 2, time: -2}),
-      desc: "Watt-hour, amount of energy accumulated by 1 Watt over an hour",
-    },
-    HPh: {
-      quant: new Quantity(2.68451953769617E+06, {mass: 1, length: 2, time: -2}),
-      desc: ("Horsepower-hour, amount of energy accumulated by 1 HP over " +
-             "an hour"),
-    },
+    J: new Quantity(1, {mass: 1, length: 2, time: -2}),
+    eV: new Quantity(1.60217648700000E-19, {mass: 1, length: 2, time: -2}),
+    erg: new Quantity(1.00000000000000E-07, {mass: 1, length: 2, time: -2}),
+    Cal: new Quantity(4.18680000000000E+00, {mass: 1, length: 2, time: -2}),
+    BTU: new Quantity(1.05505585262000E+03, {mass: 1, length: 2, time: -2}),
+    Wh: new Quantity(3.60000000000000E+03, {mass: 1, length: 2, time: -2}),
+    HPh: new Quantity(2.68451953769617E+06, {mass: 1, length: 2, time: -2}),
     // Torque Units (same dimensions as energy)
-    "ft-lb": {
-      quant: new Quantity(1.35581794833140E+00, {mass: 1, length: 2, time: -2}),
-      desc: "Foot-pound, Torque unit defined as 1 ft lbf",
-    },
+    "ft-lb": new Quantity(1.35581794833140E+00, {mass: 1, length: 2, time: -2}),
     // Power Units
-    W: {
-      quant: new Quantity(1, {mass: 1, length: 2, time: -3}),
-      desc: "Watt, SI unit for energy, defined as 1 J / s",
-    },
-    PS: {
-      quant: new Quantity(7.35498750000000E+02, {mass: 1, length: 2, time: -3}),
-      desc: ("Metric Horsepower, defined as the amount of pwer to raise a " +
-             "mass of 75 [k]g against standard gravity over a distance of 1 " +
-             "meter in one second"),
-    },
-    HP: {
-      quant: new Quantity(7.45699871582270E+02, {mass: 1, length: 2, time: -3}),
-      desc: "Mechanical Horsepower, defined as 33 000 ft lbf / min",
-    },
+    W: new Quantity(1, {mass: 1, length: 2, time: -3}),
+    PS: new Quantity(7.35498750000000E+02, {mass: 1, length: 2, time: -3}),
+    HP: new Quantity(7.45699871582270E+02, {mass: 1, length: 2, time: -3}),
     // Volume units
-    L: {
-      quant: new Quantity(1.00000000000000E-03, {length: 3}),
-      desc: "Liter, Unit of volume that is defined as 1 [d]m^2 or 1e-3 m^3",
-    },
-    tsp: {
-      quant: new Quantity(4.92892159375000E-06, {length: 3}),
-      desc: "Teaspoon, US Customary volume unit that is close to 5 mL",
-    },
-    tspm: {
-      quant: new Quantity(5.00000000000000E-06, {length: 3}),
-      desc: "Metric teaspoon, volume measurement that is exactly 5 mL",
-    },
-    tbs: {
-      quant: new Quantity(1.47867647812500E-05, {length: 3}),
-      desc: "Tablespoon, US Customary volume unit that is defined as 3 tsp",
-    },
-    fl_oz: {
-      quant: new Quantity(2.95735295625000E-05, {length: 3}),
-      desc: "Fluid Ounce, US Customary volume unit that is defined as 2 tbs",
-    },
-    cup: {
-      quant: new Quantity(2.36588236500000E-04, {length: 3}),
-      desc: "Cup, US Customary volume unit that is defined as 8 fluid ounces",
-    },
-    pt: {
-      quant: new Quantity(4.73176473000000E-04, {length: 3}),
-      desc: "Pint, US Customary volume unit that is defined as 2 cups",
-    },
-    uk_pt: {
-      quant: new Quantity(5.68261250000000E-04, {length: 3}),
-      desc: "UK Pint, Imperial volume unit defined as 20 imperial ounces",
-    },
-    qt: {
-      quant: new Quantity(9.46352946000000E-04, {length: 3}),
-      desc: "Quart, US Customary volume unit that is defined as 2 pints",
-    },
-    uk_qt: {
-      quant: new Quantity(1.13652250000000E-03, {length: 3}),
-      desc: "UK Quart, Imperial volume unit defined as 2 UK pints",
-    },
-    gal: {
-      quant: new Quantity(3.78541178400000E-03, {length: 3}),
-      desc: "Gallon, US Customary volume unit that is defined as 4 quarts",
-    },
-    uk_gal: {
-      quant: new Quantity(4.54609000000000E-03, {length: 3}),
-      desc: "UK Gallon, Imperial volume unit defined as 4 UK quarts",
-    },
-    bushel: {
-      quant: new Quantity(3.52390701668800E-02, {length: 3}),
-      desc: ("US Bushel, very old unit of volume that is associated with " +
-             "agricultural production, about 2150.42 in^3"),
-    },
-    barrel: {
-      quant: new Quantity(1.58987294928000E-01, {length: 3}),
-      desc: "Oil Barrel, volume unit used in the us oil industry",
-    },
-    MTON: {
-      quant: new Quantity(1.13267386368000E+00, {length: 3}),
-      desc: ("Measurement Ton, volume unit commonly used in the freight " +
-             "industry equal to 40 f^3"),
-    },
-    GRT: {
-      quant: new Quantity(2.83168465920000E+00, {length: 3}),
-      desc: ("Gross Register Tonnage, volume unit commonly used in the " +
-             "freight industry equal to 100 f^3"),
-    },
+    L: new Quantity(1.00000000000000E-03, {length: 3}),
+    tsp: new Quantity(4.92892159375000E-06, {length: 3}),
+    tspm: new Quantity(5.00000000000000E-06, {length: 3}),
+    tbs: new Quantity(1.47867647812500E-05, {length: 3}),
+    fl_oz: new Quantity(2.95735295625000E-05, {length: 3}),
+    cup: new Quantity(2.36588236500000E-04, {length: 3}),
+    pt: new Quantity(4.73176473000000E-04, {length: 3}),
+    uk_pt: new Quantity(5.68261250000000E-04, {length: 3}),
+    qt: new Quantity(9.46352946000000E-04, {length: 3}),
+    uk_qt: new Quantity(1.13652250000000E-03, {length: 3}),
+    gal: new Quantity(3.78541178400000E-03, {length: 3}),
+    uk_gal: new Quantity(4.54609000000000E-03, {length: 3}),
+    bushel: new Quantity(3.52390701668800E-02, {length: 3}),
+    barrel: new Quantity(1.58987294928000E-01, {length: 3}),
+    MTON: new Quantity(1.13267386368000E+00, {length: 3}),
+    GRT: new Quantity(2.83168465920000E+00, {length: 3}),
     // Area units
-    ar: {
-      quant: new Quantity(1.00000000000000E+02, {length: 2}),
-      desc: "Are, area unit that is equal to 1/100 hectares or 100 m^2",
-    },
-    Morgen: {
-      quant: new Quantity(2.50000000000000E+03, {length: 2}),
-      desc: ("Morgen, traditionally the area able to be plowed in a single " +
-             "day by a single bladed plow and a Ox or horse, it now is " +
-             "approximately equal to 1/4 of a hectare"),
-    },
-    acre: {
-      quant: new Quantity(4.04687260987425E+03, {length: 2}),
-      desc: ("US Acre, unit of area traditionally defined as the amount of " +
-             "area that could be plowed in one day by a yoke of oxen. Still " +
-             "in use in the US"),
-    },
-    us_acre: {
-      quant: new Quantity(4.04687260987425E+03, {length: 2}),
-      desc: "US Acre, same as 'acre' (common alternative)",
-    },
-    uk_acre: {
-      quant: new Quantity(4.04685642240000E+03, {length: 2}),
-      desc: ("UK Acre, unit of area traditionally defined as the amount of " +
-             "area that could be plowed in one day by a yoke of oxen, " +
-             "slightly different than the US Acre. Used in the UK until 1995"),
-    },
-    ha: {
-      quant: new Quantity(1.00000000000000E+04, {length: 2}),
-      desc: ("Hectare, standard international unit for measurement of the " +
-             "area of land, equal to 1000 m^3"),
-    },
+    ar: new Quantity(1.00000000000000E+02, {length: 2}),
+    Morgen: new Quantity(2.50000000000000E+03, {length: 2}),
+    acre: new Quantity(4.04687260987425E+03, {length: 2}),
+    us_acre: new Quantity(4.04687260987425E+03, {length: 2}),
+    uk_acre: new Quantity(4.04685642240000E+03, {length: 2}),
+    ha: new Quantity(1.00000000000000E+04, {length: 2}),
     // Information units
-    bit: {
-      quant: new Quantity(1, {information: 1}),
-      desc: ("Bit, one bit of information that can take one of 2 states " +
-             "(on/off, 0/1, high/low)"),
-    },
-    b: {
-      quant: new Quantity(1, {information: 1}),
-      desc: "Bit, common abbreviation for 'bit'",
-    },
-    byte: {
-      quant: new Quantity(8, {information: 1}),
-      desc: ("Byte, equal to 8 bits of information, commonly used in modern " +
-             "computing architectures"),
-    },
-    B: {
-      quant: new Quantity(8, {information: 1}),
-      desc: "Byte (common abbreviation)",
-    },
-    word: {
-      quant: new Quantity(16, {information: 1}),
-      desc: "Word, equal to 16 bits or 2 bytes",
-    },
-    baud: {
-      quant: new Quantity(1, {information:  1, time: -1}),
-      desc: "Baud, rate of data transmission",
-    },
+    bit: new Quantity(1, {information: 1}),
+    b: new Quantity(1, {information: 1}),
+    byte: new Quantity(8, {information: 1}),
+    B: new Quantity(8, {information: 1}),
+    word: new Quantity(16, {information: 1}),
+    baud: new Quantity(1, {information:  1, time: -1}),
     // Electro-magnetism units
-    A: {
-      quant: new Quantity(1, {current: 1}),
-      desc: "Ampere, SI unit for electric current defined as exactly 1 C/s",
-    },
-    C: {
-      quant: new Quantity(1, {current: 1, time: 1}),
-      desc: ("Coulomb, SI Unit for electric charge defined as the amount of " +
-             "charge of equal to exactly 6.2415093E+18 elementary charges"),
-    },
-    e: {
-      quant: new Quantity(1.60217663400000E-19, {current: 1, time: 1}),
-      desc: "Elementary Charge, The electric charge carried by a single proton",
-    },
-    V: {
-      quant: new Quantity(1, {mass: 1, length: 2, current: -1, time: -3}),
-      desc: ("Volt, derived SI unit for electric potential, can be defined " +
-             "as J/C"),
-    },
-    ohm: {
-      quant: new Quantity(1, {mass: 1, length: 2, time: -3, current: -2}),
-      desc: "Ohm, derived SI unit for electrical resistance",
-    },
-    F: {
-      quant: new Quantity(1, {time: 4, current: 2, length: -2, mass: -1}),
-      desc: "Farad, derived SI Unit of electrical capacitance",
-    },
-    H: {
-      quant: new Quantity(1, {length: 2, mass: 1, time: -2, current: -2}),
-      desc: "Henry, derived SI unit for inductance",
-    },
-    S: {
-      quant: new Quantity(1, {time: 3, current: 2, length: -2, mass: -1}),
-      desc: ("Siemens, derived SI unit for electrical conductance, equal " +
-             "to 1 / ohm"),
-    },
-    Wb: {
-      quant: new Quantity(1, {mass: 1, length:2, time: -2, current: -1}),
-      desc: "Weber, SI unit for magnetic flux defined as 1 [k]g m^2 / (s^2 A)",
-    },
-    Mx: {
-      quant: new Quantity(1.0E-8, {mass: 1, length: 2, time: -2, current: -1}),
-      desc: ("Maxwell, CGS unit for magnetic flux defined as 1 g [c]m^2 / " +
-             "(s^2 A)"),
-    },
-    T: {
-      quant: new Quantity(1, {mass: 1, current: -1, time: -2}),
-      desc: "Tesla, SI unit for magnetic flux density defined as 1 Wb / m^2",
-    },
-    Gs: {
-      quant: new Quantity(1.00000000000000E-04, {mass: 1, current: -1, time: -2}),
-      desc: ("Gauss, CGS unit for magnetic flux density defined as 1 Mx / " +
-             "[c]m^2"),
-    },
-    ga: {
-      quant: new Quantity(1.00000000000000E-04, {mass: 1, current: -1, time: -2}),
-      desc: "Gauss, same as 'Gs' (common alternative)",
-    },
+    A: new Quantity(1, {current: 1}),
+    C: new Quantity(1, {current: 1, time: 1}),
+    e: new Quantity(1.60217663400000E-19, {current: 1, time: 1}),
+    V: new Quantity(1, {mass: 1, length: 2, current: -1, time: -3}),
+    ohm: new Quantity(1, {mass: 1, length: 2, time: -3, current: -2}),
+    F: new Quantity(1, {time: 4, current: 2, length: -2, mass: -1}),
+    H: new Quantity(1, {length: 2, mass: 1, time: -2, current: -2}),
+    S: new Quantity(1, {time: 3, current: 2, length: -2, mass: -1}),
+    Wb: new Quantity(1, {mass: 1, length:2, time: -2, current: -1}),
+    Mx: new Quantity(1.0E-8, {mass: 1, length: 2, time: -2, current: -1}),
+    T: new Quantity(1, {mass: 1, current: -1, time: -2}),
+    Gs: new Quantity(1.00000000000000E-04, {mass: 1, current: -1, time: -2}),
+    ga: new Quantity(1.00000000000000E-04, {mass: 1, current: -1, time: -2}),
     // Substance Units
-    mol: {
-      quant: new Quantity(1, {substance: 1}),
-      desc: ("Mole, SI unit for amount of substance defined by exactly " +
-            "6.02214076E+23 elementary entities of said substance"),
-    },
+    mol: new Quantity(1, {substance: 1}),
     // Luminosity Units
-    cd: {
-      quant: new Quantity(1, {luminosity: 1}),
-      desc: ("Candela, SI unit for luminous intensity in a given direction " +
-             "defined by taking the fixed numerical value of the luminous " +
-             "efficacy of monochromatic radiation of frequency 540E+12 Hz"),
-    },
+    cd: new Quantity(1, {luminosity: 1}),
     // Rotational units
-    rad: {
-      quant: new Quantity(1),
-      desc: ("Radian, Dimensionless SI unit defined as the ratio of the " +
-             "radius of a circular arc to the radius of the arc. Typically " +
-             "used to describe angles"),
-    },
-    rev: {
-      quant: new Quantity(2*Math.PI),
-      desc: ("Revolutions, dimensionless quantity describing one revolution " +
-             "of periodic motion"),
-    },
-    deg: {
-      quant: new Quantity(Math.PI/180),
-      desc: "Degree, dimensionless quantity equal to 1/360 of a revolution",
-    },
+    rad: new Quantity(1),
+    rev: new Quantity(2*Math.PI),
+    deg: new Quantity(Math.PI/180),
     // Frequency Units
-    Hz: {
-      quant: new Quantity(2*Math.PI, {time: -1}),
-      desc: "Hertz, unit of frequency defined as 1 rev/sec",
-    },
-    rpm: {
-      quant: new Quantity(2*Math.PI/60, {time: -1}),
-      desc: "Revolutions per Minute, unit of frequency defined as 1 rev/min",
-    },
+    Hz: new Quantity(2*Math.PI, {time: -1}),
+    rpm: new Quantity(2*Math.PI/60, {time: -1}),
   };
 
   const prefixes = {
@@ -934,7 +520,7 @@ const pqm = (function () {
           }
           let unitQuantity = units[unitStr];
           if (unitQuantity) {
-            unitQuantity = unitQuantity.quant.copy();
+            unitQuantity = unitQuantity.copy();
           } else {
             throw "\"" + unitStr + "\" is not a valid unit";
           }

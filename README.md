@@ -7,7 +7,7 @@ physical quantities and use them for math just like a normal numeric variable.
 
 In addition PQM is designed to be simple, lightweight and fast. It has no 
 dependencies and the entire module, including unit definitions live in a 
-single file that is ~1000 total lines. It also requires a strict definition of 
+single file that is ~600 total lines. It also requires a strict definition of 
 units that eliminates the possiblity of "unit collisions" that plauge many 
 other libraries of this type.
 
@@ -20,6 +20,12 @@ PQM uses the ES6 module scheme by default, to import use the following line:
 
 ```javascript
 import pqm from "pqm";
+```
+
+If adding it to an html file ensure that you use the following syntax:
+
+```html
+<script src="path/to/pqm.js" type="module"></script>
 ```
 
 ### Create a basic quantity
