@@ -7,16 +7,15 @@ import pqm from "../src/pqm.js";
 /**
  * Function to run all tests for PQM. Running this function in 
  * 
- * @param {Element} div If running in the browser, this    
- * @returns {boolean} Indicator of whether all tests passed (true) or if one
- *                    or more tests failed (false)
+ * @param {Element} div If running in the browser, this is a div where test
+ *                      information can be inserted.
  */
 function runAllTests(div) {
 
-    let allTestsPassed = true;
+    let failures = 0;
 
     // Test various operations and conversions
-    runner("Add and convert simple units", div, function() {
+    failures += runner("Add and convert simple units", div, function() {
         let v1 = pqm.quantity(10, "ft");
         let v2 = pqm.quantity(10, "yd");
         let v3 = v1.add(v2);
@@ -30,7 +29,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Subtract and convert simple units", div, function() {
+    failures += runner("Subtract and convert simple units", div, function() {
         let v1 = pqm.quantity(10, "ft");
         let v2 = pqm.quantity(10, "yd");
         let v3 = v1.subtract(v2);
@@ -44,7 +43,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Multiply and convert simple units", div, function() {
+    failures += runner("Multiply and convert simple units", div, function() {
         let v1 = pqm.quantity(10, "ft");
         let v2 = pqm.quantity(10, "yd");
         let v3 = v1.multiply(v2);
@@ -58,7 +57,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Divide and convert simple units", div, function() {
+    failures += runner("Divide and convert simple units", div, function() {
         let v1 = pqm.quantity(60, "ft^2");
         let v2 = pqm.quantity(10, "yd");
         let v3 = v1.divide(v2);
@@ -72,7 +71,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Raise power and convert simple units", div, function() {
+    failures += runner("Raise power and convert simple units", div, function() {
         let v1 = pqm.quantity(1, "[c]m");
         let v2 = v1.power(2);
         let expected = pqm.quantity(0.0001, "m^2");
@@ -85,7 +84,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Raise power and multiply complex units", div, function() {
+    failures += runner("Raise power and multiply complex units", div, function() {
         let v1 = pqm.quantity(1, "A");
         let v2 = pqm.quantity(10, "ohm");
         let v3 = v1.power(2).multiply(v2);
@@ -99,7 +98,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Raise power and divide complex units", div, function() {
+    failures += runner("Raise power and divide complex units", div, function() {
         let v1 = pqm.quantity(1, "V");
         let v2 = pqm.quantity(0.1, "[m]ohm");
         let v3 = v1.power(2).divide(v2);
@@ -113,7 +112,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Multiply complex units and convert", div, function() {
+    failures += runner("Multiply complex units and convert", div, function() {
         let v1 = pqm.quantity(10, "N");
         let v2 = pqm.quantity(10, "m");
         let v3 = v1.multiply(v2);
@@ -127,7 +126,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    runner("Quantity inversion and unitless quantities", div, function() {
+    failures += runner("Quantity inversion and unitless quantities", div, function() {
         let v1 = pqm.quantity(10, "m");
         let v2 = v1.invert();
         let v3 = pqm.quantity(1).divide(v1);
@@ -147,7 +146,11 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    return allTestsPassed;
+    if (failures > 0) {
+        throw `${failures} failed test`;
+    } else {
+        console.log("All tests passed");
+    }
 };
 
 /**
@@ -161,22 +164,20 @@ function runAllTests(div) {
  *                        string that can be either "Pass" if the test has 
  *                        passed or some other message if the test has failed.
  * 
- * @returns {boolean} Indication of whether the test has passed (true) or 
- *                    failed (false)
+ * @returns {number} Indication of whether the test has passed (0) or 
+ *                   failed (1)
  */
 function runner(name, div, func) {
     let result = "";
-    let returnValue = true;
+    let returnValue = 0;
     try {
         result = func();
-        if (result == "Pass") {
-            returnValue = true;
-        } else {
-            returnValue = false;
+        if (result != "Pass") {
+            returnValue = 1;
         }
     } catch (err) {
         result = err.message;
-        returnValue = false;
+        returnValue = 1;
     }
     if (div) {
         let divChild = document.createElement('div');

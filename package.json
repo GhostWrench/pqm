@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node test/node/test.js",
-    "testbrowser": "node test/browser/testserver.js"
+    "test": "node --trace-uncaught test/node/test.js",
+    "testbrowser": "node --trace-uncaught test/browser/testserver.js"
   },
   "repository": {
     "type": "git",
