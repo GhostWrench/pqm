@@ -146,15 +146,46 @@ function runAllTests(div) {
         return "Pass";
     });
 
+    failures += runner("Test standard temperature conversions", div, function() {
+        let cold1 = pqm.quantity(0, "degC");
+        let cold2 = pqm.quantity(32, "degF");
+        let expectedCold = pqm.quantity(273.15, "K");
+        if (!cold1.equals(cold2, 0.1)) {
+            return "Cold C and F values did not match";
+        }
+        if (!cold1.equals(expectedCold, 0.1)) {
+            return "Cold C and K values did not match";
+        }
+        return "Pass";
+    });
+
+    failures += runner("Test delta temperature conversions", div, function() {
+        let q1 = pqm.quantity(9, "deltaF");
+        let q2 = pqm.quantity(5, "deltaC");
+        if (!q1.equals(q2, 0.1)) {
+            return "Temperature delta C and F did not convert correctly";
+        }
+        let q3 = pqm.quantity(1, "1 / s");
+        let expected = pqm.quantity(1, "K / s");
+        if (!q2.multiply(q3).equals(expected)) {
+            return "Temperature multiplication failed";
+        }
+        return "Pass";
+    });
+
     if (failures > 0) {
-        throw `${failures} failed test`;
+        throw `${failures} tests failed`;
     } else {
         console.log("All tests passed");
     }
 };
 
 /**
- * Utility function to run a test function and report the results
+ * Utility functio    // Check to make sure the unit offsets are compatible
+    if ((this.getOffset() == 0 && convertQuantity.getOffset() != 0)) {
+      throw ("Quantities without an offset may not be converted to units " +
+             "with an offset");
+    }n to run a test function and report the results
  * 
  * @param {string} name Name of the test represented by the 'func' input
  * @param {Element} div Div to put the results of the test into. Pass in 

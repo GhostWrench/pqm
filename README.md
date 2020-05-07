@@ -181,10 +181,13 @@ Table of available units
 | yr | Year, defined as 365 days |
 | stellar_day | Stellar Day, approximate time for the earth to make one rotation |
 | K | Kelvin, SI unit of temperature with 0 defined as absolute zero |
-| degF | Fahrenheit, Temperature scale that is approximately 32 at the melting point of ice and 212 at the boiling point of water |
-| degC | Celsius, temperature unit with a similar scale to Kelvin, but with the 0 approximately defined as the melting point of ice |
+| degF | Degrees Fahrenheit, Temperature scale that is approximately 32 at the melting point of ice and 212 at the boiling point of water |
+| deltaF | Change in temperature as measured in Degrees Fahrenheit, this unit does not have a 0 offset similar to 'degF' and thus is sometimes more useful in computations |
+| degC | Degrees Celsius, temperature unit with a similar scale to Kelvin, but with the 0 approximately defined as the melting point of ice |
+| deltaC | Change in temperature measured in Celsius, this unit does not have a 0 offset similar to 'degC' and thus is sometimes more useful in computations |
 | Rank | Rankine, temperature units with the same scale as Fahrenheit but with 0 at absolute 0 |
 | Reau | Reaumur, temperature scale that is approximately 0 at the melting point of ice and 80 at the boiling point of water |
+| deltaReau | Change in temperature as measured in Reaumurs |
 | mph | Miles per Hour, velocity at which a mile is traveled every hour |
 | kn | Knot, velocity at which a Nautical mile is traveled every hour |
 | admkn | Admiralty Knot, knot based on the old UK definition of a Nautical mile (1853.184 m) |

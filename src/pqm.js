@@ -47,7 +47,7 @@ const pqm = (function () {
     // Make sure that the supplied offsets are valid
     if (offset) {
       if (this.numDimensions != 1) {
-        throw "Cannot create mixed dimensions with an offset!";
+        throw "Cannot create compound dimensions with an offset!";
       }
     } else {
       offset = 0;
@@ -111,16 +111,20 @@ const pqm = (function () {
   * Check to see if the units of a supplied physical quantity are the same as 
   * this one
   *
-  * @param {Quantity} value Value to check for same dimensions
+  * @param {Quantity|number} other Other quantity to check for same dimensions
   * @return {boolean} True if same dimensions, false if not
   */
-  Quantity.prototype.sameDimensions = function(value) {
-    if (this.numDimensions != value.getNumDimensions()) {
+  Quantity.prototype.sameDimensions = function(other) {
+    // Convert to a quantity if a number is supplied as input
+    if (typeof(other) === "number") {
+      other = new Quantity(other);
+    }
+    if (this.numDimensions != other.getNumDimensions()) {
       return false;
     }
-    let valueDimensions = value.getDimensions();
+    let otherDimensions = other.getDimensions();
     for (let dim in this.dimensions) {
-      if (this.dimensions[dim] != valueDimensions[dim]) {
+      if (this.dimensions[dim] != otherDimensions[dim]) {
         return false;
       }
     }
@@ -128,64 +132,84 @@ const pqm = (function () {
   };
 
   /**
-  * Add physical quantities together, ignores the offset on the second unit
+  * Add physical quantities together
   *
-  * @param {Quantity} value Value to add as a physical quantity
+  * @param {Quantity|number} other Value to add as a physical quantity, must
+  *                                not have an offset.
+  * 
   * @return {Quantity} Added value
   */
-  Quantity.prototype.add = function(value) {
-    if (!this.sameDimensions(value)) {
+  Quantity.prototype.add = function(other) {
+    // Convert to a quantity if a number is supplied as input
+    if (typeof(other) === "number") {
+      other = new Quantity(other);
+    }
+    if (!this.sameDimensions(other)) {
       throw "Cannot add units that are not alike";
+    }
+    if (this.offset != 0 && other.offset != 0) {
+      throw ("Can only add quantities without an offsets to a quantity with " +
+             "an offset. Example: 1 degC + 10 deltaC");
     }
     // Adding a value treats the second input value as a delta, in the case of 
     // units with offsets
-    let newMagnitude = this.getMagnitude() + value.getMagnitude();
+    let newMagnitude = this.getMagnitude() + other.getMagnitude();
     return new Quantity(newMagnitude, this.getDimensions(), this.getOffset());
   };
 
   /**
   * Subtract physical quantities, ignores the offset on the second unit
   *
-  * @param {Quantity} value Value to subtract
+  * @param {Quantity} other Value to subtract
   * @return {Quantity} Result of the subtraction
   */
-  Quantity.prototype.subtract = function(value) {
-    if (!this.sameDimensions(value)) {
+  Quantity.prototype.subtract = function(other) {
+    // Convert to a quantity if a number is supplied as input
+    if (typeof(other) === "number") {
+      other = new Quantity(other);
+    }
+    if (!this.sameDimensions(other)) {
       throw "Cannot subtract units that are not alike";
     }
+    if (this.offset != 0 && other.offset != 0) {
+      throw ("Can only subtract quantities without an offsets to a quantity " +
+             "with an offset. Example: 1 degC - 10 deltaC");
+    }
     // Same as addition, treat the second unit as a delta if has an offset
-    let newMagnitude = this.getMagnitude() - value.getMagnitude();
+    let newMagnitude = this.getMagnitude() - other.getMagnitude();
     return new Quantity(newMagnitude, this.getDimensions(), this.getOffset());
   };
 
   /**
   * Multiply a physical quantity by a scalar or another physical quantity. 
-  * When multiplying two quantities offset information will be discarded. When 
-  * multiplying a quantity with a scalar offset information will be preserved 
-  * (relative multiplication).
   *
-  * @param {number|Quantity} value Value to multiply the physical quantity by
+  * @param {number|Quantity} other Value to multiply the physical quantity by
   * @return {Quantity} New Quantity object representing the new value
   */
-  Quantity.prototype.multiply = function(value) {
+  Quantity.prototype.multiply = function(other) {
+    // Convert to a quantity if a number is supplied as input
+    if (typeof(other) === "number") {
+      other = new Quantity(other);
+    }
+    // Check if the offsets are compatible
+    if (this.offset != 0 || other.offset != 0) {
+      throw ("Cannot multiply dimensions with an offset, if using " +
+             "temperatures consider using 'detlaC' or 'deltaF' instead");
+    }
     let newMagnitude = this.getMagnitude();
     let newDimensions = this.getDimensions();
     let newOffset = this.getOffset();
-    if (typeof(value) == "number") {
-      newMagnitude *= value;
-    } else {
-      newOffset = 0;
-      newMagnitude *= value.getMagnitude();
-      let valueDimensions = value.getDimensions();
-      for (let dim in valueDimensions) {
-        if (newDimensions.hasOwnProperty(dim)) {
-          newDimensions[dim] += valueDimensions[dim];
-          if (newDimensions[dim] == 0) {
-            delete newDimensions[dim];
-          }
-        } else {
-          newDimensions[dim] = valueDimensions[dim];
+    newOffset = 0;
+    newMagnitude *= other.getMagnitude();
+    let otherDimensions = other.getDimensions();
+    for (let dim in otherDimensions) {
+      if (newDimensions.hasOwnProperty(dim)) {
+        newDimensions[dim] += otherDimensions[dim];
+        if (newDimensions[dim] == 0) {
+          delete newDimensions[dim];
         }
+      } else {
+        newDimensions[dim] = otherDimensions[dim];
       }
     }
     return new Quantity(newMagnitude, newDimensions, newOffset);
@@ -199,6 +223,10 @@ const pqm = (function () {
   * @return {Quantity} Inverted physical quantity
   */
   Quantity.prototype.invert = function() {
+    if (this.offset != 0) {
+      throw ("Cannot invert dimensions with an offset, if using " +
+             "temperatures consider using 'detlaC' or 'deltaF' instead");
+    }
     let newMagnitude = 1.0 / this.getMagnitude();
     let newDimensions = this.getDimensions();
     for (let dim in newDimensions) {
@@ -211,16 +239,19 @@ const pqm = (function () {
   * Division, same as the multiplication by the inverse. this operation loses 
   * all offset information.
   *
-  * @param {Quantity|number} value Value to divide by
+  * @param {Quantity|number} other Value to divide by
   * @return {Quantity} New value that is the result of the division.
   */
-  Quantity.prototype.divide = function(value) {
-    let inverseValue;
-    if (typeof(value) == "number") {
-      inverseValue = 1/value;
-    } else {
-      inverseValue = value.invert();
+  Quantity.prototype.divide = function(other) {
+    // Convert to a quantity if a number is supplied as input
+    if (typeof(other) === "number") {
+      other = new Quantity(other);
     }
+    if (this.offset != 0 || other.offset != 0) {
+      throw ("Cannot divide dimensions with an offset, if using " +
+             "temperatures consider using 'detlaC' or 'deltaF' instead");
+    }
+    let inverseValue = other.invert();
     return this.multiply(inverseValue);
   };
 
@@ -250,24 +281,50 @@ const pqm = (function () {
   };
 
   /**
+   * Compare physical quantity to another and return their relative magnitudes
+   * 
+   * @param {Quantity|number} other Other quantity to compare to
+   * @param {number} tolerance Maximum difference between the two quantities 
+   *                           that is still considered equal. default=0
+   * 
+   * @return {number} Number indicating the result of the comparison.
+   *                    -1: other is less than this quantity
+   *                     0: other is equal to this quantity within 
+   *                        the provided tolerance
+   *                     1: other is greater than this quantity
+   */
+  Quantity.prototype.compare = function(other, tolerance) {
+    // Convert to a quantity if a number is supplied as input
+    if (typeof(other) === "number") {
+      other = new Quantity(other);
+    }
+    // Only quantities with the same units can be compared
+    if (!this.sameDimensions(other)) {
+      throw "Cannot compare quantities with unlike units";
+    }
+
+    // Do the comparison and return the result
+    let thisMag = this.getMagnitude() + this.getOffset();
+    let otherMag = other.getMagnitude() + other.getOffset();
+    if (otherMag - thisMag < -tolerance) {
+      return -1;
+    } else if (otherMag - thisMag > tolerance) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  /**
    * Check for equality with another quantity
    *
-   * @param {Quantity} otherQuantity Other quantity to check for equality with
+   * @param {Quantity} other Other quantity to check for equality with
    * @param {number} tolerance Maximum difference between quantity magnitudes 
    *                           that can be considered equal. default=0
    * @return {boolean} Returns true if quantities are equal, false if not
    */
-  Quantity.prototype.equals = function(otherQuantity, tolerance) {
-
-    if (!this.sameDimensions(otherQuantity)) {
-      return false;
-    }
-    let mag1 = this.getMagnitude();
-    let mag2 = otherQuantity.getMagnitude();
-    if (!floatEq(mag1, mag2, tolerance)) {
-      return false;
-    }
-    return true;
+  Quantity.prototype.equals = function(other, tolerance) {
+    return (this.compare(other, tolerance) == 0);
   }
 
   /**
@@ -279,6 +336,7 @@ const pqm = (function () {
   Quantity.prototype.in = function(unitString) {
 
     let convertQuantity = quantity(1, unitString);
+    // Check for consistent units
     if (!this.sameDimensions(convertQuantity)) {
       throw "Cannot convert units that are not alike";
     }
@@ -293,10 +351,6 @@ const pqm = (function () {
 
   /**
    * Combined list of all units, conversion factors and unit descriptions
-   * Each entry should have the following fields
-   *
-   * quant: Quantity value describing the unit
-   * desc: A description of the unit
    */
   const units = {
     // Singular Unit
@@ -341,11 +395,15 @@ const pqm = (function () {
     day: new Quantity(8.64000000000000E+04, {time: 1}),
     yr: new Quantity(3.15576000000000E+07, {time: 1}),
     stellar_day: new Quantity(8.637641003520000E+04, {time: 1}),
+    // Temperature units
     K: new Quantity(1, {temperature: 1}),
+    deltaF: new Quantity(5.55555555555543E-01, {temperature: 1}),
     degF: new Quantity(5.55555555555543E-01, {temperature: 1}, 2.55372222222222E+02),
+    deltaC: new Quantity(1, {temperature: 1}),
     degC: new Quantity(1, {temperature: 1}, 2.73150000000000E+02),
     Rank: new Quantity(5.55555555555543E-01, {temperature: 1}),
     Reau: new Quantity(1.25000000000000E+00, {temperature: 1}, 2.73150000000000E+02),
+    deltaReau: new Quantity(1.25000000000000E+00, {temperature: 1}),
     // Velocity Units
     mph: new Quantity(4.47040000000000E-01, {length: 1, time: -1}),
     kn: new Quantity(5.14444444444444E-01, {length: 1, time: -1}),
@@ -540,14 +598,24 @@ const pqm = (function () {
           }
           // Multiply through the prefixes and powers to get the appropriate
           // quantity
-          unitQuantity = unitQuantity.multiply(prefixValue);
-          unitQuantity = unitQuantity.power(powerValue);
-          returnQuantity = returnQuantity.multiply(unitQuantity);
+          if (unitQuantity.offset == 0) {
+            unitQuantity = unitQuantity.multiply(prefixValue);
+            unitQuantity = unitQuantity.power(powerValue);
+            returnQuantity = returnQuantity.multiply(unitQuantity);
+          } else if (prefixValue != 1) {
+            throw "Cannot add prefix to non 0 offset unit " + unitSyms[ui];
+          } else if (!(sections.length == 1 && unitSyms.length == 1)) {
+            throw ("Cannot create a compound unit with non-zero offset " +
+                   "unit \"" + unitSyms[ui] + "\"");
+          } else {
+            returnQuantity = units[unitSyms[ui]];
+          }
         }
       }
     }
     // Multiply through by magnitude and return
-    return returnQuantity.multiply(magnitude);
+    returnQuantity.magnitude *= magnitude;
+    return returnQuantity;
   };
 
   /**
