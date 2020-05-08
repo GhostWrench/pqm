@@ -163,7 +163,7 @@ const pqm = (function () {
   * @param {Quantity} other Value to subtract
   * @return {Quantity} Result of the subtraction
   */
-  Quantity.prototype.subtract = function(other) {
+  Quantity.prototype.sub = function(other) {
     // Convert to a quantity if a number is supplied as input
     if (typeof(other) === "number") {
       other = new Quantity(other);
@@ -186,7 +186,7 @@ const pqm = (function () {
   * @param {number|Quantity} other Value to multiply the physical quantity by
   * @return {Quantity} New Quantity object representing the new value
   */
-  Quantity.prototype.multiply = function(other) {
+  Quantity.prototype.mul = function(other) {
     // Convert to a quantity if a number is supplied as input
     if (typeof(other) === "number") {
       other = new Quantity(other);
@@ -194,7 +194,7 @@ const pqm = (function () {
     // Check if the offsets are compatible
     if (this.offset != 0 || other.offset != 0) {
       throw ("Cannot multiply dimensions with an offset, if using " +
-             "temperatures consider using 'detlaC' or 'deltaF' instead");
+             "temperatures consider using 'deltaC' or 'deltaF' instead");
     }
     let newMagnitude = this.getMagnitude();
     let newDimensions = this.getDimensions();
@@ -222,10 +222,10 @@ const pqm = (function () {
   *
   * @return {Quantity} Inverted physical quantity
   */
-  Quantity.prototype.invert = function() {
+  Quantity.prototype.inv = function() {
     if (this.offset != 0) {
       throw ("Cannot invert dimensions with an offset, if using " +
-             "temperatures consider using 'detlaC' or 'deltaF' instead");
+             "temperatures consider using 'deltaC' or 'deltaF' instead");
     }
     let newMagnitude = 1.0 / this.getMagnitude();
     let newDimensions = this.getDimensions();
@@ -242,17 +242,17 @@ const pqm = (function () {
   * @param {Quantity|number} other Value to divide by
   * @return {Quantity} New value that is the result of the division.
   */
-  Quantity.prototype.divide = function(other) {
+  Quantity.prototype.div = function(other) {
     // Convert to a quantity if a number is supplied as input
     if (typeof(other) === "number") {
       other = new Quantity(other);
     }
     if (this.offset != 0 || other.offset != 0) {
       throw ("Cannot divide dimensions with an offset, if using " +
-             "temperatures consider using 'detlaC' or 'deltaF' instead");
+             "temperatures consider using 'deltaC' or 'deltaF' instead");
     }
-    let inverseValue = other.invert();
-    return this.multiply(inverseValue);
+    let inverseValue = other.inv();
+    return this.mul(inverseValue);
   };
 
   /**
@@ -261,7 +261,7 @@ const pqm = (function () {
   * @param {number} power Integer power to raise the physical quantity to
   * @returns {Quantity} Physical quantity raised to provided power
   */
-  Quantity.prototype.power = function(power) {
+  Quantity.prototype.pow = function(power) {
     if (!Number.isInteger(power)) {
       throw "Cannot have units with fractional powers";
     }
@@ -321,10 +321,81 @@ const pqm = (function () {
    * @param {Quantity} other Other quantity to check for equality with
    * @param {number} tolerance Maximum difference between quantity magnitudes 
    *                           that can be considered equal. default=0
+   * 
    * @return {boolean} Returns true if quantities are equal, false if not
    */
-  Quantity.prototype.equals = function(other, tolerance) {
+  Quantity.prototype.eq = function(other, tolerance) {
     return (this.compare(other, tolerance) == 0);
+  }
+
+  /**
+   * Check if this quantity is less than another quantity
+   * 
+   * @param {Quantity} other Other quantity to check against
+   * @param {number} tolerance Maximum difference between quantity magnitudes
+   *                           that can be considered equal. default=0
+   * 
+   * @return {boolean} Returns true if the other quantity is less than this 
+   *                   quantity.
+   */
+  Quantity.prototype.lt = function(other, tolerance) {
+    return (this.compare(other, tolerance) < 0);
+  }
+
+  /**
+   * Check if this quantity is less than or equal to another quantity
+   * 
+   * @param {Quantity} other Other quantity to check against
+   * @param {number} tolerance Maximum difference between quantity magnitudes
+   *                           that can be considered equal. default=0
+   * 
+   * @return {boolean} Returns true if the other quantity is less than or equal
+   *                   to this quantity.
+   */
+  Quantity.prototype.lte = function(other, tolerance) {
+    return (this.compare(other, tolerance) <= 0);
+  }
+
+  /**
+   * Check if this quantity is greater than another quantity
+   * 
+   * @param {Quantity} other Other quantity to check against
+   * @param {number} tolerance Maximum difference between quantity magnitudes
+   *                           that can be considered equal. default=0
+   * 
+   * @returns {boolean} Returns true if the other quantity is greater than 
+   *                    this quantity.
+   */
+  Quantity.prototype.gt = function(other, tolerance) {
+    return (this.compare(other, tolerance) > 0);
+  }
+
+  /**
+   * Check if this quantity is greater than another quantity
+   * 
+   * @param {Quantity} other Other quantity to check against
+   * @param {number} tolerance Maximum difference between quantity magnitudes
+   *                           that can be considered equal. default=0
+   * 
+   * @returns {boolean} Returns true if the other quantity is greater than 
+   *                    this quantity.
+   */
+  Quantity.prototype.gt = function(other, tolerance) {
+    return (this.compare(other, tolerance) > 0);
+  }
+
+  /**
+   * Check if this quantity is greater than or equal to another quantity
+   * 
+   * @param {Quantity} other Other quantity to check against
+   * @param {number} tolerance Maximum difference between quantity magnitudes
+   *                           that can be considered equal. default=0
+   * 
+   * @returns {boolean} Returns true if the other quantity is greater than or  
+   *                    equal to this quantity.
+   */
+  Quantity.prototype.gte = function(other, tolerance) {
+    return (this.compare(other, tolerance) >= 0);
   }
 
   /**
@@ -583,7 +654,7 @@ const pqm = (function () {
             throw "\"" + unitStr + "\" is not a valid unit";
           }
           if (si == 1) {
-            unitQuantity = unitQuantity.invert();
+            unitQuantity = unitQuantity.inv();
           }
           // Get the power of the unit and invert it if in section 1 (si==1)
           let power = matches[3];
@@ -599,9 +670,9 @@ const pqm = (function () {
           // Multiply through the prefixes and powers to get the appropriate
           // quantity
           if (unitQuantity.offset == 0) {
-            unitQuantity = unitQuantity.multiply(prefixValue);
-            unitQuantity = unitQuantity.power(powerValue);
-            returnQuantity = returnQuantity.multiply(unitQuantity);
+            unitQuantity = unitQuantity.mul(prefixValue);
+            unitQuantity = unitQuantity.pow(powerValue);
+            returnQuantity = returnQuantity.mul(unitQuantity);
           } else if (prefixValue != 1) {
             throw "Cannot add prefix to non 0 offset unit " + unitSyms[ui];
           } else if (!(sections.length == 1 && unitSyms.length == 1)) {
