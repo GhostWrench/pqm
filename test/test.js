@@ -126,7 +126,7 @@ function runAllTests(div) {
         return "Pass";
     });
 
-    failures += runner("Quantity inversion and unitless quantities", div, function() {
+    failures += runner("Quantity inversion and unit-less quantities", div, function() {
         let v1 = pqm.quantity(10, "m");
         let v2 = v1.inv();
         let v3 = pqm.quantity(1).div(v1);
@@ -166,13 +166,32 @@ function runAllTests(div) {
             return "Temperature delta C and F did not convert correctly";
         }
         let q3 = pqm.quantity(1, "1 / s");
-        let expected = pqm.quantity(1, "K / s");
+        let expected = pqm.quantity(5, "K / s");
         if (!q2.mul(q3).eq(expected)) {
             return "Temperature multiplication failed";
         }
         return "Pass";
     });
 
+    failures += runner("Test comparison operators", div, function() {
+        let q1 = pqm.quantity(1, "m");
+        let q2 = pqm.quantity(101, "[c]m");
+        if (!q1.lt(q2)) {
+            return "Less than operation failed";
+        }
+        if (!q2.gt(q1)) {
+            return "Greater than operation failed";
+        }
+        if (!q2.lte(q1, 0.1)) {
+            return "Less than or equals failed";
+        }
+        if (!q1.gte(q2, 0.1)) {
+            return "Greater than or equals failed";
+        }
+        return "Pass";
+    });
+
+    // Throw error if any of the tests failed
     if (failures > 0) {
         throw `${failures} tests failed`;
     } else {
@@ -181,11 +200,7 @@ function runAllTests(div) {
 };
 
 /**
- * Utility functio    // Check to make sure the unit offsets are compatible
-    if ((this.getOffset() == 0 && convertQuantity.getOffset() != 0)) {
-      throw ("Quantities without an offset may not be converted to units " +
-             "with an offset");
-    }n to run a test function and report the results
+ * Utility function to run a test function and report the results
  * 
  * @param {string} name Name of the test represented by the 'func' input
  * @param {Element} div Div to put the results of the test into. Pass in 
