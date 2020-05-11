@@ -117,36 +117,57 @@ let q = pqm.quantity(1000, "m");
 q.pow(2).in("[k]m^2"); // 1
 ```
 
-Compare two quantities for equality
+Inverting a quantity
+
+```javascript
+let q1 = pqm.quantity(10, "m");
+
+q1.inv().in("1 / m"); // 0.1
+```
+
+Comparisons of Quantities
+--------------------------------------------------------------------------------
+
+The following table describes the various comparison operators available 
+
+| Function | Operation                  |
+| -------- |:-------------------------- |
+| eq       | Equal `==`                 |
+| lt       | Less than `<`              |
+| lte      | Less than or equal `<=`    |
+| gt       | Greater than `>`           |
+| gte      | Greater than or equal `>=` |
+
+Each of these operators takes another quantity and a tolerance. The tolerance 
+determines how close in magnitude two quantities can be to be considered equal.
+This tolerance can be provided as another compatible quantity, or as a percent
+of the left (calling) quantity. If a tolerance is not provided, 0 percent will
+be assumed. For example:
+
+```javascript
+let q1 = pqm.quantity(1000, "[m]m / s");
+let q2 = pqm.quantity(1001, "[m]m / s");
+let q3 = pqm.quantity(1003, "[m]m / s");
+let absoluteTolerance = pqm.quantity(2, "[m]m / s");
+
+q1.eq(q2) // false
+q1.eq(q2, absoluteTolerance); // = true
+q1.lt(q2, absoluteTolerance); // = false
+q1.lt(q3, absoluteTolerance); // = true
+q1.eq(q2, 1e-6); // = false
+q1.eq(q2, 1e-2); // = true
+```
+
+More comparison examples
 
 ```javascript
 let q1 = pqm.quantity(10, "m");
 let q2 = pqm.quantity(10, "m^2");
 
-q1.eq(q2); // false
+q1.eq(q2); // error
 q1.pow(2).eq(q2); // false
-q1.pow(2).div(10).eq(q2); // true
-```
-
-Inverting a quantity
-
-```javascript
-let q1 = pqm.quantity(10, "m");
-let q2 = pqm.quantity(0.1, "1 / m");
-
-q1.inv().eq(q2); // True
-```
-
-Other unit comparisons
-
-```javascript
-let q1 = pqm.quantity(1, "m");
-let q2 = pqm.quantity(1, "[c]m");
-
-q1.lt(q2); // q1 < q2 -> false
-q1.lte(q2); // q1 <= q2 -> false
-q1.gt(q2); // q1 > q2 -> true
-q1.gte(q2); // q1 >= q2 -> true
+q1.pow(2).gt(q2); // true
+q1.pow(2).div(10).eq(q2, 1e-6); // true
 ```
 
 Note on temperatures and other units with zero offsets
@@ -170,7 +191,7 @@ below gives the available operations for each type of unit.
 | `div`     | Not allowed                             |                        |
 | `inv`     | Not allowed                             |                        |
 | `pow`     | Not allowed                             |                        |
-| Comparison operators (`eq`, `lt`, `lte`, `gt`, `gte`) | Allowed |            |
+| Comparison operators (`eq`, `lt`, `lte`, `gt`, `gte`) | Allowed, but only with absolute tolerances | 10 degC > 32 degF -> true |
 
 It is recommended that the use of `deg` units be for simple conversions and that
 if more advanced math or compound units are needed, use the `delta` version of 

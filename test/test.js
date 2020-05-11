@@ -149,11 +149,12 @@ function runAllTests(div) {
     failures += runner("Test standard temperature conversions", div, function() {
         let cold1 = pqm.quantity(0, "degC");
         let cold2 = pqm.quantity(32, "degF");
+        let tolerance = pqm.quantity(0.1, "deltaC");
         let expectedCold = pqm.quantity(273.15, "K");
-        if (!cold1.eq(cold2, 0.1)) {
+        if (!cold1.eq(cold2, tolerance)) {
             return "Cold C and F values did not match";
         }
-        if (!cold1.eq(expectedCold, 0.1)) {
+        if (!cold1.eq(expectedCold, tolerance)) {
             return "Cold C and K values did not match";
         }
         return "Pass";
@@ -176,16 +177,18 @@ function runAllTests(div) {
     failures += runner("Test comparison operators", div, function() {
         let q1 = pqm.quantity(1, "m");
         let q2 = pqm.quantity(101, "[c]m");
-        if (!q1.lt(q2)) {
+        let smallTolerance = pqm.quantity(1, "[m]m");
+        let largeTolerance = pqm.quantity(2, "[c]m");
+        if (!q1.lt(q2, smallTolerance)) {
             return "Less than operation failed";
         }
-        if (!q2.gt(q1)) {
+        if (!q2.gt(q1, smallTolerance)) {
             return "Greater than operation failed";
         }
-        if (!q2.lte(q1, 0.1)) {
+        if (!q2.lte(q1, largeTolerance)) {
             return "Less than or equals failed";
         }
-        if (!q1.gte(q2, 0.1)) {
+        if (!q1.gte(q2, largeTolerance)) {
             return "Greater than or equals failed";
         }
         return "Pass";

@@ -8,7 +8,7 @@ import fs from "fs";
 
 import pqm from "../src/pqm.js";
 
-const globalTolerance = 1e-3;
+const globalTolerance = 1e-6;
 
 function testTables(filename) {
     console.log(`\nTesting conversions in ${filename}`);

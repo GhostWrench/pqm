@@ -271,8 +271,11 @@ const pqm = (function () {
    * Compare physical quantity to another and return their relative magnitudes
    * 
    * @param {Quantity|number} other Other quantity to compare to
-   * @param {number} tolerance Maximum difference between the two quantities 
-   *                           that is still considered equal. default=0
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @return {number} Number indicating the result of the comparison.
    *                    -1: other is greater than this quantity
@@ -293,12 +296,31 @@ const pqm = (function () {
     if (typeof(tolerance) === "undefined") {
       tolerance = 0;
     }
+    let absoluteTolerance = 0;
+    // If the user input is a quantity, check that the units are compatible
+    // and if they are the magnitude of the tolerance will be the absolute
+    // tolerance
+    if (typeof(tolerance) === "object") {
+      if(!this.sameDimensions(tolerance)) {
+        throw "tolerance dimensions are not compatible with this quantity";
+      }
+      if (tolerance.offset != 0) {
+        throw "Absolute tolerance in units with a zero offset is not allowed";
+      }
+      absoluteTolerance = tolerance.magnitude;
+    } else {
+      if (this.offset != 0) {
+        throw ("Fractional tolerances not allowed for quantities with a " +
+               "zero offset. Use an absolute tolerance instead");
+      }
+      absoluteTolerance = this.magnitude * tolerance;
+    }
     // Do the comparison and return the result
     let thisMag = this.magnitude + this.offset;
     let otherMag = other.magnitude + other.offset;
-    if (otherMag - thisMag < -tolerance) {
+    if (otherMag - thisMag < -absoluteTolerance) {
       return 1;
-    } else if (otherMag - thisMag > tolerance) {
+    } else if (otherMag - thisMag > absoluteTolerance) {
       return -1;
     } else {
       return 0;
