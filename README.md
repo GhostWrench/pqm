@@ -343,7 +343,7 @@ Table of available units
 | sr          | Steradian, "square radian" is the SI unit of solid angle. Analogous to the radian, a solid angle of 1 sr, projected onto a unit sphere will have unit area |
 | rev         | Revolutions, dimensionless quantity describing one revolution of periodic motion |
 | deg         | Degree, dimensionless quantity equal to 1/360 of a revolution  |
-| Hz          | Hertz, unit of frequency defined as 1 rev/sec                  |
+| Hz          | Hertz, unit of frequency defined as 1/sec                      |
 | rpm         | Revolutions per Minute, unit of frequency defined as 1 rev/min |
 
 Table of available unit prefixes

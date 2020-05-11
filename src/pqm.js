@@ -331,9 +331,12 @@ const pqm = (function () {
   /**
    * Check for equality with another quantity
    *
-   * @param {Quantity} other Other quantity to check for equality with
-   * @param {number} tolerance Maximum difference between quantity magnitudes 
-   *                           that can be considered equal. default=0
+   * @param {Quantity\number} other Other quantity to check for equality with
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @return {boolean} Returns true if quantities are equal, false if not
    */
@@ -344,9 +347,12 @@ const pqm = (function () {
   /**
    * Check if this quantity is less than another quantity
    * 
-   * @param {Quantity} other Other quantity to check against
-   * @param {number} tolerance Maximum difference between quantity magnitudes
-   *                           that can be considered equal. default=0
+   * @param {Quantity|number} other Other quantity to check against
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @return {boolean} Returns true if the other quantity is less than this 
    *                   quantity.
@@ -358,9 +364,12 @@ const pqm = (function () {
   /**
    * Check if this quantity is less than or equal to another quantity
    * 
-   * @param {Quantity} other Other quantity to check against
-   * @param {number} tolerance Maximum difference between quantity magnitudes
-   *                           that can be considered equal. default=0
+   * @param {Quantity|number} other Other quantity to check against
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @return {boolean} Returns true if the other quantity is less than or equal
    *                   to this quantity.
@@ -372,9 +381,12 @@ const pqm = (function () {
   /**
    * Check if this quantity is greater than another quantity
    * 
-   * @param {Quantity} other Other quantity to check against
-   * @param {number} tolerance Maximum difference between quantity magnitudes
-   *                           that can be considered equal. default=0
+   * @param {Quantity|number} other Other quantity to check against
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @returns {boolean} Returns true if the other quantity is greater than 
    *                    this quantity.
@@ -386,9 +398,12 @@ const pqm = (function () {
   /**
    * Check if this quantity is greater than another quantity
    * 
-   * @param {Quantity} other Other quantity to check against
-   * @param {number} tolerance Maximum difference between quantity magnitudes
-   *                           that can be considered equal. default=0
+   * @param {Quantity|number} other Other quantity to check against
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @returns {boolean} Returns true if the other quantity is greater than 
    *                    this quantity.
@@ -400,9 +415,12 @@ const pqm = (function () {
   /**
    * Check if this quantity is greater than or equal to another quantity
    * 
-   * @param {Quantity} other Other quantity to check against
-   * @param {number} tolerance Maximum difference between quantity magnitudes
-   *                           that can be considered equal. default=0
+   * @param {Quantity|number} other Other quantity to check against
+   * @param {Quantity|number} tolerance Maximum difference between the two 
+   *                                    quantities that is still considered 
+   *                                    equal. Can be provided as an absolute 
+   *                                    quantity, or as a fraction of this 
+   *                                    quantity. default=0
    * 
    * @returns {boolean} Returns true if the other quantity is greater than or  
    *                    equal to this quantity.
@@ -415,6 +433,7 @@ const pqm = (function () {
   * Get the magnitude of the physical quantity with the supplied unit
   *
   * @param {string} unitString Unit to get the magnitude of the Quantity in 
+  * 
   * @return {number} Magnitude of the quantity in the new unit
   */
   Quantity.prototype.in = function(unitString) {
