@@ -1,0 +1,6 @@
+Convert From, Convert To, Multiply By, Included in PQM
+erg / s, W, 1.0e-07, true
+ft lbf / hr, W, 3.766161e-04, true
+ft lbf / min, W, 2.259697e-02, true
+ft lbf / s, W, 1.355818e+00, true
+HP, W, 7.456999e+02, true

@@ -1,0 +1,13 @@
+Convert From, Convert To, Multiply By, Included in PQM
+[c]P, Pa s, 1.0e-03, false
+P (poise), Pa s, 1.0e-01, false
+pdl s / ft^2, Pa s, 1.488164e+00, false
+lbf s / ft^2, Pa s, 4.788026e+01, true
+lbf s / in^2, Pa s, 6.894757e+03, true
+lbm / ft hr, Pa s, 4.133789e-04, true
+lbm / ft s, Pa s, 1.488164e+00, true
+rhe, 1 / Pa s, 1.0e+01, false
+slug / ft s, Pa s, 4.788026e+01, true
+[c]St (centistokes), m^2 /s, 1.0e-06, false
+ft^2 / s, m^2 / s, 9.290304e-02, true
+St (stokes), m^2 / s, 1.0e-04, false
