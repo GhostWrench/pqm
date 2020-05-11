@@ -1,5 +1,5 @@
 /** 
- * Definition of all tests for PQM
+ * Definition of all tests common (node and browser) tests for PQM
  */
 
 import pqm from "../src/pqm.js";
@@ -10,7 +10,7 @@ import pqm from "../src/pqm.js";
  * @param {Element} div If running in the browser, this is a div where test
  *                      information can be inserted.
  */
-function runAllTests(div) {
+function testBasics(div) {
 
     let failures = 0;
 
@@ -198,7 +198,7 @@ function runAllTests(div) {
     if (failures > 0) {
         throw `${failures} tests failed`;
     } else {
-        console.log("All tests passed");
+        console.log("All basic tests passed");
     }
 };
 
@@ -247,4 +247,4 @@ function runner(name, div, func) {
     return returnValue;
 }
 
-export default runAllTests;
+export default testBasics;
