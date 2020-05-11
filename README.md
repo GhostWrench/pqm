@@ -332,7 +332,15 @@ Table of available units
 | ga          | Gauss, same as 'Gs' (common alternative)                       |
 | mol         | Mole, SI unit for amount of substance defined by exactly 6.02214076E+23 elementary entities of said substance |
 | cd          | Candela, SI unit for luminous intensity in a given direction defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency 540E+12 Hz |
+| lm          | Lumen, SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr |
+| lx          | Lux, the SI derived unit of illuminance, measuring luminous flux per unit area. 1 lx = 1 lm/m^2) |
+| footcandle  | Footcandle, common symbols: lc and ft-c . Non-SI unit of illuminance or light intensity. 1 footcandle = 1 lm / ft^2 |
+| footlambert | Footlambert, common symbols: fL, fl, ft-L. 1 footlambert = 1/π cd / ft^2 |
+| lambert     | Lambert, common symbols: L, la, Lb. Non-SI unit of luminance. 1 lambert = 1/π cd / \[c\]m^2 |
+| phot        | Phot, common symbol: ph. CGS unit of illuminance               |
+| stilb       | Stilb, common symbol: sb. CGS unit of luminance                |
 | rad         | Radian, Dimensionless SI unit defined as the ratio of the radius of a circular arc to the radius of the arc. Typically used to describe angles |
+| sr          | Steradian, "square radian" is the SI unit of solid angle. Analogous to the radian, a solid angle of 1 sr, projected onto a unit sphere will have unit area |
 | rev         | Revolutions, dimensionless quantity describing one revolution of periodic motion |
 | deg         | Degree, dimensionless quantity equal to 1/360 of a revolution  |
 | Hz          | Hertz, unit of frequency defined as 1 rev/sec                  |

@@ -14,9 +14,10 @@ const pqm = (function () {
     "current",
     "substance",
     "luminosity",
-    "information"
+    "information",
+    "rotation"
   ];
-  const numDimensionTypes = 8;
+  const numDimensionTypes = dimensionTypes.length;
 
   /**
    * Class representing a physical quantity, that can be used in various 
@@ -571,13 +572,27 @@ const pqm = (function () {
     mol: new Quantity(1, {substance: 1}),
     // Luminosity Units
     cd: new Quantity(1, {luminosity: 1}),
+    lm: new Quantity(1, {luminosity: 1, rotation: 2}),
+    lx: new Quantity(1, {luminosity: 1, rotation: 2, length: -2}),
+    footcandle: new Quantity(
+      1.07639104167097201525393757037818431854248046875e+1,
+      {luminosity: 1, rotation: 2, length: -2}),
+    footlambert: new Quantity(
+      3.426259099635390104054977200576104223728179931640625e+0,
+      {luminosity: 1, length: -2}),
+    lambert: new Quantity(
+      3.183098861837906952132470905780792236328125e+3,
+      {luminosity: 1, length: -2}),
+    phot: new Quantity(1.0e4, {luminosity: 1, rotation: 2, length: -2}),
+    stilb: new Quantity(1.0e4, {luminosity: 1, length: -2}),
     // Rotational units
-    rad: new Quantity(1),
-    rev: new Quantity(2*Math.PI),
-    deg: new Quantity(Math.PI/180),
+    rad: new Quantity(1, {rotation: 1}),
+    sr: new Quantity(1, {rotation: 2}),
+    rev: new Quantity(2*Math.PI, {rotation: 1}),
+    deg: new Quantity(Math.PI/180, {rotation: 1}),
     // Frequency Units
     Hz: new Quantity(2*Math.PI, {time: -1}),
-    rpm: new Quantity(2*Math.PI/60, {time: -1}),
+    rpm: new Quantity(2*Math.PI/60, {rotation: 1, time: -1}),
   };
 
   const prefixes = {
