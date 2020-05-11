@@ -5,14 +5,14 @@ bar, Pa, 1.0e+05, true
 bar, [k]Pa, 1.0e+02, true
 cmHg, Pa, 1.333224e+03, false
 cmH2O, Pa, 9.80665e+01, false
-dyne / cm^2, Pa, 1.0e-01, true
+dyn / [c]m^2, Pa, 1.0e-01, true
 ftHg, Pa, 4.063666e+04, false
 ftH2O, Pa, 2.989067e+03, false
 gf / [c]m^2 (gram-force / cm^2), Pa, 9.80665e+01, false
 inHg, Pa, 3.386389e+03, true
 inH2O, Pa, 2.490889e+02, false
 kgf / [c]m^2, Pa, 9.80665e+04, false
-kgf / m^2, 9.80665e+00, false
+kgf / m^2, Pa, 9.80665e+00, false
 kgf / [m]m^2, Pa, 9.80665e+06, false
 kip / in^2, Pa, 6.894757e+06, false
 [m]bar, Pa, 1.0e+02, true

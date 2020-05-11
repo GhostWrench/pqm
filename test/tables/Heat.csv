@@ -8,11 +8,11 @@ BTU / ft^2 hr, W / m^2, 3.154591e+00, true
 BTU / ft^2 s, W / m^2, 1.135653e+04, true
 cal / [c]m^2 min, W / m^2, 6.973333e+02, true
 cal / [c]m^2 s, W / m^2, 4.184e+04, true
-BTU / detlaF, J / K, 1.899101e+03, true
+BTU / deltaF, J / K, 1.899101e+03, true
 BTU / Rank, J / K, 1.899101e+03, true
 BTU / hr, W, 2.930711e-01, true
 BTU / s, W, 1.055056e+03, true
-BTU / lbm detlaF, J / [k]g K, 4.1868e+03, true
+BTU / lbm deltaF, J / [k]g K, 4.1868e+03, true
 BTU / lbm Rank, J / [k]g K, 4.1868e+03, true
 cal / g deltaC, J / [k]g K, 4.1868e+03, true
 cal / g K, J / [k]g K, 4.1868e+03, true
@@ -23,4 +23,4 @@ clo (clothing), m^2 K / W, 1.55e-01, false
 deltaF hr ft^2 / BTU, m^2 K / W, 1.761102e-01, true
 deltaF hr / BTU, K / W, 1.895634e+00, true
 deltaF s / BTU, K / W, 5.265651e-04, true
-deltaF hr ft^2 / BTU in, m K / W, 6.933472e+00
+deltaF hr ft^2 / BTU in, m K / W, 6.933472e+00, true

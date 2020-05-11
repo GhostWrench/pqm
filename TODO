@@ -1,7 +1,14 @@
+Major
+================================================================================
 * Units on comparison tolerances
 * 'inSI()' and 'unitSI()' functions as an alternative to 'in'
 * Allow subtraction of two zero offset units to create a 'delta' unit
 * Rotation as a type of unit
 * Radiology units
 * Improvements to luminosity units (and steradian {sr})
-* Test against NIST tables
+* Package as a node.js Package
+* Create simple transpiler for IIFE and CommonJS versions
+
+Minor
+================================================================================
+* Simplify the 'dimensionality' function

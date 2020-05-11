@@ -467,7 +467,7 @@ const pqm = (function () {
     deltaReau: new Quantity(1.25000000000000E+00, {temperature: 1}),
     // Velocity Units
     mph: new Quantity(4.47040000000000E-01, {length: 1, time: -1}),
-    kn: new Quantity(5.14444444444444E-01, {length: 1, time: -1}),
+    knot: new Quantity(5.14444444444444E-01, {length: 1, time: -1}),
     admkn: new Quantity(5.14773333333333E-01, {length: 1, time: -1}),
     c: new Quantity(2.99792458000000E+8, {length: 1, time: -1}),
     // Acceleration Units

@@ -11,7 +11,7 @@ lbf / lbm, N / [k]g, 9.80665e+00, true
 ton_force, N, 8.896443e+03, false
 lbf / ft, N / m, 1.459390e+01, true
 lbf / in, N / m, 1.751268e+02, true
-dyne [c]m, N m, 1.0e-07, true
+dyn [c]m, N m, 1.0e-07, true
 [k]pond m, N m, 9.80665e+00, true
 ozf in, N m, 7.061552e-03, true
 ozf in, [m]N m, 7.061552e+00, true

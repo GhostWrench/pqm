@@ -20,7 +20,7 @@ ozm / in^2, [k]g / m^2, 4.394185e+01, true
 ozm / yd^2, [k]g / m^2, 3.390575e-02, true
 lbm / ft^2, [k]g / m^2, 4.882428e+00, true
 lbm / in^2, [k]g / m^2, 7.030696e+02, true
-denier, [k]g / m, 1.111111e-07, true
+denier, [k]g / m, 1.111111e-07, false
 lbm / ft, [k]g / m, 1.488164e+00, true
 lbm / in, [k]g / m, 1.785797e+01, true
 lbm / yd, [k]g / m, 4.960546e-01, true

@@ -241,7 +241,7 @@ Table of available units
 | Reau        | Reaumur, temperature scale that is approximately 0 at the melting point of ice and 80 at the boiling point of water |
 | deltaReau   | Change in temperature as measured in Reaumurs                  |
 | mph         | Miles per Hour, velocity at which a mile is traveled every hour |
-| kn          | Knot, velocity at which a Nautical mile is traveled every hour |
+| knot        | Knot, velocity at which a Nautical mile is traveled every hour |
 | admkn       | Admiralty Knot, knot based on the old UK definition of a Nautical mile (1853.184 m) |
 | c           | Speed of Light, unit of velocity defined by how fast light travels |
 | grav        | Standard Gravity, approximate acceleration of gravity at the surface of the earth |

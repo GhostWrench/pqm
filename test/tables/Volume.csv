@@ -2,7 +2,7 @@ Convert From, Convert To, Multiply By, Included in PQM
 acre survey_ft, m^3, 1.233489e+03, true
 barrel, m^3, 1.589873e-01, true
 bushel, m^3, 3.523907e-02, true
-cord, m^3, 3.624556e+00, true
+cord, m^3, 3.624556e+00, false
 ft^3, m^3, 2.831685e-02, true
 in^3, m^3, 1.638706e-05, true
 mi^3, m^3, 4.168182e+09, true
@@ -18,7 +18,7 @@ uk_fl_oz, m^3, 2.841306e-05, false
 peck, m^3, 8.809768e-03, false
 dry_pt, m^3, 5.506105e-04, false
 pt (liquid), m^3, 4.731765e-04, true
-dry_qt, m^3, m^3, 1.101221e-03, false
+dry_qt, m^3, 1.101221e-03, false
 qt (liquid), m^3, 9.463529e-04, true
 st (stere), m^3, 1.0e+00, false
 tbs, m^3, 1.478676e-05, true
