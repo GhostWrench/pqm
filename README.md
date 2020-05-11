@@ -11,7 +11,7 @@ single file that is ~700 total lines. It also requires a strict definition of
 units that eliminates the possibility of "unit collisions" that plague many 
 other libraries of this type.
 
-Create a physical quantity variable
+Installing and importing PQM
 --------------------------------------------------------------------------------
 
 ### Importing the module
@@ -27,6 +27,9 @@ If adding it to an html file ensure that you use the following syntax:
 ```html
 <script src="path/to/pqm.js" type="module"></script>
 ```
+
+Creation of Basic Quantity Variables
+--------------------------------------------------------------------------------
 
 ### Create a basic quantity
 
