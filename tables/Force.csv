@@ -1,0 +1,13 @@
+Convert From, Convert To, Multiply By, Included in PQM
+dyn, N, 1.0e-05, true
+kgf (kilogram-force), N, 9.80665e+00, false
+[k]pond, N, 9.80665e+00, true
+kip, N, 4.448222e+03, false
+[k]lbf, [k]N, 4.448222e+00, true
+ozf, N, 2.780139e-01, true
+pdl (poundal), N, 1.382550e-01, false
+lbf, N, 4.448222e+00, true
+lbf / lbm, N / [k]g, 9.80665e+00, true
+ton_force, N, 8.896443e+03, false
+lbf / ft, N / m, 1.459390e+01, true
+lbf / in, N / m, 1.751268e+02, true

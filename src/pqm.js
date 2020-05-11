@@ -490,7 +490,7 @@ const pqm = (function () {
     J: new Quantity(1, {mass: 1, length: 2, time: -2}),
     eV: new Quantity(1.60217648700000E-19, {mass: 1, length: 2, time: -2}),
     erg: new Quantity(1.00000000000000E-07, {mass: 1, length: 2, time: -2}),
-    Cal: new Quantity(4.18680000000000E+00, {mass: 1, length: 2, time: -2}),
+    cal: new Quantity(4.18680000000000E+00, {mass: 1, length: 2, time: -2}),
     BTU: new Quantity(1.05505585262000E+03, {mass: 1, length: 2, time: -2}),
     Wh: new Quantity(3.60000000000000E+03, {mass: 1, length: 2, time: -2}),
     HPh: new Quantity(2.68451953769617E+06, {mass: 1, length: 2, time: -2}),
