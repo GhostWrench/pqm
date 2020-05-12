@@ -3,7 +3,6 @@ Major
 * 'inSI()' function as an alternative to 'in'
 * Package as a node.js Package
 * Create simple transpiler for IIFE and CommonJS versions
-* Allow user defined units
 
 Minor
 ================================================================================

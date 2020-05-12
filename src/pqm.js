@@ -448,7 +448,7 @@ const pqm = (function () {
   /**
    * Combined list of all units, conversion factors and unit descriptions
    */
-  const units = {
+  let units = {
     // Singular Unit
     "1": new Quantity(1),
     // Mass units
@@ -729,6 +729,35 @@ const pqm = (function () {
   };
 
   /**
+   * Define an arbitrary unit symbol that can be used in calculations
+   * 
+   * @param {string} symbol Symbol that is used to represent the unit
+   * @param {number} magnitude Magnitude of the new unit relative to the 
+   *                           provided unitStr (default=1)
+   * @param {string} unitStr String defining the base units to base the new 
+   *                         unit off of (default="1" non-dimensional scalar)
+   * @param {number} offset Zero offset of the new unit, scaled by itself
+   *                        e.g. degF has an offset of 459.67 not 255.37 
+   *                        (default = 0)
+   */
+  function define(symbol, magnitude, unitStr, offset) {
+    // Check user input
+    if (units.hasOwnProperty(symbol)) {
+      throw "The unit " + symbol + " is already defined";
+    }
+    if (typeof(magnitude) === "undefined") {
+      magnitude = 1;
+    }
+    // Create new unit and it to the global list of units
+    let newUnit = pqm.quantity(magnitude, unitStr);
+    if (offset) {
+      // Offset must be scaled to nominal (SI) units from user input
+      newUnit.offset = (offset / newUnit.magnitude);
+    }
+    units[symbol] = newUnit;
+  }
+
+  /**
    * Compare the equality of two floats using an optional user supplied 
    * tolerance.
    *
@@ -747,7 +776,7 @@ const pqm = (function () {
 
   return {
     quantity: quantity,
-    units: units,
+    define: define
   };
 
 })();

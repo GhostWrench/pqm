@@ -131,6 +131,23 @@ let q1 = pqm.quantity(10, "m");
 q1.inv().in("1 / m"); // 0.1
 ```
 
+Definition of Custom Physical Quantities
+--------------------------------------------------------------------------------
+There are many units which are not included by default in the PQM module. 
+Fortunately, users are allowed to define their own units. Take the following
+example that adds the "thermochemical" definitions of Calorie (cal) and 
+British Thermal Unit (BTU) which differ slightly from the standard versions.
+
+```javascript
+pqm.define("cal_th", 4.184, "J"); // By definition
+pqm.define("BTU_th", 1, "cal_th deltaF lbm / deltaC g");
+
+console.log(pqm.quantity(1, "BTU").in("J")); // 1055.05585262
+console.log(pqm.quantity(1, "BTU_th").in("J")); // 1054.3502644888652
+```
+
+
+
 Comparisons of Quantities
 --------------------------------------------------------------------------------
 

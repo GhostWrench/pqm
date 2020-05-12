@@ -194,6 +194,17 @@ function testBasics(div) {
         return "Pass";
     });
 
+    failures += runner("Test user defined units", div, function() {
+        pqm.define("foobar", 10, "league / day");
+        pqm.define("barfoo", 0.1, "day / league");
+        let q = pqm.quantity(1, "foobar / barfoo");
+        let expected = pqm.quantity(100, "league^2 / day^2");
+        if (!q.eq(expected, 1e-10)) {
+            return "Failed custom unit creation";
+        }
+        return "Pass";
+    });
+
     // Throw error if any of the tests failed
     if (failures > 0) {
         throw `${failures} tests failed`;
