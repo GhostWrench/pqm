@@ -5,11 +5,14 @@ PQM is a node.js and browser javascript library for dealing with numbers with
 units like "10 meters". With it you can create variables that represent these
 physical quantities and use them for math just like a normal numeric variable.
 
-In addition PQM is designed to be simple, lightweight and fast. It has no 
-dependencies and the entire module, including unit definitions live in a 
-single file that is ~700 total lines. It also requires a strict definition of 
-units that eliminates the possibility of "unit collisions" that plague many 
-other libraries of this type.
+PQM is designed to be simple, lightweight and fast. In addition:
+* It has no dependencies 
+* The entire module, including unit definitions live in a single small file
+* Quantity objects require a strict unit definition that eliminates the 
+  possibility of "unit collisions" that plague many other libraries of 
+  this type
+* Conversion factors are tested against conversions defined in 
+  [Special Publication 811: NIST Guide to the SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9)
 
 Installing and importing PQM
 --------------------------------------------------------------------------------
