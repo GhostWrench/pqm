@@ -55,7 +55,7 @@ const pqm = (function () {
     }
     // Make sure that the supplied offsets are valid
     if (offset) {
-      if (this.dimensionality().total != 1) {
+      if (this.dimensionality() != 1) {
         throw "Cannot create compound dimensions with an offset!";
       }
     } else {
@@ -65,26 +65,19 @@ const pqm = (function () {
   };
 
   /**
-   * Get the dimensionality of the unit, both in types of dimensions and total
-   * number of dimensions
+   * Get the dimensionality of the quantity (total number of dimensions of 
+   * all types)
    * 
-   * @returns {Object} Object containing the following fields:
-   *                     types: Total number of dimension types in the unit
-   *                     total: Total (absolute) number of dimensions
+   * @returns {number} Dimensionality of the physical quantity
    */
   Quantity.prototype.dimensionality = function() {
-    let types = 0;
     let total = 0;
     for (let ii=0; ii<numDimensionTypes; ii++) {
       if (this.dimensions[ii] != 0) {
-        types += 1;
         total += Math.abs(this.dimensions[ii]);
       }
     }
-    return {
-      types: types,
-      total: total
-    };
+    return total;
   }
 
   /**

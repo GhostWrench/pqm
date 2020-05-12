@@ -1,12 +1,11 @@
 Major
 ================================================================================
 * 'inSI()' function as an alternative to 'in'
-* Allow subtraction of two zero offset units to create a 'delta' unit
-* Radiology units
 * Package as a node.js Package
 * Create simple transpiler for IIFE and CommonJS versions
 * Allow user defined units
 
 Minor
 ================================================================================
-* Simplify the 'dimensionality' function
+* Allow subtraction of two zero offset units to create a 'delta' unit
+* Radiology units
