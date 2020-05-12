@@ -496,7 +496,7 @@ const pqm = (function () {
     min: new Quantity(6.00000000000000E+01, {time: 1}),
     hr: new Quantity(3.60000000000000E+03, {time: 1}),
     day: new Quantity(8.64000000000000E+04, {time: 1}),
-    yr: new Quantity(3.15576000000000E+07, {time: 1}),
+    yr: new Quantity(3.1536E+07, {time: 1}),
     stellar_day: new Quantity(8.637641003520000E+04, {time: 1}),
     // Temperature units
     K: new Quantity(1, {temperature: 1}),
@@ -516,7 +516,7 @@ const pqm = (function () {
     grav: new Quantity(9.80665000000000E+00, {length: 1, time: -2}),
     // Pressure Units
     Pa: new Quantity(1, {mass: 1, length: -1, time: -2}),
-    mmHg: new Quantity(1.33322000000000E+02, {mass: 1, length: -1, time: -2}),
+    mmHg: new Quantity(1.33322390000000E+02, {mass: 1, length: -1, time: -2}),
     Torr: new Quantity(1.33322368421053E+02, {mass: 1, length: -1, time: -2}),
     psi: new Quantity(6.89475729316836E+03, {mass: 1, length: -1, time: -2}),
     atm: new Quantity(1.01325000000000E+05, {mass: 1, length: -1, time: -2}),

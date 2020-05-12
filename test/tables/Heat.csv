@@ -2,12 +2,10 @@ Convert From, Convert To, Multiply By, Included in PQM
 BTU / ft^3, J / m^3, 3.725895e+04, true
 BTU / lbm, J / [k]g, 2.326e+03, true
 cal / g, J / [k]g, 4.1868e+03, true
-BTU / hr ft^2 deltaF, W / m^2 K, 5.678 263e+00, true
+BTU / hr ft^2 deltaF, W / m^2 K, 5.678263e+00, true
 BTU / s ft^2 deltaF, W / m^2 K,	2.044175e+04, true
 BTU / ft^2 hr, W / m^2, 3.154591e+00, true
 BTU / ft^2 s, W / m^2, 1.135653e+04, true
-cal / [c]m^2 min, W / m^2, 6.973333e+02, true
-cal / [c]m^2 s, W / m^2, 4.184e+04, true
 BTU / deltaF, J / K, 1.899101e+03, true
 BTU / Rank, J / K, 1.899101e+03, true
 BTU / hr, W, 2.930711e-01, true

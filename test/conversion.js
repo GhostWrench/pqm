@@ -71,6 +71,8 @@ function testConversions() {
 
     if (totalFailures > 0) {
         throw `${totalFailures} failed unit conversions`;
+    } else {
+        console.log("All conversions matched successfully");
     }
 }
 

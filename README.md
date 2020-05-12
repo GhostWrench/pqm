@@ -284,7 +284,7 @@ Table of available units
 | J           | Joule, SI unit for energy defined as 1 N m                     |
 | eV          | Electron Volt, Energy gain of an electron after passing through a 1 Volt potential |
 | erg         | Erg, CGS unit for energy defined as 1 dyn cm                   |
-| cal         | Calorie / Kilocalorie, defined as the amount of energy to raise the temperature of 1 kg of water 1 degree Celsius, based on The Fifth International Conference on the Properties of Steam (London, July 1956) "International Table". Note that there is also a "thermochemical" definition which differs slightly. |
+| cal         | Calorie / Kilocalorie, based on the amount of energy to raise the temperature of 1 kg of water 1 degree Celsius. Defined in The Fifth International Conference on the Properties of Steam (London, July 1956) "International Table". Note that there is also a "thermochemical" definition which differs slightly. |
 | BTU         | British Thermal Unit, defined as the amount of energy to raise the temperature of 1 lbm of water 1 degree Fahrenheit. Based on the "International Table" (see definition of "cal") |
 | Wh          | Watt-hour, amount of energy accumulated by 1 Watt over an hour |
 | HPh         | Horsepower-hour, amount of energy accumulated by 1 HP over an hour |
