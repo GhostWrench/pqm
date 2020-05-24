@@ -216,12 +216,20 @@ function testBasics(div) {
       return "Function 'with()' unit conversion failed";
     }
     let newtonInv = pqm.quantity(1, "s^2 / [k]g m");
-    test = newtonInv.with(["kg", "m", "s", "N"]);
+    test = newtonInv.with(["[k]g", "m", "s", "N"]);
     if (test[0] != 1) {
       return "Function 'with()' magnitude conversion failed";
     }
     if (test[1] != "1 / N") {
       return "Function with() unit conversion failed"
+    }
+    let cms = pqm.quantity(1, "m / s");
+    test = cms.with(["[k]m",  "[k]s"]);
+    if (test[0] != 1) {
+      return "Function 'with()' magnitude conversion failed";
+    }
+    if (test[1] != "[k]m / [k]s") {
+      return "Function 'with()' unit conversion failed";
     }
     return "Pass";
   });

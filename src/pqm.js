@@ -458,7 +458,7 @@ const pqm = (function () {
     // Convert unitList to a dimension Array
     let unitArray = new Array(unitList.length);
     for (let ii = 0; ii<unitList.length; ii++) {
-      let unitQuantity = getUnit(unitList[ii]);
+      let unitQuantity = getUnitQuantity(unitList[ii]);
       unitArray[ii] = unitQuantity.dimensions;
     }
     // Loop through each dimension and create a list of unit list indexes that
@@ -741,17 +741,57 @@ const pqm = (function () {
 
   /**
    * Convert the provided unit string to a quantity or throw and error if
-   * it does not exist
+   * it does not exist.
    * 
-   * @param {string} unitName Name of the unit as a string
+   * @param {string} unitName Name of the unit as a string. May have an 
+   *                          optional prefix or raised power (e.g. [c]m^2)
    * 
    * @returns {Quantity} Quantity represented by the unit string 
    */
-  function getUnit(unitName) {
-    if (!units.hasOwnProperty(unitName)) {
+  function getUnitQuantity(unitName) {
+    const unitRegex = /^(?:\[(\D+)\])?(1|\D+)(?:\^([\-\d]+))?$/;
+    let matches = unitRegex.exec(unitName);
+    if (!matches) {
+      throw "Cannot convert \"" + unitName + "\" to a valid unit";
+    }
+    // Get the prefix and make sure that is an actual prefix
+    let prefix = matches[1];
+    let prefixValue;
+    if (prefix) {
+      prefixValue = prefixes[prefix];
+      if (!prefixValue) {
+        throw prefix + " is not a valid prefix";
+      }
+    } else {
+      prefixValue = 1;
+    }
+    // Match the unit and get it's value
+    let unitStr = matches[2];
+    if (!unitStr) {
+      throw "Error parsing unit: \"" + unitString + "\"";
+    }
+    if (!units.hasOwnProperty(unitStr)) {
       throw (unitName + "is not a valid unit");
     }
-    return units[unitName].copy();
+    let unitQuantity = units[unitStr].copy();
+    // Get the power of the unit and invert it if in section 1 (si==1)
+    let power = matches[3];
+    let powerValue;
+    if (power) {
+      powerValue = parseInt(power);
+      if (!powerValue) {
+        throw power + " is not a valid unit power";
+      }
+    } else {
+      powerValue = 1;
+    }
+    if (prefixValue != 1) {
+      unitQuantity = unitQuantity.mul(prefixValue);
+    }
+    if (powerValue != 1) {
+      unitQuantity = unitQuantity.pow(powerValue);
+    }
+    return unitQuantity;
   }
 
   /**
@@ -769,7 +809,6 @@ const pqm = (function () {
   * @return {Quantity} The unit of measurement as  
   */
   function quantity(magnitude, unitString) {
-    const unitRegex = /^(?:\[(\D+)\])?(1|\D+)(?:\^([\-\d]+))?$/;
     let returnQuantity = new Quantity(1);
     if (unitString) {
       let sections = unitString.split("/");
@@ -779,62 +818,20 @@ const pqm = (function () {
       for (let si=0; si<sections.length; si++) {
         let unitSyms = sections[si].trim().split(/\s+/g);
         for (let ui=0; ui<unitSyms.length; ui++) {
-          let matches = unitRegex.exec(unitSyms[ui]);
-          if (!matches) {
-            throw "Cannot convert \"" + unitSyms[ui] + "\" to a valid unit";
-          }
-          // Get the prefix and make sure that is an actual prefix
-          let prefix = matches[1];
-          let prefixValue;
-          if (prefix) {
-            prefixValue = prefixes[prefix];
-            if (!prefixValue) {
-              throw prefix + " is not a valid prefix";
-            }
-          } else {
-            prefixValue = 1;
-          }
-          if (si == 1) {
-            prefixValue = 1 / prefixValue;
-          }
-          // Match the unit and get it's value
-          let unitStr = matches[2];
-          if (!unitStr) {
-            throw "Error parsing unit: \"" + unitString + "\"";
-          }
-          let unitQuantity = getUnit(unitStr);
-          if (unitQuantity) {
-            unitQuantity = unitQuantity.copy();
-          } else {
-            throw "\"" + unitStr + "\" is not a valid unit";
-          }
-          if (si == 1) {
+          let unitQuantity = getUnitQuantity(unitSyms[ui]);
+          if (si > 0) {
             unitQuantity = unitQuantity.inv();
-          }
-          // Get the power of the unit and invert it if in section 1 (si==1)
-          let power = matches[3];
-          let powerValue;
-          if (power) {
-            powerValue = parseInt(power);
-            if (!powerValue) {
-              throw power + " is not a valid unit power";
-            }
-          } else {
-            powerValue = 1;
           }
           // Multiply through the prefixes and powers to get the appropriate
           // quantity
           if (unitQuantity.offset == 0) {
-            unitQuantity = unitQuantity.mul(prefixValue);
-            unitQuantity = unitQuantity.pow(powerValue);
             returnQuantity = returnQuantity.mul(unitQuantity);
-          } else if (prefixValue != 1) {
-            throw "Cannot add prefix to non 0 offset unit " + unitSyms[ui];
-          } else if (!(sections.length == 1 && unitSyms.length == 1)) {
-            throw ("Cannot create a compound unit with non-zero offset " +
-                   "unit \"" + unitSyms[ui] + "\"");
-          } else {
+          } else if (sections.length == 1 && unitSyms.length == 1) {
+            // This is the only circumstance where a unit with a zero offset
+            // may be returned. (Non-compound unit)
             returnQuantity = units[unitSyms[ui]];
+          } else {
+            throw "Cannot create compound units from units with zero offsets";
           }
         }
       }
