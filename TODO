@@ -9,4 +9,3 @@ Minor
 * Allow subtraction of two zero offset units to create a 'delta' unit
 * Gauge pressures?
 * Radiology units
-* Allow prefixes in 'with' function
