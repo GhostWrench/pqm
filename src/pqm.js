@@ -471,21 +471,22 @@ const pqm = (function () {
       let bestIdx = -1;
       let bestInv = 0;
       let bestRemainder = remainder;
-      for (let unitIdx=0; unitIdx<dimArray.list; unitIdx++) {
+      let bestRemainderArray = new Array(dimensionTypes.length);
+      for (let unitIdx=0; unitIdx<unitList.length; unitIdx++) {
         for (let isInv=-1; isInv<=1; isInv += 2) {
           let newRemainder = 0;
           let newRemainderArray = new Array(dimensionTypes.length);
           for (let dimIdx=0; dimIdx<dimensionTypes.length; dimIdx++) {
             newRemainderArray[dimIdx] = (
-              remainderArray[ii] - (isInv * unitArray[unitIdx][dimIdx])
+              remainderArray[dimIdx] - (isInv * unitArray[unitIdx][dimIdx])
             );
             newRemainder += Math.abs(newRemainderArray[dimIdx]);
-            if (newRemainder < remainder) {
-              bestIdx = unitIdx;
-              bestInv = isInv;
-              bestRemainder = newRemainder;
-              remainderArray = newRemainderArray;
-            }
+          }
+          if (newRemainder < remainder) {
+            bestIdx = unitIdx;
+            bestInv = isInv;
+            bestRemainder = newRemainder;
+            bestRemainderArray = newRemainderArray;
           }
         }
       }
@@ -506,6 +507,7 @@ const pqm = (function () {
         useUnitsPower[existingIdx] += bestInv;
       }
       remainder = bestRemainder;
+      remainderArray = bestRemainderArray;
     }
 
     // At this point the units to be used are in useUnits, clean
@@ -535,6 +537,9 @@ const pqm = (function () {
     } else if (denominator.length == 0) {
       fullUnits = numerator.trim();
     } else {
+      if (numerator.length == 0) {
+        numerator = "1 ";
+      }
       fullUnits = (numerator + "/ " + denominator).trim();
     }
     return [this.in(fullUnits), fullUnits];

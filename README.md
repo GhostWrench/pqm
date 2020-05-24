@@ -239,6 +239,7 @@ Table of available units
 | Unit Symbol | Description                                                    |
 | ----------- |:-------------------------------------------------------------- |
 | 1           | Unit non-dimensional quantity                                  |
+| %           | Non dimensional percent (100 % == 1)                           |
 | kg          | Kilogram, SI unit for mass, same as `[k]g`                     |
 | g           | Gram, unit of mass defined as 1e-3 kg                          |
 | u           | Atomic Mass Unit, approximately the mass of one proton or neutron |
