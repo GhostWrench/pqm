@@ -5,6 +5,9 @@
 		}
 	],
 	"settings": {
-		"editor.rulers": [80, 100]
+		"editor.rulers": [80, 100],
+		"[javascript]": {
+			"editor.tabSize": 2
+		}
 	}
 }

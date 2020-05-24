@@ -324,7 +324,7 @@ const pqm = (function () {
   /**
    * Check for equality with another quantity
    *
-   * @param {Quantity\number} other Other quantity to check for equality with
+   * @param {Quantity|number} other Other quantity to check for equality with
    * @param {Quantity|number} tolerance Maximum difference between the two 
    *                                    quantities that is still considered 
    *                                    equal. Can be provided as an absolute 
@@ -446,11 +446,107 @@ const pqm = (function () {
   };
 
   /**
+   * Get the value of the quantity in terms of the supplied unit array
+   * 
+   * @param {string[]} unitList List of units to return the quantity in terms of
+   * 
+   * @returns {[number, string]} Array with magnitude and the units the 
+   *                             magnitude is in terms of as a string.
+   */
+  Quantity.prototype.with = function(unitList) {
+    
+    // Convert unitList to a dimension Array
+    let unitArray = new Array(unitList.length);
+    for (let ii = 0; ii<unitList.length; ii++) {
+      let unitQuantity = getUnit(unitList[ii]);
+      unitArray[ii] = unitQuantity.dimensions;
+    }
+    // Loop through each dimension and create a list of unit list indexes that
+    // are the best match for the dimension
+    let useUnits = new Array();
+    let useUnitsPower = new Array();
+    let remainder = this.dimensionality();
+    let remainderArray = this.dimensions.slice();
+    while (remainder > 0) {
+      let bestIdx = -1;
+      let bestInv = 0;
+      let bestRemainder = remainder;
+      for (let unitIdx=0; unitIdx<dimArray.list; unitIdx++) {
+        for (let isInv=-1; isInv<=1; isInv += 2) {
+          let newRemainder = 0;
+          let newRemainderArray = new Array(dimensionTypes.length);
+          for (let dimIdx=0; dimIdx<dimensionTypes.length; dimIdx++) {
+            newRemainderArray[dimIdx] = (
+              remainderArray[ii] - (isInv * unitArray[unitIdx][dimIdx])
+            );
+            newRemainder += Math.abs(newRemainderArray[dimIdx]);
+            if (newRemainder < remainder) {
+              bestIdx = unitIdx;
+              bestInv = isInv;
+              bestRemainder = newRemainder;
+              remainderArray = newRemainderArray;
+            }
+          }
+        }
+      }
+      // Check to make sure that progress is being made towards remainder = 0
+      // if no more progress is being made then the provided units don't span
+      // this unit, throw an error.
+      if (bestRemainder >= remainder) {
+        throw "Cannot represent this quantity with the supplied units";
+      }
+      // Check if the new best unit already in the set of numerator or
+      // denominator units. If it is, increase the power of that unit, if it
+      // is not, then add it.
+      let existingIdx = useUnits.indexOf(bestIdx);
+      if (existingIdx == -1) {
+        useUnits.push(bestIdx);
+        useUnitsPower.push(bestInv);
+      } else {
+        useUnitsPower[existingIdx] += bestInv;
+      }
+      remainder = bestRemainder;
+    }
+
+    // At this point the units to be used are in useUnits, clean
+    // them up and create a unit system to return to the caller.
+    let numerator = "";
+    let denominator = "";
+    for (let ii=0; ii<useUnits.length; ii++) {
+      if (useUnitsPower[ii] > 0) {
+        numerator += unitList[useUnits[ii]];
+        if (useUnitsPower[ii] > 1) {
+          numerator += ("^" + useUnitsPower[ii] + " ");
+        } else {
+          numerator += " ";
+        }
+      } else {
+        denominator += unitList[useUnits[ii]];
+        if (useUnitsPower[ii] < -1) {
+          denominator += ("^" + -useUnitsPower[ii] + " ");
+        } else {
+          denominator += " ";
+        }
+      }
+    }
+    let fullUnits = "";
+    if (numerator.length == 0 && denominator.length == 0) {
+      fullUnits = "1";
+    } else if (denominator.length == 0) {
+      fullUnits = numerator.trim();
+    } else {
+      fullUnits = (numerator + "/ " + denominator).trim();
+    }
+    return [this.in(fullUnits), fullUnits];
+  }
+
+  /**
    * Combined list of all units, conversion factors and unit descriptions
    */
   let units = {
-    // Singular Unit
+    // Non dimensional units
     "1": new Quantity(1),
+    "%": new Quantity(0.01),
     // Mass units
     kg: new Quantity(1, {mass: 1}), // Only allowed "prefix unit" without prefix
     g: new Quantity(1e-3, {mass: 1}),
@@ -639,6 +735,21 @@ const pqm = (function () {
   };
 
   /**
+   * Convert the provided unit string to a quantity or throw and error if
+   * it does not exist
+   * 
+   * @param {string} unitName Name of the unit as a string
+   * 
+   * @returns {Quantity} Quantity represented by the unit string 
+   */
+  function getUnit(unitName) {
+    if (!units.hasOwnProperty(unitName)) {
+      throw (unitName + "is not a valid unit");
+    }
+    return units[unitName].copy();
+  }
+
+  /**
   * Parse a string to get it's representation as a physical quantity.
   * 
   * @param {Number} magnitude Magnitude of the quantity to return
@@ -686,7 +797,7 @@ const pqm = (function () {
           if (!unitStr) {
             throw "Error parsing unit: \"" + unitString + "\"";
           }
-          let unitQuantity = units[unitStr];
+          let unitQuantity = getUnit(unitStr);
           if (unitQuantity) {
             unitQuantity = unitQuantity.copy();
           } else {
