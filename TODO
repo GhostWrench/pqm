@@ -1,10 +1,12 @@
 Major
 ================================================================================
-* 'inSI()' function as an alternative to 'in'
+* 'inSI()', 'inCGS()' and 'inImperial()' function as an alternative to 'in'
+* 'with()' function to support the above functions
 * Package as a node.js Package
 * Create simple transpiler for IIFE and CommonJS versions
 
 Minor
 ================================================================================
 * Allow subtraction of two zero offset units to create a 'delta' unit
+* Gauge pressures?
 * Radiology units
