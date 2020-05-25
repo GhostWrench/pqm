@@ -451,7 +451,8 @@ const pqm = (function () {
   };
 
   /**
-   * Get the value of the quantity in terms of the supplied unit array
+   * Get the value of the quantity in terms of a compact combination of the
+   * supplied unit list
    * 
    * @param {string[]} unitList List of units to return the quantity in terms of
    * 
@@ -550,6 +551,13 @@ const pqm = (function () {
     return [this.in(fullUnits), fullUnits];
   }
 
+  /**
+   * Look for the most compact SI representation for the quantity and return
+   * it. This function is capable of representing any unit.
+   * 
+   * @returns {[number, string]} Index 0: Magnitude of the quantity
+   *                             Index 1: String representation of the units
+   */
   Quantity.prototype.inSI = function() {
     return this.with([
       "[k]g", "m", "s", "K", "A", "mol", "cd", "bit", "rad", //Base Units
@@ -558,16 +566,40 @@ const pqm = (function () {
     ]);
   }
 
+  /**
+   * Look for the most compact CGS representation for the quantity and return
+   * it. This function is not able to represent all quantities.
+   * 
+   * @returns {[number, string]} Index 0: Magnitude of the quantity
+   *                             Index 1: String representation of the units
+   */
   Quantity.prototype.inCGS = function() {
     return this.with([
       "g", "[c]m", "s", "deltaC", "dyn", "erg", "Ba", "P", "St"
     ]);
   }
 
+  /**
+   * Look for the most compact US Customary representation for the quantity 
+   * and return it. This function is not able to represent all quantities.
+   * 
+   * @returns {[number, string]} Index 0: Magnitude of the quantity
+   *                             Index 1: String representation of the units
+   */
   Quantity.prototype.inUS = function() {
     return this.with([
       "lbm", "ft", "s", "deltaF", "gal", "lbf", "BTU", "HP"
     ])
+  }
+
+  /**
+   * Display the Quantity as a string
+   * 
+   * @returns {string} Quantity displayed as a string
+   */
+  Quantity.prototype.toString = function() {
+    let asSI = this.inSI();
+    return asSI[0].toString() + " " + asSI[1];
   }
 
   /**
