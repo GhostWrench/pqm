@@ -777,9 +777,9 @@ const pqm = (function () {
     deg: new Quantity(Math.PI/180, {rotation: 1}),
     arcmin: new Quantity(Math.PI/10800, {rotation: 1}),
     arcsec: new Quantity(Math.PI/648000, {rotation: 1}),
+    rpm: new Quantity(2*Math.PI/60, {rotation: 1, time: -1}),
     // Frequency Units
     Hz: new Quantity(1, {time: -1}),
-    rpm: new Quantity(2*Math.PI/60, {rotation: 1, time: -1}),
     // Radiology Units
     Bq: new Quantity(1.0, {time: -1}),
     Gy: new Quantity(1.0, {length: 2, time: -2}),

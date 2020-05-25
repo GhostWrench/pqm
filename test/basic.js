@@ -186,7 +186,7 @@ function testBasics(div) {
       return "Subtraction of zero offset with abs failed";
     }
     if (!gauge2.sub(gauge).eq(abs)) {
-      return "Subraction of two zero offset quantities failed";
+      return "Subtraction of two zero offset quantities failed";
     }
     if (atm.in("Pa-g") != 0) {
       return "Conversion from abs to zero offset failed";
@@ -276,6 +276,16 @@ function testBasics(div) {
     }
     if (test[1] != "lbf") {
       return "US Customary unit conversion failed";
+    }
+    return "Pass";
+  });
+
+  failures += runner("Test use of rotational units", div, function() {
+    let revPerSec = pqm.quantity(2*Math.PI, "rad / s");
+    let hz = pqm.quantity(1.0, "Hz");
+    let oneRev = pqm.quantity(1.0, "rev");
+    if (!revPerSec.div(oneRev).eq(hz)) {
+      return "Rotational unit to Hz conversion failed";
     }
     return "Pass";
   });

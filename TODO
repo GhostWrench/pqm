@@ -2,10 +2,3 @@ Major
 ================================================================================
 * Package as a node.js Package
 * Create simple transpiler for IIFE and CommonJS versions
-
-Minor
-================================================================================
-* Implement the toString method with SI Units
-* Update documentation for standard 'in' functions
-* Add note on rotational quantities
-* Add note on case sensitivity of units (rad vs. RAD)
