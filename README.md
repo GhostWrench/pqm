@@ -116,7 +116,9 @@ readable form that are easier to use. Namely:
 Because of the many different ways that units can be represented, these 
 functions may not always give you an answer that is appropriate. But they are
 useful for troubleshooting and understanding what the current state of a 
-quantity is, so they have been included in PQM.
+quantity is, so they have been included in PQM. Also note that only `inSI` can
+represent any quantity. Other functions may throw errors if they cannot be used
+to fully represent the quantity.
 
 Perform math operations on physical quantities
 --------------------------------------------------------------------------------
