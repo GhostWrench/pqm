@@ -174,6 +174,26 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Test offset unit math with gauge pressures", div, function() {
+    let atm = pqm.quantity(1.0, "atm");
+    let abs = pqm.quantity(10, "[k]Pa");
+    let gauge = pqm.quantity(10, "kPa-g");
+    let gauge2 = pqm.quantity(20, "kPa-g");
+    if (!gauge.add(abs).eq(gauge2)) {
+      return "Addition of zero offset with abs failed";
+    }
+    if (!gauge.sub(abs).eq(atm)) {
+      return "Subtraction of zero offset with abs failed";
+    }
+    if (!gauge2.sub(gauge).eq(abs)) {
+      return "Subraction of two zero offset quantities failed";
+    }
+    if (atm.in("Pa-g") != 0) {
+      return "Conversion from abs to zero offset failed";
+    }
+    return "Pass";
+  });
+
   failures += runner("Test comparison operators", div, function () {
     let q1 = pqm.quantity(1, "m");
     let q2 = pqm.quantity(101, "[c]m");

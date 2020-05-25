@@ -209,7 +209,7 @@ below gives the available operations for each type of unit.
 | --------- |:--------------------------------------- |:---------------------- |
 | `in`      | Can be converted to any compatible unit | 0 degC -> 32 degF      |
 | `add`     | Allowed, but only with delta unit       | 10 degC + 10 deltaC -> 20 degC |
-| `sub`     | Same as `add`                           | 20 degC - 10 deltaC -> 10 degC |
+| `sub`     | Allowed, subtracting a delta unit will preserve the zero offset, subtracting a zero offset unit will create a new detal unit | 20 degC - 10 deltaC -> 10 degC </br> 20 degC - 10 degC -> 10 deltaC |
 | `mul`     | Not allowed                             |                        |
 | `div`     | Not allowed                             |                        |
 | `inv`     | Not allowed                             |                        |
@@ -232,6 +232,9 @@ let freezingDegC = pqm.quantity(0, "degC");
 
 freezingDegC.in("deltaC"); // = 273.15
 ```
+
+Also note that you cannot use prefixes with zero offset units, doing so will 
+result in an error.
 
 Table of available units
 --------------------------------------------------------------------------------
@@ -299,6 +302,10 @@ Table of available units
 | bar         | Bar, unit of pressure defined as 100 000 Pa. This makes it very close to 1 Atmosphere |
 | inHg        | Inches of Mercury, pressure defined as the pressure applied by 1 inch of Hg at 1 standard gravity |
 | Ba          | Barye, CGS unit for pressure                                   |
+| Pa-g        | Gauge version of the Pascal, with a zero offset at atmospheric pressure |
+| kPa-g       | Gauge version of the [k]Pa, with a zero offset at atmospheric pressure |
+| bar-g       | Gauge version of bar, with a zero offset at atmospheric pressure |
+| psi-g       | Gauge version of psi, with a zero offset at atmospheric pressure |
 | N           | Newton, SI unit for force defined as 1 [k]g m / s^2            |
 | dyn         | Dyne, CGS unit for force defined as 1 g [c]m / s^2             |
 | gf          | Gram force, defined as the amount of force exerted by standard gravity on a 1 gram mass |

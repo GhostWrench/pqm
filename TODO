@@ -5,7 +5,7 @@ Major
 
 Minor
 ================================================================================
-* Allow subtraction of two zero offset units to create a 'delta' unit
-* Gauge pressures?
+* Implement the toString method with SI Units
+* Update documentation for standard 'in' functions
 * Add note on rotational quantities
 * Add note on case sensitivity of units (rad vs. RAD)

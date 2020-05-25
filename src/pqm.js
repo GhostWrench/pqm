@@ -53,15 +53,12 @@ const pqm = (function () {
         }
       }
     }
-    // Make sure that the supplied offsets are valid
+    // Finally, set the offset
     if (offset) {
-      if (this.dimensionality() != 1) {
-        throw "Cannot create compound dimensions with an offset!";
-      }
+      this.offset = offset;
     } else {
-      offset = 0;
+      this.offset = 0;
     }
-    this.offset = offset;
   };
 
   /**
@@ -162,13 +159,21 @@ const pqm = (function () {
     if (!this.sameDimensions(other)) {
       throw "Cannot subtract units that are not alike";
     }
+    let newMagnitude =   (this.magnitude + this.offset) 
+                       - (other.magnitude + other.offset);
+    let newOffset = 0;
     if (other.offset != 0) {
-      throw ("A unit with a zero offset (such as degC or degF) cannot be " +
-             "subtracted from another unit");
+      // Subtracting a unit with an zero offset, result should be a 'delta'
+      // Unit with no offset
+      newOffset = 0;
+    } else {
+      // Subtracting a unit with no zero offset, this unit's offset is 
+      // preserved
+      newOffset = this.offset;
+      newMagnitude -= newOffset;
     }
     // Same as addition, treat the second unit as a delta if has an offset
-    let newMagnitude = this.magnitude - other.magnitude;
-    return new Quantity(newMagnitude, this.copyDimensions(), this.offset);
+    return new Quantity(newMagnitude, this.copyDimensions(), newOffset);
   };
 
   /**
@@ -303,9 +308,9 @@ const pqm = (function () {
       }
       absoluteTolerance = tolerance.magnitude;
     } else {
-      if (this.offset != 0) {
-        throw ("Fractional tolerances not allowed for quantities with a " +
-               "zero offset. Use an absolute tolerance instead");
+      if (this.offset != 0 && tolerance != 0) {
+        throw "Fractional tolerances not allowed for quantities with a " +
+               "zero offset. Use an absolute tolerance instead";
       }
       absoluteTolerance = this.magnitude * tolerance;
     }
@@ -573,7 +578,6 @@ const pqm = (function () {
     "1": new Quantity(1),
     "%": new Quantity(0.01),
     // Mass units
-    kg: new Quantity(1, {mass: 1}), // Only allowed "prefix unit" without prefix
     g: new Quantity(1e-3, {mass: 1}),
     u: new Quantity(1.66053878200000E-27, {mass: 1}),
     AMU: new Quantity(1.66053878200000E-27, {mass: 1}),
@@ -638,6 +642,15 @@ const pqm = (function () {
     bar: new Quantity(1.00000e5, {mass: 1, length: -1, time: -2}),
     inHg: new Quantity(3.38638866666670E+03, {mass: 1, length: -1, time: -2}),
     Ba: new Quantity(1.0E-01, {mass: 1, length: -1, time: -2}),
+    // Gauge Pressures
+    "Pa-g": new Quantity(1.0, {mass: 1, length: -1, time: -2}, 1.01325E+05),
+    "kPa-g": new Quantity(1.0E+03, {mass: 1, length: -1, time: -2}, 1.01325E+05),
+    "bar-g": new Quantity(1.00000e5, 
+      {mass: 1, length: -1, time: -2}, 1.01325E+05
+    ),
+    "psi-g": new Quantity(6.89475729316836E+03, 
+      {mass: 1, length: -1, time: -2}, 1.01325E+05
+    ),
     // Force Units
     N: new Quantity(1, {mass: 1, length: 1, time: -2}),
     dyn: new Quantity(1.00000000000000E-05, {mass: 1, length: 1, time: -2}),
@@ -866,7 +879,7 @@ const pqm = (function () {
           } else if (sections.length == 1 && unitSyms.length == 1) {
             // This is the only circumstance where a unit with a zero offset
             // may be returned. (Non-compound unit)
-            returnQuantity = units[unitSyms[ui]];
+            returnQuantity = unitQuantity;
           } else {
             throw "Cannot create compound units from units with zero offsets";
           }
