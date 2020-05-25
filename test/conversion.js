@@ -62,7 +62,7 @@ function testConversions() {
   totalFailures += testTables("test/tables/Mass.csv");
   totalFailures += testTables("test/tables/Power.csv");
   totalFailures += testTables("test/tables/PressureAndStress.csv");
-  //totalFailures += testTables("test/tables/Radiology.csv");
+  totalFailures += testTables("test/tables/Radiology.csv");
   totalFailures += testTables("test/tables/TemperatureDelta.csv");
   totalFailures += testTables("test/tables/Time.csv");
   totalFailures += testTables("test/tables/Velocity.csv");

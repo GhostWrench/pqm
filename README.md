@@ -290,6 +290,7 @@ Table of available units
 | admkn       | Admiralty Knot, knot based on the old UK definition of a Nautical mile (1853.184 m) |
 | c           | Speed of Light, unit of velocity defined by how fast light travels |
 | grav        | Standard Gravity, approximate acceleration of gravity at the surface of the earth |
+| galileo     | Galileo, CGS Unit for acceleration                             |
 | Pa          | Pascal, SI unit for pressure defined as 1 N/m^2                |
 | mmHg        | Millimeter of mercury, pressure defined as the pressure applied by 1 mm of Hg at 1 standard gravity |
 | Torr        | Torr, Slightly different definition of Millimeter of mercury, very close to the same scale |
@@ -297,9 +298,11 @@ Table of available units
 | atm         | Atmosphere, pressure that is approximately the mean air pressure at sea level |
 | bar         | Bar, unit of pressure defined as 100 000 Pa. This makes it very close to 1 Atmosphere |
 | inHg        | Inches of Mercury, pressure defined as the pressure applied by 1 inch of Hg at 1 standard gravity |
+| Ba          | Barye, CGS unit for pressure                                   |
 | N           | Newton, SI unit for force defined as 1 [k]g m / s^2            |
 | dyn         | Dyne, CGS unit for force defined as 1 g [c]m / s^2             |
-| pond        | Pond, force defined as the amount of force exerted by standard gravity on a 1 [k]g mass |
+| gf          | Gram force, defined as the amount of force exerted by standard gravity on a 1 gram mass |
+| pond        | Pond, same as Gram Force (gf)                                  |
 | lbf         | Pounds force, defined as the amount of force exerted by standard gravity on a 1 lbm mass |
 | ozf         | Ounce Force, equal to 1/16 lbf                                 |
 | J           | Joule, SI unit for energy defined as 1 N m                     |
@@ -313,6 +316,8 @@ Table of available units
 | W           | Watt, SI unit for energy, defined as 1 J / s                   |
 | PS          | Metric Horsepower, defined as the amount of power to raise a mass of 75 [k]g against standard gravity over a distance of 1 meter in one second              |
 | HP          | Mechanical Horsepower, defined as 33 000 ft lbf / min          |
+| P           | Poise, CGS unit for dynamic viscosity                          |
+| St          | Stokes, GGS unit for kinematic viscosity                       |
 | L           | Liter, Unit of volume that is defined as 1 [d]m^2 or 1e-3 m^3  |
 | tsp         | Teaspoon, US Customary volume unit that is close to 5 mL       |
 | tspm        | Metric teaspoon, volume measurement that is exactly 5 mL       |
@@ -367,8 +372,17 @@ Table of available units
 | sr          | Steradian, "square radian" is the SI unit of solid angle. Analogous to the radian, a solid angle of 1 sr, projected onto a unit sphere will have unit area |
 | rev         | Revolutions, dimensionless quantity describing one revolution of periodic motion |
 | deg         | Degree, dimensionless quantity equal to 1/360 of a revolution  |
+| arcmin      | Arc Minute, rotational quantity defined as 1/60 of a degree    |
+| arcsec      | Arc Second, rotational quantity defined as 1/60 of an Arc Minute or 1/3600 of a degree |
 | Hz          | Hertz, unit of frequency defined as 1/sec                      |
 | rpm         | Revolutions per Minute, unit of frequency defined as 1 rev/min |
+| Bq          | Becquerel, SI unit for radiation activity                      |
+| Gy          | Gray, SI unit for radiation absorbed dose                      |
+| Sv          | Sievert, SI unit for radiation equivalent dose                 |
+| R           | Rontgen, conventional unit for radiation exposure              |
+| RAD         | Radiation Absorbed Dose, conventional unit for radiation absorbed dose |
+| rem         | Rem, conventional unit for radiation equivalent dose           |
+| Ci          | Curie, conventional unit for radiation activity                |
 
 Table of available unit prefixes
 --------------------------------------------------------------------------------

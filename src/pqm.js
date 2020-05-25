@@ -482,7 +482,7 @@ const pqm = (function () {
             );
             newRemainder += Math.abs(newRemainderArray[dimIdx]);
           }
-          if (newRemainder < remainder) {
+          if (newRemainder < bestRemainder) {
             bestIdx = unitIdx;
             bestInv = isInv;
             bestRemainder = newRemainder;
@@ -543,6 +543,26 @@ const pqm = (function () {
       fullUnits = (numerator + "/ " + denominator).trim();
     }
     return [this.in(fullUnits), fullUnits];
+  }
+
+  Quantity.prototype.inSI = function() {
+    return this.with([
+      "[k]g", "m", "s", "K", "A", "mol", "cd", "bit", "rad", //Base Units
+      "Hz", "N", "Pa", "J", "W", "C", "V", "F", "ohm", "S", "Wb", "T", "H",
+      "lm", "lx", "Bq", "Gy", "Sv"
+    ]);
+  }
+
+  Quantity.prototype.inCGS = function() {
+    return this.with([
+      "g", "[c]m", "s", "deltaC", "dyn", "erg", "Ba", "P", "St"
+    ]);
+  }
+
+  Quantity.prototype.inUS = function() {
+    return this.with([
+      "lbm", "ft", "s", "deltaF", "gal", "lbf", "BTU", "HP"
+    ])
   }
 
   /**
@@ -608,6 +628,7 @@ const pqm = (function () {
     c: new Quantity(2.99792458000000E+8, {length: 1, time: -1}),
     // Acceleration Units
     grav: new Quantity(9.80665000000000E+00, {length: 1, time: -2}),
+    galileo: new Quantity(1.0E-02, {length: 1, time: -2}),
     // Pressure Units
     Pa: new Quantity(1, {mass: 1, length: -1, time: -2}),
     mmHg: new Quantity(1.33322390000000E+02, {mass: 1, length: -1, time: -2}),
@@ -616,9 +637,11 @@ const pqm = (function () {
     atm: new Quantity(1.01325000000000E+05, {mass: 1, length: -1, time: -2}),
     bar: new Quantity(1.00000e5, {mass: 1, length: -1, time: -2}),
     inHg: new Quantity(3.38638866666670E+03, {mass: 1, length: -1, time: -2}),
+    Ba: new Quantity(1.0E-01, {mass: 1, length: -1, time: -2}),
     // Force Units
     N: new Quantity(1, {mass: 1, length: 1, time: -2}),
     dyn: new Quantity(1.00000000000000E-05, {mass: 1, length: 1, time: -2}),
+    gf: new Quantity(9.80665E-03, {mass: 1, length: 1, time: -2}),
     pond: new Quantity(9.80665000000000E-03, {mass: 1, length: 1, time: -2}),
     lbf: new Quantity(4.44822161526050E+00, {mass: 1, length: 1, time: -2}),
     ozf: new Quantity(2.78013850953781E-01, {mass: 1, length: 1, time: -2}),
@@ -636,6 +659,10 @@ const pqm = (function () {
     W: new Quantity(1, {mass: 1, length: 2, time: -3}),
     PS: new Quantity(7.35498750000000E+02, {mass: 1, length: 2, time: -3}),
     HP: new Quantity(7.45699871582270E+02, {mass: 1, length: 2, time: -3}),
+    // Dynamic Viscosity
+    P: new Quantity(1.0E-01, {mass: 1, length: -1, time: -1}),
+    // Kinematic Viscosity
+    St: new Quantity(1.0E-04, {length: 2, time: -1}),
     // Volume units
     L: new Quantity(1.00000000000000E-03, {length: 3}),
     tsp: new Quantity(4.92892159375000E-06, {length: 3}),
@@ -703,9 +730,19 @@ const pqm = (function () {
     sr: new Quantity(1, {rotation: 2}),
     rev: new Quantity(2*Math.PI, {rotation: 1}),
     deg: new Quantity(Math.PI/180, {rotation: 1}),
+    arcmin: new Quantity(Math.PI/10800, {rotation: 1}),
+    arcsec: new Quantity(Math.PI/648000, {rotation: 1}),
     // Frequency Units
-    Hz: new Quantity(2*Math.PI, {time: -1}),
+    Hz: new Quantity(1, {time: -1}),
     rpm: new Quantity(2*Math.PI/60, {rotation: 1, time: -1}),
+    // Radiology Units
+    Bq: new Quantity(1.0, {time: -1}),
+    Gy: new Quantity(1.0, {length: 2, time: -2}),
+    Sv: new Quantity(1.0, {length: 2, time: -2}),
+    R: new Quantity(2.58E-04, {current: 1, time: 1, mass: -1}),
+    RAD: new Quantity(1.0E-2, {length: 2, time: -2}),
+    rem: new Quantity(1.0E-02, {length: 2, time: -2}),
+    Ci: new Quantity(3.7E+10, {time: -1})
   };
 
   const prefixes = {

@@ -1,5 +1,5 @@
 Convert From, Convert To, Multiply By, Included in PQM
-Ci, Bq, 3.7e+10, false
-rad (absorbed dose), Gy, 1.0e-02, false
-rem, Sv, 1.0e-02, false
-roentgen, C / kg, 2.58e-04, false
+Ci, Bq, 3.7e+10, true
+RAD (radiation absorbed dose), Gy, 1.0e-02, true
+rem, Sv, 1.0e-02, true
+R, C / kg, 2.58e-04, true

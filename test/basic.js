@@ -234,6 +234,32 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Test standard conversions", div, function() {
+    let newton = pqm.quantity(1, "N");
+    let test = newton.inSI();
+    if (test[0] != 1) {
+      return "SI magnitude conversion failed";
+    }
+    if (test[1] != "N") {
+      return "SI unit conversion failed";
+    }
+    test = newton.inCGS();
+    if (!(Math.abs(test[0] - 1.0e5) < 1e-10)) {
+      return "CGS magnitude conversion failed";
+    }
+    if (test[1] != "dyn") {
+      return "CGS unit conversion failed";
+    }
+    test = newton.inUS();
+    if (!(Math.abs(test[0] - 0.224809) < 1e-6)) {
+      return "US Customary magnitude conversion failed";
+    }
+    if (test[1] != "lbf") {
+      return "US Customary unit conversion failed";
+    }
+    return "Pass";
+  });
+
   // Throw error if any of the tests failed
   if (failures > 0) {
     throw `${failures} tests failed`;
