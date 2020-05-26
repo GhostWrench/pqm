@@ -1,12 +1,14 @@
 {
   "name": "pqm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js and browser library for dealing with numbers with units",
-  "main": "./src/pqm.js",
   "type": "module",
-  "directories": {
-    "test": "test"
+  "main": "./build/node/pqm.cjs",
+  "exports": {
+    "import": "./build/node/pqm.mjs",
+    "require": "./build/node/pqm.cjs"
   },
+  "readmeFilename": "README.md",
   "scripts": {
     "test": "node --trace-uncaught test/node/test.js",
     "testbrowser": "node --trace-uncaught test/browser/testserver.js"
@@ -35,5 +37,6 @@
   "bugs": {
     "url": "https://github.com/GhostWrench/pqm/issues"
   },
-  "homepage": "https://github.com/GhostWrench/pqm#readme"
+  "homepage": "https://github.com/GhostWrench/pqm#readme",
+  "dependencies": {}
 }
