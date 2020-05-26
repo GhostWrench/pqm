@@ -1,6 +1,6 @@
 {
   "name": "pqm",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Node.js and browser library for dealing with numbers with units",
   "type": "module",
   "main": "./build/node/pqm.cjs",
