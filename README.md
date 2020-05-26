@@ -17,19 +17,31 @@ PQM is designed to be simple, lightweight and fast. In addition:
 Installing and importing PQM
 --------------------------------------------------------------------------------
 
+### Installation
+
+`npm install pqm`
+
 ### Importing the module
 
-PQM uses the ES6 module scheme by default, to import use the following line:
+PQM provides both ESM and CommonJS packages upon installation:
 
 ```javascript
+// ESM
 import pqm from "pqm";
 ```
 
-If adding it to an html file ensure that you use the following syntax:
+```javascript
+// CommonJS
+var pqm = require("pqm");
+```
+
+If using PQM in a browser, the ESM module can be used directly:
 
 ```html
 <script src="path/to/pqm.js" type="module"></script>
 ```
+
+Or a simple IIFE package can be found in `build\browser\pqm-iife.js`.
 
 Creation of Basic Quantity Variables
 --------------------------------------------------------------------------------
