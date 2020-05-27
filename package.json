@@ -4,6 +4,9 @@
   "description": "Node.js and browser library for dealing with numbers with units",
   "type": "module",
   "main": "./src/pqm.mjs",
+  "directories": {
+    "test": "test"
+  },
   "exports": {
     "import": "./src/pqm.mjs",
     "require": "./build/commonjs/pqm.cjs"
