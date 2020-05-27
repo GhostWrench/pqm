@@ -396,7 +396,7 @@ Table of available units
 | lbf         | Pounds force, defined as the amount of force exerted by standard gravity on a 1 lbm mass |
 | ozf         | Ounce Force, equal to 1/16 lbf                                 |
 | pdl         | Poundal, Unit of force derived from the foot-pound-second system equal to 1 lbm ft / s^2 |
-| 
+| ton-force   |  |
 | J           | Joule, SI unit for energy defined as 1 N m                     |
 | eV          | Electron Volt, Energy gain of an electron after passing through a 1 Volt potential |
 | erg         | Erg, CGS unit for energy defined as 1 dyn cm                   |
