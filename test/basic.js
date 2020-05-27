@@ -2,7 +2,7 @@
  * Definition of all tests common (node and browser) tests for PQM
  */
 
-import pqm from "../src/pqm.js";
+import pqm from "../src/pqm.mjs";
 
 /**
  * Function to run all tests for PQM. Running this function in 

@@ -6,7 +6,7 @@
 
 import fs from "fs";
 
-import pqm from "../src/pqm.js";
+import pqm from "../src/pqm.mjs";
 
 const globalTolerance = 1e-6;
 
