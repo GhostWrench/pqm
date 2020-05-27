@@ -1,12 +1,12 @@
 {
   "name": "pqm",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Node.js and browser library for dealing with numbers with units",
   "type": "module",
-  "main": "./build/node/pqm.cjs",
+  "main": "./src/pqm.mjs",
   "exports": {
-    "import": "./build/node/pqm.mjs",
-    "require": "./build/node/pqm.cjs"
+    "import": "./src/pqm.mjs",
+    "require": "./build/commonjs/pqm.cjs"
   },
   "readmeFilename": "README.md",
   "scripts": {
