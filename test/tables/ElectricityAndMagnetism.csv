@@ -2,7 +2,7 @@ Convert From, Convert To, Multiply By, Included in PQM
 Fr (statcoulomb / franklin), C, 3.335641e-10, true
 gamma, T, 1.0e-09, false
 Gs, T, 1.0e-04, true
-Gi (Gilbert), A, 7.957747e-01, false
+Gi (Gilbert), A, 7.957747e-01, true
 Mx, Wb, 1.0e-08, true
 mho, S, 1.0e+00, true
 Oe (Oersted), A / m, 7.957747e+01, true

@@ -396,7 +396,7 @@ Table of available units
 | lbf         | Pounds force, defined as the amount of force exerted by standard gravity on a 1 lbm mass |
 | ozf         | Ounce Force, equal to 1/16 lbf                                 |
 | pdl         | Poundal, Unit of force derived from the foot-pound-second system equal to 1 lbm ft / s^2 |
-| ton-force   |  |
+| ton-force   | Short Ton Force, unit of force equal to 2000 lbf               |
 | J           | Joule, SI unit for energy defined as 1 N m                     |
 | eV          | Electron Volt, Energy gain of an electron after passing through a 1 Volt potential |
 | erg         | Erg, CGS unit for energy defined as 1 dyn cm                   |
@@ -432,19 +432,20 @@ Table of available units
 | barrel      | Oil Barrel, volume unit used in the us oil industry            |
 | MTON        | Measurement Ton, volume unit commonly used in the freight industry equal to 40 f^3 |
 | GRT         | Gross Register Tonnage, volume unit commonly used in the freight industry equal to 100 f^3 |
-| uk_gill     |  |
-| peck        |  |
-| dry_gal     |  |
-| dry_qt      |  |
-| dry_pt      |  |
-| stere       |  |
+| gill        | U.S. Customary Gill, volume unit equal to 4 US fluid ounces    |
+| uk_gill     | Imperial Gill, volume unit equal to 5 Imperial (UK) fluid ounces |
+| peck        | Peck, U.S. Customary unit for non-fluid volume, defined as 2 dry gallons |
+| dry_gal     | Dry Gallon, U.S. Customary unit for non-fluid volume. Defined as exactly 268.8025 cubic inches |
+| dry_qt      | Dry Quart, U.S. Customary unit for non-fluid volume. Defined as 1/4 of a dry gallon |
+| dry_pt      | Dry Pint, U.S. Customary unit for non-fluid volume. Defined as 1/8 of a dry gallon |
+| stere       | stere, unit of volume equal to exactly 1 m^3, typically used to measure large quantities of firewood |
 | ar          | Are, area unit that is equal to 1/100 hectares or 100 m^2      |
 | Morgen      | Morgen, traditionally the area able to be plowed in a single day by a single bladed plow and a Ox or horse, it now is approximately equal to 1/4 of a hectare |
 | acre        | US Acre, unit of area traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen. Still in use in the US                    |
 | us_acre     | US Acre, same as 'acre' (common alternative)                   |
 | uk_acre     | UK Acre, unit of area traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen, slightly different than the US Acre. Used in the UK until 1995 |
 | ha          | Hectare, standard international unit for measurement of the area of land, equal to 1000 m^3 |
-| barn        |  |
+| barn        | barn, non-SI metric unit of area equal to 10^-28 m^2. Originally used in nuclear physics for expressing the cross sectional area of nuclei and nuclear reactions. |
 | bit         | Bit, one bit of information that can take one of 2 states (on/off, 0/1, high/low) |
 | b           | Bit, common abbreviation for 'bit'                             |
 | byte        | Byte, equal to 8 bits of information, commonly used in modern computing architectures |
@@ -459,15 +460,15 @@ Table of available units
 | F           | Farad, derived SI Unit of electrical capacitance               |
 | H           | Henry, derived SI unit for inductance                          |
 | S           | Siemens, derived SI unit for electrical conductance, equal to 1 / ohm |
-| mho         |  |
+| mho         | mho, or ohm spelled backwards, exactly equivalent to Siemens   |
 | Wb          | Weber, SI unit for magnetic flux defined as 1 [k]g m^2 / (s^2 A) |
 | Mx          | Maxwell, CGS unit for magnetic flux defined as 1 g [c]m^2 / (s^2 A) |
 | T           | Tesla, SI unit for magnetic flux density defined as 1 Wb / m^2 |
 | Gs          | Gauss, CGS unit for magnetic flux density defined as 1 Mx / [c]m^2 |
 | ga          | Gauss, same as 'Gs' (common alternative)                       |
-| Fr          |  |
-| Gi          |  |
-| Oe          |  |
+| Fr          | Franklin or statcoulomb, unit for electrical charge in the EMU-CGS units of measure |
+| Gi          | Gilbert, obsolete unit used in EMU-CGS systems to measure magnetization, dimensionally equivalent to the Amp |
+| Oe          | Oersted, unit of auxiliary magnetic field in the CGS system of units |
 | mol         | Mole, SI unit for amount of substance defined by exactly 6.02214076E+23 elementary entities of said substance |
 | cd          | Candela, SI unit for luminous intensity in a given direction defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency 540E+12 Hz |
 | lm          | Lumen, SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr |
