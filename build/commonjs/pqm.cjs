@@ -722,7 +722,7 @@ const pqm = (function () {
     "ft-lb": new Quantity(1.35581794833140E+00, {mass: 1, length: 2, time: -2}),
     // Insulation Units
     RSI: new Quantity(1.0, {mass: -1, time: 3, temperature: 1}),
-    RFP: new Quantity(1.7611018368230189E-01, {mass: -1, time: 3, temperature: 1}),
+    RIP: new Quantity(1.7611018368230189E-01, {mass: -1, time: 3, temperature: 1}),
     clo: new Quantity(1.55E-01, {mass: -1, time: 3, temperature: 1}),
     tog: new Quantity(1.0E-01, {mass: -1, time: 3, temperature: 1}),
     // Power Units
