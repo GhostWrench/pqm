@@ -26,6 +26,11 @@ http.createServer((request, response) => {
         'Content-Type': 'application/javascript'
       });
     }
+    if (request.url.endsWith('.mjs')) {
+      response.writeHeader(200, {
+        'Content-Type': 'application/javascript'
+      });
+    }
 
     response.write(data)
     response.end()
