@@ -17,7 +17,7 @@ cal / g K, J / [k]g K, 4.1868e+03, true
 BTU ft / hr ft^2 deltaF, W / m K, 1.730735e+00, true
 BTU in / hr ft^2 deltaF, W / m K, 1.442279e-01, true
 BTU in / s ft^2 deltaF, W / m K, 5.192204e+02, true
-clo (clothing), m^2 K / W, 1.55e-01, false
+clo (clothing), m^2 K / W, 1.55e-01, true
 deltaF hr ft^2 / BTU, m^2 K / W, 1.761102e-01, true
 deltaF hr / BTU, K / W, 1.895634e+00, true
 deltaF s / BTU, K / W, 5.265651e-04, true

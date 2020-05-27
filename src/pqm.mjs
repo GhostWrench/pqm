@@ -619,10 +619,16 @@ const pqm = (function () {
     stone: new Quantity(6.35029318000000E+00, {mass: 1}),
     sg: new Quantity(1.45939029372064E+01, {mass: 1}),
     cwt: new Quantity(4.53592370000000E+01, {mass: 1}),
+    dwt: new Quantity(1.55517384E-03, {mass: 1}),
     uk_cwt: new Quantity(5.08023454400000E+01, {mass: 1}),
     ton: new Quantity(9.07184740000000E+02, {mass: 1}),
     uk_ton: new Quantity(1.01604690880000E+03, {mass: 1}),
+    metric_ton: new Quantity(1.0E+3, {mass: 1}),
     slug: new Quantity(1.45939029372064E+01, {mass: 1}),
+    carat: new Quantity(2.0E-4, {mass: 1}),
+    assay_ton: new Quantity(2.9166666666666667E-02, {mass: 1}),
+    denier: new Quantity(1.1111111111111112E-07, {mass: 1, length: -1}),
+    tex: new Quantity(1.0E-06, {mass: 1, length: -1}),
     // Length Units
     m: new Quantity(1, {length: 1}),
     ang: new Quantity(1.00000000000000E-10, {length: 1}),
@@ -638,8 +644,16 @@ const pqm = (function () {
     league: new Quantity(5.55600000000000E+03, {length: 1}),
     ly: new Quantity(9.46073047258080E+15, {length: 1}),
     parsec: new Quantity(3.08567758128155E+16, {length: 1}),
-    survey_ft: new Quantity(1200/3937, {length: 1}),
+    survey_ft: new Quantity(1200.0/3937.0, {length: 1}),
     au: new Quantity(1.49597870700000E+11, {length: 1}),
+    chain: new Quantity(2.0116840233680467E+01, {length: 1}),
+    link: new Quantity(2.0116840233680467E-01, {length: 1}),
+    rod: new Quantity(5.029210058420117E+0, {length: 1}),
+    furlong: new Quantity(2.0116840233680466E+2, {length: 1}),
+    fathom: new Quantity(1.8288E+00, {length: 1}),
+    us_fathom: new Quantity(1.828804E+00, {length: 1}),
+    fermi: new Quantity(1.0E-15, {length: 1}),
+    kayser: new Quantity(1.0E+02, {length: -1}),
     // Time units
     sec: new Quantity(1, {time: 1}),
     s: new Quantity(1, {time: 1}),
@@ -647,7 +661,7 @@ const pqm = (function () {
     hr: new Quantity(3.60000000000000E+03, {time: 1}),
     day: new Quantity(8.64000000000000E+04, {time: 1}),
     yr: new Quantity(3.1536E+07, {time: 1}),
-    stellar_day: new Quantity(8.637641003520000E+04, {time: 1}),
+    shake: new Quantity(1.0E-08, {time: 1}),
     // Temperature units
     K: new Quantity(1, {temperature: 1}),
     deltaF: new Quantity(5.55555555555543E-01, {temperature: 1}),
@@ -667,12 +681,16 @@ const pqm = (function () {
     galileo: new Quantity(1.0E-02, {length: 1, time: -2}),
     // Pressure Units
     Pa: new Quantity(1, {mass: 1, length: -1, time: -2}),
-    mmHg: new Quantity(1.33322390000000E+02, {mass: 1, length: -1, time: -2}),
+    mHg: new Quantity(1.33322390000000E+05, {mass: 1, length: -1, time: -2}),
+    mH2O: new Quantity(9.80665E+03, {mass: 1, length: -1, time: -2}),
     Torr: new Quantity(1.33322368421053E+02, {mass: 1, length: -1, time: -2}),
     psi: new Quantity(6.89475729316836E+03, {mass: 1, length: -1, time: -2}),
     atm: new Quantity(1.01325000000000E+05, {mass: 1, length: -1, time: -2}),
     bar: new Quantity(1.00000e5, {mass: 1, length: -1, time: -2}),
     inHg: new Quantity(3.38638866666670E+03, {mass: 1, length: -1, time: -2}),
+    inH2O: new Quantity(2.4908891E+02, {mass: 1, length: -1, time: -2}),
+    ftHg: new Quantity(4.0636664E+04, {mass: 1, length: -1, time: -2}),
+    ftH2O: new Quantity(2.98906692E+03, {mass: 1, length: -1, time: -2}),
     Ba: new Quantity(1.0E-01, {mass: 1, length: -1, time: -2}),
     // Gauge Pressures
     "Pa-g": new Quantity(1.0, {mass: 1, length: -1, time: -2}, 1.01325E+05),
@@ -690,6 +708,8 @@ const pqm = (function () {
     pond: new Quantity(9.80665000000000E-03, {mass: 1, length: 1, time: -2}),
     lbf: new Quantity(4.44822161526050E+00, {mass: 1, length: 1, time: -2}),
     ozf: new Quantity(2.78013850953781E-01, {mass: 1, length: 1, time: -2}),
+    pdl: new Quantity(1.38254954376E-01, {mass: 1, length: 1, time: -2}),
+    "ton-force": new Quantity(8.896443230521E+03, {mass: 1, length: 1, time: -2}),
     // Energy Units
     J: new Quantity(1, {mass: 1, length: 2, time: -2}),
     eV: new Quantity(1.60217648700000E-19, {mass: 1, length: 2, time: -2}),
@@ -700,12 +720,18 @@ const pqm = (function () {
     HPh: new Quantity(2.68451953769617E+06, {mass: 1, length: 2, time: -2}),
     // Torque Units (same dimensions as energy)
     "ft-lb": new Quantity(1.35581794833140E+00, {mass: 1, length: 2, time: -2}),
+    // Insulation Units
+    RSI: new Quantity(1.0, {mass: -1, time: 3, temperature: 1}),
+    RFP: new Quantity(1.7611018368230189E-01, {mass: -1, time: 3, temperature: 1}),
+    clo: new Quantity(1.55E-01, {mass: -1, time: 3, temperature: 1}),
+    tog: new Quantity(1.0E-01, {mass: -1, time: 3, temperature: 1}),
     // Power Units
     W: new Quantity(1, {mass: 1, length: 2, time: -3}),
     PS: new Quantity(7.35498750000000E+02, {mass: 1, length: 2, time: -3}),
     HP: new Quantity(7.45699871582270E+02, {mass: 1, length: 2, time: -3}),
     // Dynamic Viscosity
     P: new Quantity(1.0E-01, {mass: 1, length: -1, time: -1}),
+    rhe: new Quantity(1.0E+01, {mass: -1, length: 1, time: 1}),
     // Kinematic Viscosity
     St: new Quantity(1.0E-04, {length: 2, time: -1}),
     // Volume units
@@ -714,6 +740,7 @@ const pqm = (function () {
     tspm: new Quantity(5.00000000000000E-06, {length: 3}),
     tbs: new Quantity(1.47867647812500E-05, {length: 3}),
     fl_oz: new Quantity(2.95735295625000E-05, {length: 3}),
+    uk_fl_oz: new Quantity(2.84130625E-05, {length: 3}),
     cup: new Quantity(2.36588236500000E-04, {length: 3}),
     pt: new Quantity(4.73176473000000E-04, {length: 3}),
     uk_pt: new Quantity(5.68261250000000E-04, {length: 3}),
@@ -725,6 +752,13 @@ const pqm = (function () {
     barrel: new Quantity(1.58987294928000E-01, {length: 3}),
     MTON: new Quantity(1.13267386368000E+00, {length: 3}),
     GRT: new Quantity(2.83168465920000E+00, {length: 3}),
+    gill: new Quantity(1.1829411825E-04, {length: 3}),
+    uk_gill: new Quantity(1.420653125E-04, {length: 3}),
+    peck: new Quantity(8.80976754172E-03, {length: 3}),
+    dry_gal: new Quantity(4.40488377086E-03, {length: 3}),
+    dry_qt: new Quantity(1.101220942715E-03, {length: 3}),
+    dry_pt: new Quantity(5.506104713575E-04, {length: 3}),
+    stere: new Quantity(1.0, {length: 3}),
     // Area units
     ar: new Quantity(1.00000000000000E+02, {length: 2}),
     Morgen: new Quantity(2.50000000000000E+03, {length: 2}),
@@ -732,6 +766,7 @@ const pqm = (function () {
     us_acre: new Quantity(4.04687260987425E+03, {length: 2}),
     uk_acre: new Quantity(4.04685642240000E+03, {length: 2}),
     ha: new Quantity(1.00000000000000E+04, {length: 2}),
+    barn: new Quantity(1.0E-28, {length: 2}),
     // Information units
     bit: new Quantity(1, {information: 1}),
     b: new Quantity(1, {information: 1}),
@@ -748,11 +783,15 @@ const pqm = (function () {
     F: new Quantity(1, {time: 4, current: 2, length: -2, mass: -1}),
     H: new Quantity(1, {length: 2, mass: 1, time: -2, current: -2}),
     S: new Quantity(1, {time: 3, current: 2, length: -2, mass: -1}),
+    mho: new Quantity(1, {time: 3, current: 2, length: -2, mass: -1}),
     Wb: new Quantity(1, {mass: 1, length:2, time: -2, current: -1}),
     Mx: new Quantity(1.0E-8, {mass: 1, length: 2, time: -2, current: -1}),
     T: new Quantity(1, {mass: 1, current: -1, time: -2}),
     Gs: new Quantity(1.00000000000000E-04, {mass: 1, current: -1, time: -2}),
     ga: new Quantity(1.00000000000000E-04, {mass: 1, current: -1, time: -2}),
+    Fr: new Quantity(3.3356409519815207E-10, {current: 1, time: 1}),
+    Gi: new Quantity(7.957747E-01, {current: 1}),
+    Oe: new Quantity(1000.0 / (4 * Math.PI), {current: 1, length: -1}),
     // Substance Units
     mol: new Quantity(1, {substance: 1}),
     // Luminosity Units
@@ -831,7 +870,7 @@ const pqm = (function () {
    * @returns {Quantity} Quantity represented by the unit string 
    */
   function getUnitQuantity(unitName) {
-    const unitRegex = /^(?:\[(\D+)\])?(1|\D+)(?:\^([\-\d]+))?$/;
+    const unitRegex = /^(?:\[(\D+)\])?([\w-]+)(?:\^([\-\d]+))?$/;
     let matches = unitRegex.exec(unitName);
     if (!matches) {
       throw "Cannot convert \"" + unitName + "\" to a valid unit";

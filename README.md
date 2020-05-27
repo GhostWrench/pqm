@@ -309,7 +309,6 @@ Table of available units
 | ----------- |:-------------------------------------------------------------- |
 | 1           | Unit non-dimensional quantity                                  |
 | %           | Non dimensional percent (100 % == 1)                           |
-| kg          | Kilogram, SI unit for mass, same as `[k]g`                     |
 | g           | Gram, unit of mass defined as 1e-3 kg                          |
 | u           | Atomic Mass Unit, approximately the mass of one proton or neutron |
 | AMU         | Atomic Mass Unit, same as 'u'                                  |
@@ -319,10 +318,16 @@ Table of available units
 | stone       | Stone, imperial unit equal to 14 Pounds Mass                   |
 | sg          | Slug, same as 'slug'                                           |
 | cwt         | Short Hundredweight, mass unit typically used in the US that is equal to 100 lbm |
+| dwt         | Short Pennyweight, mass unit equal to 24 grains                |
 | uk_cwt      | Long Hundredweight, mass unit typically used in the UK that is equal to 8 stone |
 | ton         | Ton, US customary mass unit that is equal to 2000 lbm          |
 | uk_ton      | UK Ton, English customary mass unit that is equal to 20 Long Hundredweight or 160 Stone |
+| metric_ton  | Metric Ton, sometimes used as (tonne). Mass equal to 1000 \[k\]g |
 | slug        | Slug, Imperial unit defined as 1 lbf / Standard Gravity        |
+| carat       | Carat, Mass equal to 200 \[m\]g, typically used to measure gemstones |
+| assay_ton   | Assay Ton, Mass equal to 29 1/6 grams, used to measure the ores of precious metals |
+| denier      | Denier, linear density used in textiles. The linear density of a single strand of silk is approx. 1 denier. |
+| tex         | Tex, linear density equal to 1 g / \[k\]m, mainly used for measuring fiber products |
 | m           | Meter, SI Unit for length                                      |
 | ang         | Angstrom, Unit of measure equal to 10^-10 meters               |
 | picapt      | Pica Point, length used in typography equal to 1/12 of a pica  |
@@ -339,13 +344,21 @@ Table of available units
 | parsec      | Parsec, defined as 648 000 / pi Astronomical units             |
 | survey_ft   | Survey Foot, Very close to a foot of length but defined as 1200/3937 meters instead of 0.3048 meters |
 | au          | Astronomical Unit, approximate distance from the Earth to the Sun |
+| chain       | Chain, U.S customary unit of length equal to 66 survey ft. Sometimes the unit may be based on the internation foot rather than the survey foot, changing the definition slightly |
+| link        | Link, U.S Customary unit of length equal to 1/100 of a chain   |
+| rod         | Rod, U.S Customary unit of length equal to 1/4 of a chain      |
+| furlong     | Furlong, U.S Customary unit of length equal to 10 chains       |
+| fathom      | Fathom, unit of length equal to 6 international foot           |
+| us_fathom   | U.S. Customary Fathom, appox. equal to 6 survey foot           |
+| fermi       | Fermi, unit of length equal to 10^-15 m. Used in nuclear physics and named after physicist Enrico Fermi who was one of the founders of the field |
+| kayser      | Wavenumber or Kayser, which is the reciprocal of 1 \[c\]m      |
 | sec         | Second, time that is Approximately 1/86400 of a stellar day, formally defined based on the duration of 9 192 631 770 state transitions of the caesium-133 atom at 0 K |
 | s           | Second, same as 'sec'                                          |
 | min         | Minute, defined as 60 seconds                                  |
 | hr          | Hour, defined as 60 minutes                                    |
 | day         | Day, defined as 24 hours                                       |
 | yr          | Year, defined as 365 days                                      |
-| stellar_day | Stellar Day, approximate time for the earth to make one rotation |
+| shake       | Shake, Informal metric unit of time equal to 10^-8 seconds, often used in nuclear physics |
 | K           | Kelvin, SI unit of temperature with 0 defined as absolute zero |
 | degF        | Degrees Fahrenheit, Temperature scale that is approximately 32 at the melting point of ice and 212 at the boiling point of water |
 | deltaF      | Change in temperature as measured in Degrees Fahrenheit, this unit does not have a 0 offset similar to 'degF' and thus is sometimes more useful in computations |
@@ -361,12 +374,16 @@ Table of available units
 | grav        | Standard Gravity, approximate acceleration of gravity at the surface of the earth |
 | galileo     | Galileo, CGS Unit for acceleration                             |
 | Pa          | Pascal, SI unit for pressure defined as 1 N/m^2                |
-| mmHg        | Millimeter of mercury, pressure defined as the pressure applied by 1 mm of Hg at 1 standard gravity |
+| mHg         | Meter of Mercury, pressure defined as the pressure applied by 1 m of Hg at 1 standard gravity, more commonly used as \[m\]mHg or \[c\]mHg |
+| mH2O        | Meter of Water, pressure defined as the pressure applied by 1 m of water at 1 standard gravity and 4 degC. More commonly used as \[m\]mH2O or \[c\]m H2O |
 | Torr        | Torr, Slightly different definition of Millimeter of mercury, very close to the same scale |
 | psi         | Pounds per square inch, unit for pressure defined as lbf / in^2 |
 | atm         | Atmosphere, pressure that is approximately the mean air pressure at sea level |
 | bar         | Bar, unit of pressure defined as 100 000 Pa. This makes it very close to 1 Atmosphere |
 | inHg        | Inches of Mercury, pressure defined as the pressure applied by 1 inch of Hg at 1 standard gravity |
+| inH2O       | Inch of Water, pressure defined as the pressure applied by 1 in of water at 1 standard gravity |
+| ftHg        | Foot of Mercury, pressure defined as the pressure applied by 1 foot of Mercury at 1 standard gravity |
+| ftH2O       | Foot of Water, pressure defined as the pressure applied by 1 foot of water at 1 standard gravity |
 | Ba          | Barye, CGS unit for pressure                                   |
 | Pa-g        | Gauge version of the Pascal, with a zero offset at atmospheric pressure |
 | kPa-g       | Gauge version of the [k]Pa, with a zero offset at atmospheric pressure |
@@ -378,6 +395,8 @@ Table of available units
 | pond        | Pond, same as Gram Force (gf)                                  |
 | lbf         | Pounds force, defined as the amount of force exerted by standard gravity on a 1 lbm mass |
 | ozf         | Ounce Force, equal to 1/16 lbf                                 |
+| pdl         | Poundal, Unit of force derived from the foot-pound-second system equal to 1 lbm ft / s^2 |
+| 
 | J           | Joule, SI unit for energy defined as 1 N m                     |
 | eV          | Electron Volt, Energy gain of an electron after passing through a 1 Volt potential |
 | erg         | Erg, CGS unit for energy defined as 1 dyn cm                   |
@@ -386,16 +405,22 @@ Table of available units
 | Wh          | Watt-hour, amount of energy accumulated by 1 Watt over an hour |
 | HPh         | Horsepower-hour, amount of energy accumulated by 1 HP over an hour |
 | ft-lb       | Foot-pound, Torque unit defined as 1 ft lbf                    |
+| RSI         | R value, thermal insulation unit based on the SI units. Defined as 1 K m^2 / W |
+| RIP         | R value, thermal insulation unit based on the foot-pound units of measure. Defined as 1 deltaF ft^2 hr / BTU |
+| clo         | Clothing, thermal insulation unit used in clothing design. This is the amount of insulation that allows a person at rest to maintain thermal equilibrium in an 21 degC, normally ventilated room |
+| tog         | Tog, thermal insulation unit defined as exactly 0.1 K m^2 / W  |
 | W           | Watt, SI unit for energy, defined as 1 J / s                   |
 | PS          | Metric Horsepower, defined as the amount of power to raise a mass of 75 [k]g against standard gravity over a distance of 1 meter in one second              |
 | HP          | Mechanical Horsepower, defined as 33 000 ft lbf / min          |
 | P           | Poise, CGS unit for dynamic viscosity                          |
+| rhe         | Rhe, CGS unit for fluidity, equal to exactly 1 P^-1            |
 | St          | Stokes, GGS unit for kinematic viscosity                       |
 | L           | Liter, Unit of volume that is defined as 1 [d]m^2 or 1e-3 m^3  |
 | tsp         | Teaspoon, US Customary volume unit that is close to 5 mL       |
 | tspm        | Metric teaspoon, volume measurement that is exactly 5 mL       |
 | tbs         | Tablespoon, US Customary volume unit that is defined as 3 tsp  |
 | fl_oz       | Fluid Ounce, US Customary volume unit that is defined as 2 tbs |
+| uk_fluid_oz | Fluid Ounce, Imperial unit of volume                           |
 | cup         | Cup, US Customary volume unit that is defined as 8 fluid ounces |
 | pt          | Pint, US Customary volume unit that is defined as 2 cups       |
 | uk_pt       | UK Pint, Imperial volume unit defined as 20 imperial ounces    |
@@ -407,12 +432,19 @@ Table of available units
 | barrel      | Oil Barrel, volume unit used in the us oil industry            |
 | MTON        | Measurement Ton, volume unit commonly used in the freight industry equal to 40 f^3 |
 | GRT         | Gross Register Tonnage, volume unit commonly used in the freight industry equal to 100 f^3 |
+| uk_gill     |  |
+| peck        |  |
+| dry_gal     |  |
+| dry_qt      |  |
+| dry_pt      |  |
+| stere       |  |
 | ar          | Are, area unit that is equal to 1/100 hectares or 100 m^2      |
 | Morgen      | Morgen, traditionally the area able to be plowed in a single day by a single bladed plow and a Ox or horse, it now is approximately equal to 1/4 of a hectare |
 | acre        | US Acre, unit of area traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen. Still in use in the US                    |
 | us_acre     | US Acre, same as 'acre' (common alternative)                   |
 | uk_acre     | UK Acre, unit of area traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen, slightly different than the US Acre. Used in the UK until 1995 |
 | ha          | Hectare, standard international unit for measurement of the area of land, equal to 1000 m^3 |
+| barn        |  |
 | bit         | Bit, one bit of information that can take one of 2 states (on/off, 0/1, high/low) |
 | b           | Bit, common abbreviation for 'bit'                             |
 | byte        | Byte, equal to 8 bits of information, commonly used in modern computing architectures |
@@ -427,11 +459,15 @@ Table of available units
 | F           | Farad, derived SI Unit of electrical capacitance               |
 | H           | Henry, derived SI unit for inductance                          |
 | S           | Siemens, derived SI unit for electrical conductance, equal to 1 / ohm |
+| mho         |  |
 | Wb          | Weber, SI unit for magnetic flux defined as 1 [k]g m^2 / (s^2 A) |
 | Mx          | Maxwell, CGS unit for magnetic flux defined as 1 g [c]m^2 / (s^2 A) |
 | T           | Tesla, SI unit for magnetic flux density defined as 1 Wb / m^2 |
 | Gs          | Gauss, CGS unit for magnetic flux density defined as 1 Mx / [c]m^2 |
 | ga          | Gauss, same as 'Gs' (common alternative)                       |
+| Fr          |  |
+| Gi          |  |
+| Oe          |  |
 | mol         | Mole, SI unit for amount of substance defined by exactly 6.02214076E+23 elementary entities of said substance |
 | cd          | Candela, SI unit for luminous intensity in a given direction defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency 540E+12 Hz |
 | lm          | Lumen, SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr |
