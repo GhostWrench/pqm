@@ -13,9 +13,9 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "test": "node node_modules/c8/bin/c8.js node test/node/test.js",
+    "test": "node node_modules/c8/bin/c8.js node test/node/test.mjs",
     "coverage": "node node_modules/c8/bin/c8.js report --reporter html",
-    "testbrowser": "node test/browser/testserver.js"
+    "testbrowser": "node test/browser/testserver.mjs"
   },
   "repository": {
     "type": "git",
