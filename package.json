@@ -13,8 +13,9 @@
   },
   "readmeFilename": "README.md",
   "scripts": {
-    "test": "node --trace-uncaught test/node/test.js",
-    "testbrowser": "node --trace-uncaught test/browser/testserver.js"
+    "test": "node node_modules/c8/bin/c8.js node test/node/test.js",
+    "coverage": "node node_modules/c8/bin/c8.js report --reporter html",
+    "testbrowser": "node test/browser/testserver.js"
   },
   "repository": {
     "type": "git",
@@ -41,5 +42,8 @@
     "url": "https://github.com/GhostWrench/pqm/issues"
   },
   "homepage": "https://github.com/GhostWrench/pqm#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "c8": "^7.1.2"
+  }
 }
