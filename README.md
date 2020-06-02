@@ -74,7 +74,7 @@ If using PQM in a browser, the ESM module can be used directly:
 <script src="path/to/pqm.js" type="module"></script>
 ```
 
-Or a simple IIFE package can be found in `build\browser\pqm-iife.js`.
+Or a simple IIFE package can be found in `build\iife\pqm.js`.
 
 Creation of Basic Quantity Variables
 --------------------------------------------------------------------------------
@@ -408,7 +408,7 @@ Table of available units
 | galileo     | Galileo, CGS Unit for acceleration                             |
 | Pa          | Pascal, SI unit for pressure defined as 1 N/m^2                |
 | mHg         | Meter of Mercury, pressure defined as the pressure applied by 1 m of Hg at 1 standard gravity, more commonly used as \[m\]mHg or \[c\]mHg |
-| mH2O        | Meter of Water, pressure defined as the pressure applied by 1 m of water at 1 standard gravity and 4 degC. More commonly used as \[m\]mH2O or \[c\]m H2O |
+| mH2O        | Meter of Water, pressure defined as the pressure applied by 1 m of water at 1 standard gravity and 4 degC. More commonly used as \[m\]mH2O or \[c\]mH2O |
 | Torr        | Torr, Slightly different definition of Millimeter of mercury, very close to the same scale |
 | psi         | Pounds per square inch, unit for pressure defined as lbf / in^2 |
 | atm         | Atmosphere, pressure that is approximately the mean air pressure at sea level |
