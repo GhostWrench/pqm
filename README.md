@@ -14,6 +14,39 @@ PQM is designed to be simple, lightweight and fast. In addition:
 * Conversion factors are tested against conversions defined in 
   [Special Publication 811: NIST Guide to the SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9)
 
+Comparison to similar packages
+--------------------------------------------------------------------------------
+
+| Feature                       | js-quantities | pqm      | convert-units | mathjs    | unitmath |
+|:----------------------------- | ------------- | -------- | ------------- | --------- | -------- |
+| __Overview__                                                                                    |
+| Version Tested                | 1.7.5         | 0.2.0    | 2.3.4         | 7.0.0     | 0.8.5    |
+| Number of Dependencies        | 0             | 0        | 2             | 8         | 1        |
+| Number of Dependents          | 39            | 0        | 143           | 984       | 0        |
+| Unpacked Size                 | 585 kB        | 216 kB   | 106 kB        | 10.1 MB   | 522 kB   |
+| Minified Size (BundlePhobia)  | 30.1 kB       | 13.6 kB  | 23.8 kB       | 623.5 kB  | 34.1 kB  |
+| Node (CommonJS)               | Yes           | Yes      | Yes           | Yes       | Yes      |
+| Browser                       | Yes           | Yes      | No            | Yes       | Probably |
+| ES Module                     | Yes           | Yes      | Yes           | Yes       | Yes      |
+| Support for Unit Prefixes     | Yes           | Yes      | Limited       | Yes       | Yes      |
+| Number of Base Units Supported| 187           | 186      | 61            | 162       | 135      |
+| Define Custom Units           | No            | Yes      | No            | Yes       | Yes      |
+| Tracks input units            | Yes           | No       | No            | Yes       | Yes      |
+| Support For Basic Math        | Yes           | Yes      | No            | Yes       | Yes      |
+| Test Coverage *               | Good          | Some     | Good          | Good      | 99%      |
+| __Supported Operators__                                                                         |
+| Add / Subtract                | Yes           | Yes      | No            | Yes       | Yes      |
+| Multiply / Divide             | Yes           | Yes      | No            | Yes       | Yes      |
+| Raise Power                   | No            | Yes      | No            | Yes       | Yes      |
+| Square Root                   | No            | No       | No            | Yes       | Yes      |
+| Comparison Operators          | Yes           | Yes      | No            | == only   | Yes      |
+| Works with arrays             | Yes           | No       | No            | Yes       | No       |
+| __Benchmarks__                                                                                  |
+| Module load time              | 4.5  ms       | 3.2 ms   | 14.7 ms       | 366 ms    | 39.5 ms  |
+| Simple Conversion (mL -> gal) | 5.0 ms        | 0.38 ms  | 0.27 ms       | 0.34 ms   | 0.40 ms  |
+| Compound Unit Conversion      | 5.0 ms        | 0.50 ms  | N/A           | 0.44 ms   | 0.50 ms  |
+| Chained Math Operations (multiple of floating point equivalent) | 50x | 8.5x | N/A | 22x | 24x  | 
+
 Installing and importing PQM
 --------------------------------------------------------------------------------
 
