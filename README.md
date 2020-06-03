@@ -443,7 +443,7 @@ Table of available units
 | clo         | Clothing, thermal insulation unit used in clothing design. This is the amount of insulation that allows a person at rest to maintain thermal equilibrium in an 21 degC, normally ventilated room |
 | tog         | Tog, thermal insulation unit defined as exactly 0.1 K m^2 / W  |
 | W           | Watt, SI unit for energy, defined as 1 J / s                   |
-| PS          | Metric Horsepower, defined as the amount of power to raise a mass of 75 [k]g against standard gravity over a distance of 1 meter in one second              |
+| PS          | Metric Horsepower, defined as the amount of power to raise a mass of 75 [k]g against standard gravity over a distance of 1 meter in one second |
 | HP          | Mechanical Horsepower, defined as 33 000 ft lbf / min          |
 | P           | Poise, CGS unit for dynamic viscosity                          |
 | rhe         | Rhe, CGS unit for fluidity, equal to exactly 1 P^-1            |

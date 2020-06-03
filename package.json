@@ -44,6 +44,7 @@
   "homepage": "https://github.com/GhostWrench/pqm#readme",
   "dependencies": {},
   "devDependencies": {
-    "c8": "^7.1.2"
+    "c8": "^7.1.2",
+    "terser": "^4.7.0"
   }
 }
