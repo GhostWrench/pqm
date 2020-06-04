@@ -991,23 +991,7 @@ const pqm = (function () {
     units[symbol] = newUnit;
   }
 
-  /**
-   * Compare the equality of two floats using an optional user supplied 
-   * tolerance.
-   *
-   * @param {Number} num1 First number to compare
-   * @param {Number} num2 Second number to compare
-   * @param {Number} tolerance Maximum difference between values that can be 
-   *                           considered equal. default=0
-   * @returns {Boolean} If the numbers are equal or not
-   */
-  function floatEq(num1, num2, tolerance) {
-    if (typeof(tolerance) == "undefined") {
-      tolerance = 0;
-    }
-    return Math.abs(num2 - num1) <= tolerance;
-  }
-
+  // Return the interface to this module
   return {
     quantity: quantity,
     define: define

@@ -37,15 +37,15 @@ With the already defined quantities:
 
 Do the operation
 
-`4*(A * B^2 / C^2) + 2*(A * B^2 / C^2) - 3*(A * B^2 / C^2)`
+`(4*(A * B^2 / C^2) * 2*(A * B^2 / C^2)) - (3*(A * B^2 / C^2) * (A * B^2 / C^2))`
 
 #### To SI
 
 Starting with the basic quantity `1 [k]g lbm in ft [m]m yd / s min` see how 
 long the conversion to SI units takes. Bonus if the resulting unit is `J^2`
 
-#### Benchmarking results over each version
+### Benchmarking results over each version
 
-| PQM Version | Node Version |Computer ID | Minified Size | Load   | Conversion | Math          | To SI |
-| ----------- | ------------ | ---------- | ------------- | ------ | ---------- | ------------- | ----- |
-| 0.2.0       | 14.3.0       | 0          | 13.6 kB       | 3.2 ms | 0.5 ms     | 0.3 ms (8.5x) |       |
+| PQM Version | Node Version |Computer ID | Minified Size | Load   | Conversion | Math          | To SI  |
+| ----------- | ------------ | ---------- | ------------- | ------ | ---------- | ------------- | ------ |
+| 0.2.0       | 14.3.0       | 0          | 13.6 kB       | 2.2 ms | 0.48 ms    | 0.13 ms       | 1.0 ms |
