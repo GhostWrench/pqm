@@ -3,7 +3,7 @@ Feature Roadmap for PQM
 
 0.3.0
 --------------------------------------------------------------------------------
-- [ ] performance benchmarking
+- [x] performance benchmarking
 - [x] get code coverage reporting working
 - [ ] ensure math functions are atomic
 
