@@ -3,3 +3,5 @@ node_modules/
 coverage/
 test/
 bench/
+pqm.code-workspace
+roadmap.md
