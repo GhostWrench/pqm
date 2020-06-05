@@ -394,23 +394,6 @@ const pqm = (function () {
   }
 
   /**
-   * Check if this quantity is greater than another quantity
-   * 
-   * @param {Quantity|number} other Other quantity to check against
-   * @param {Quantity|number} tolerance Maximum difference between the two 
-   *                                    quantities that is still considered 
-   *                                    equal. Can be provided as an absolute 
-   *                                    quantity, or as a fraction of this 
-   *                                    quantity. default=0
-   * 
-   * @returns {boolean} Returns true if the other quantity is greater than 
-   *                    this quantity.
-   */
-  Quantity.prototype.gt = function(other, tolerance) {
-    return (this.compare(other, tolerance) > 0);
-  }
-
-  /**
    * Check if this quantity is greater than or equal to another quantity
    * 
    * @param {Quantity|number} other Other quantity to check against
