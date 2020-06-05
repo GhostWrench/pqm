@@ -245,25 +245,58 @@ const pqm = (function () {
   /**
   * Raise the unit to the provided power
   * 
-  * @param {number} power Integer power to raise the physical quantity to
+  * @param {number} n Integer power to raise the physical quantity to
   * @returns {Quantity} Physical quantity raised to provided power
   */
-  Quantity.prototype.pow = function(power) {
-    if (!Number.isInteger(power)) {
-      throw "Cannot have units with fractional powers";
+  Quantity.prototype.pow = function(n) {
+    if (!Number.isInteger(n)) {
+      throw "Quantities don't support dimensions with fractional powers";
     }
-    if (this.offset != 0 && power > 1) {
+    if (this.offset != 0 && n > 1) {
       throw "Cannot raise units with zero offsets to powers > 1";
     }
-    if (power == 0) {
+    if (n == 0) {
       return new Quantity(1);
     }
-    let newMagnitude = Math.pow(this.magnitude, power);
+    let newMagnitude = Math.pow(this.magnitude, n);
     let newDimensions = this.copyDimensions();
     for (let ii=0; ii<numDimensionTypes; ii++) {
-      newDimensions[ii] *= power;
+      newDimensions[ii] *= n;
     }
     return new Quantity(newMagnitude, newDimensions, this.offset); 
+  };
+
+  /**
+   * Get the Nth root of a quantity, equivalent to x^(1/N)
+   * 
+   * @param {number} n Integer root to take of the quantity
+   * @returns {Quantity} nth root of the calling quantity
+   */
+  Quantity.prototype.root = function(n) {
+    // Check user input
+    if (!Number.isInteger(n) || (n < 1)) {
+      throw "Root may only be a positive integer greater than or equal to 1";
+    }
+    if (this.offset != 0 && n > 1) {
+      throw "Cannot take root of units with zero offset";
+    }
+    // Check that quantity does not have a negative magnitude
+    if (this.magnitude < 0) {
+      throw ("Root function not supported for magnitudes with negative " +
+             "magnitudes");
+    }
+    let newDimensions = this.copyDimensions();
+    for (let ii=0; ii<numDimensionTypes; ii++) {
+      let update = newDimensions[ii] / n;
+      if (!Number.isInteger(n)) {
+        throw ("Root operation would result in a fractional dimensional " +
+               "power. This is not supported"); 
+      }
+      newDimensions[ii] = update;
+    }
+    let newMagnitude = Math.pow(this.magnitude, 1/n);
+    // Return the new quantity
+    return new Quantity(newMagnitude, newDimensions, this.offset);
   };
 
   /**

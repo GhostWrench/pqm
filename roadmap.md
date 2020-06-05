@@ -9,9 +9,9 @@ Feature Roadmap for PQM
 
 0.4.0
 --------------------------------------------------------------------------------
-- [ ] root function (sqrt)
+- [x] root function (sqrt)
 - [ ] support for array values
-- [ ] improve unit parser, get rid of regex
+- [x] improve unit parser, get rid of regex
 
 0.5.0
 --------------------------------------------------------------------------------

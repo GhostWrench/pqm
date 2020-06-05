@@ -126,6 +126,17 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Take the root value of a unit", div, function() {
+    let q1 = pqm.quantity(64, "m^6 / s^6");
+    if (!q1.root(2).eq(pqm.quantity(8, "m^3 / s^3"), 1e-6)) {
+      return "Square root failed";
+    }
+    if (!q1.root(3).eq(pqm.quantity(4, "m^2 / s^2"), 1e-6)) {
+      return "Cube root failed";
+    }
+    return "Pass";
+  });
+
   failures += runner("Quantity inversion and unit-less quantities", div, function () {
     let v1 = pqm.quantity(10, "m");
     let v2 = v1.inv();
