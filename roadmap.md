@@ -5,7 +5,7 @@ Feature Roadmap for PQM
 --------------------------------------------------------------------------------
 - [x] performance benchmarking
 - [x] get code coverage reporting working
-- [ ] ensure math functions are atomic
+- [x] ensure math functions are atomic
 
 0.4.0
 --------------------------------------------------------------------------------

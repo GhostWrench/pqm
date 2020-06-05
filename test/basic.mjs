@@ -296,6 +296,43 @@ function testBasics(div) {
   } else {
     console.log("All basic tests passed");
   }
+
+  failures += runner("Ensure that math operations are atomic", div, function() {
+    let q1 = pqm.quantity(5.0, "mph");
+    let q1c = q1.copy();
+    let q2 = pqm.quantity(10.0, "mph");
+    let q2c = q2.copy();
+    let tol = pqm.quantity(1e-3, "mph");
+    // Test addition
+    let result = q1.add(q2);
+    if (!result.eq(pqm.quantity(15, "mph"), tol) || !q1.eq(q1c) || !q2.eq(q2c)) {
+      return "Addition is not atomic";
+    }
+    // Test subtraction
+    result = q1.sub(q2);
+    if (!result.eq(pqm.quantity(-5, "mph")) || !q1.eq(q1c) || !q2.eq(q2c)) {
+      return "Subtraction is not atomic";
+    }
+    // Test multiplication
+    tol = pqm.quantity(1e-3, "mph^2");
+    result = q1.mul(q2);
+    if (!result.eq(pqm.quantity(50.0, "mph^2"), tol) || !q1.eq(q1c) || !q2.eq(q2c)) {
+      return "Multiplication is not atomic";
+    }
+    // Test division
+    tol = pqm.quantity(1e-3);
+    result = q1.div(q2);
+    if (!result.eq(pqm.quantity(0.5), tol) || !q1.eq(q1c) || !q2.eq(q2c)) {
+      return "Division is not atomic"; 
+    }
+    // Test exponentiation
+    tol = pqm.quantity(1e-3, "mph^3");
+    result = q2.pow(3);
+    if (!result.eq(pqm.quantity(1000, "mph^3"), tol) || !q1.eq(q1c) || !q2.eq(q2c)) {
+      return "Exponentiation is not atomic";
+    }
+    return "Pass";
+  })
 };
 
 /**
