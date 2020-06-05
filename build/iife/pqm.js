@@ -853,42 +853,53 @@ const pqm = (function () {
    * @returns {Quantity} Quantity represented by the unit string 
    */
   function getUnitQuantity(unitName) {
-    const unitRegex = /^(?:\[(\D+)\])?([\w-]+)(?:\^([\-\d]+))?$/;
-    let matches = unitRegex.exec(unitName);
-    if (!matches) {
-      throw "Cannot convert \"" + unitName + "\" to a valid unit";
+    // The variable unit parts is [prefix, unit, exponent]
+    let unitParts = ["", "", ""];
+    let appendIdx = 1;
+    for (let ii=0; ii<unitName.length; ii++) {
+      if (unitName[ii] == "[") {
+        appendIdx = 0;
+        continue;
+      } else if (unitName[ii] == "]") {
+        appendIdx = 1;
+        continue;
+      } else if (unitName[ii] == "^") {
+        appendIdx = 2;
+        continue;
+      }
+      unitParts[appendIdx] += unitName[ii];
     }
-    // Get the prefix and make sure that is an actual prefix
-    let prefix = matches[1];
+    // Try to find the specified parts of the unit
+    // Prefix
     let prefixValue;
-    if (prefix) {
-      prefixValue = prefixes[prefix];
+    if (unitParts[0]) {
+      prefixValue = prefixes[unitParts[0]];
       if (!prefixValue) {
-        throw prefix + " is not a valid prefix";
+        throw unitParts[0] + " is not a valid prefix";
       }
     } else {
       prefixValue = 1;
     }
-    // Match the unit and get it's value
-    let unitStr = matches[2];
-    if (!unitStr) {
-      throw "Error parsing unit: \"" + unitString + "\"";
+    // Unit
+    if (!unitParts[1]) {
+      throw "Error parsing unit: \"" + unitName + "\"";
     }
-    if (!units.hasOwnProperty(unitStr)) {
-      throw (unitName + "is not a valid unit");
+    if (!units.hasOwnProperty(unitParts[1])) {
+      throw (unitParts[1] + "is not a valid unit");
     }
-    let unitQuantity = units[unitStr].copy();
+    let unitQuantity = units[unitParts[1]].copy();
+    // Exponent
     // Get the power of the unit and invert it if in section 1 (si==1)
-    let power = matches[3];
     let powerValue;
-    if (power) {
-      powerValue = parseInt(power);
+    if (unitParts[2]) {
+      powerValue = parseInt(unitParts[2]);
       if (!powerValue) {
         throw power + " is not a valid unit power";
       }
     } else {
       powerValue = 1;
     }
+    // Put together the parts and return
     if (prefixValue != 1) {
       unitQuantity = unitQuantity.mul(prefixValue);
     }
