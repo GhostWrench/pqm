@@ -46,6 +46,9 @@ long the conversion to SI units takes. Bonus if the resulting unit is `J^2`
 
 ### Benchmarking results over each version
 
+* Note: A value of `--` indicates no change in the benchmark
+
 | PQM Version | Node Version |Computer ID | Minified Size | Load   | Conversion | Math          | To SI  |
 | ----------- | ------------ | ---------- | ------------- | ------ | ---------- | ------------- | ------ |
 | 0.2.0       | 14.3.0       | 0          | 13.6 kB       | 2.2 ms | 0.48 ms    | 0.13 ms       | 1.0 ms |
+| 0.3.0       | 14.3.0       | 0          | 13.5 kB       | --     | --         | --            | --     |
