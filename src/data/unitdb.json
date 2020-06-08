@@ -1,0 +1,1265 @@
+{
+    "$schema": "./unitdbschema.json",
+    "1": {
+        "name": "1",
+        "description": "Unit non-dimensional quantity",
+        "category": "unitless",
+        "scale": 1.0,
+        "dimensions": {}
+    },
+    "%": {
+        "name": "Percent",
+        "description": "Non dimensional percent, with a scale of 1/100",
+        "category": "unitless",
+        "scale": 0.01,
+        "dimensions": {}
+    },
+    "g": {
+        "name": "Gram",
+        "description": "unit of mass defined as 1e-3 kg",
+        "category": "mass",
+        "scale": 1.0e-3, 
+        "dimensions": {"mass": 1}
+    },
+    "u" : {
+        "name": "Atomic Mass Unit",
+        "description": "The approximate mass of one proton or neutron",
+        "category": "mass",
+        "scale": 1.66053878200000E-27,
+        "dimensions": {"mass": 1},
+        "aliases": ["AMU"]
+    },
+    "grain": {
+        "name": "Grain",
+        "description": "Mass approximately equivalent to a single ideal seed of a cereal, in particular wheat or barley",
+        "category": "mass",
+        "scale": 6.47989100000000E-05,
+        "dimensions": {"mass": 1}
+    },
+    "ozm": {
+        "name": "Ounce",
+        "description": "U.S. and Imperial unit equal to 1/16 of a Pound Mass",
+        "category": "mass",
+        "scale": 2.83495231250000E-02,
+        "dimensions": {"mass": 1}
+    },
+    "lbm": {
+        "name": "Pound",
+        "description": "U.S. and Imperial primary unit of mass",
+        "category": "mass",
+        "scale": 4.53592370000000E-01,
+        "dimensions": {"mass": 1}
+    },
+    "stone": {
+        "name": "Stone",
+        "description": "Imperial unit equal to 14 Pounds Mass",
+        "category": "mass",
+        "scale": 6.35029318000000E+00,
+        "dimensions": {"mass": 1}
+    },
+    "sg": {
+        "name": "Slug",
+        "description": "",
+        "category": "mass",
+        "scale": 1.45939029372064E+01,
+        "dimensions": {"mass": 1},
+        "aliases": ["slug"]
+    },
+    "cwt": {
+        "name": "Short Hundredweight",
+        "description": "",
+        "category": "mass",
+        "scale": 4.53592370000000E+01,
+        "dimensions": {"mass": 1}
+    },
+    "dwt": {
+        "name": "Short Pennyweight",
+        "description": "",
+        "category": "mass",
+        "scale": 1.55517384E-03,
+        "dimensions": {"mass": 1}
+    },
+    "uk_cwt": {
+        "name": "Long Hundredweight",
+        "description": "",
+        "category": "mass",
+        "scale": 5.08023454400000E+01,
+        "dimensions": {"mass": 1}
+    },
+    "ton": {
+        "name": "Ton",
+        "description": "",
+        "category": "mass",
+        "scale": 9.07184740000000E+02,
+        "dimensions": {"mass": 1}
+    },
+    "uk_ton": {
+        "name": "UK Ton",
+        "description": "",
+        "category": "mass",
+        "scale": 1.01604690880000E+03,
+        "dimensions": {"mass": 1}
+    },
+    "metric_ton": {
+        "name": "Metric Ton",
+        "description": "",
+        "category": "mass",
+        "scale": 1.0E+3,
+        "dimensions": {"mass": 1}
+    },
+    "carat": {
+        "name": "Carat",
+        "description": "",
+        "category": "mass",
+        "scale": 2.0E-4,
+        "dimensions": {"mass": 1}
+    },
+    "assay_ton": {
+        "name": "Assay Ton",
+        "description": "",
+        "category": "mass",
+        "scale": 2.9166666666666667E-02,
+        "dimensions": {"mass": 1}
+    },
+    "denier": {
+        "name": "Denier",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.1111111111111112E-07,
+        "dimensions": {"mass": 1, "length": -1}
+    },
+    "tex": {
+        "name": "Tex",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.0E-06,
+        "dimensions": {"mass": 1, "length": -1}
+    },
+    "m": {
+        "name": "Meter",
+        "description": "",
+        "category": "length",
+        "scale": 1.0,
+        "dimensions": {"length": 1}
+    },
+    "ang": {
+        "name": "Angstrom",
+        "description": "",
+        "category": "length",
+        "scale": 1.00000000000000E-10,
+        "dimensions": {"length": 1}
+    },
+    "picapt": {
+        "name": "Pica Point",
+        "description": "",
+        "category": "length",
+        "scale": 3.52777777777778E-04,
+        "dimensions": {"length": 1}
+    },
+    "pica": {
+        "name": "Pica",
+        "description": "",
+        "category": "length",
+        "scale": 4.23333333333333E-03,
+        "dimensions": {"length": 1}
+    },
+    "in": {
+        "name": "Inch",
+        "description": "",
+        "category": "length",
+        "scale": 2.54000000000000E-02,
+        "dimensions": {"length": 1}
+    },
+    "ft": {
+        "name": "Foot",
+        "description": "",
+        "category": "length",
+        "scale": 3.04800000000000E-01,
+        "dimensions": {"length": 1}
+    },
+    "yd": {
+        "name": "Yard",
+        "description": "",
+        "category": "length",
+        "scale": 9.14400000000000E-01,
+        "dimensions": {"length": 1}
+    },
+    "ell": {
+        "name": "Ell/Cubit",
+        "description": "",
+        "category": "length",
+        "scale": 1.14300000000000E+00,
+        "dimensions": {"length": 1}
+    },
+    "survey_mi": {
+        "name": "Survey Mile",
+        "description": "",
+        "category": "length",
+        "scale": 1.60934721869443728792E+03,
+        "dimensions": {"length": 1}
+    },
+    "Nmi": {
+        "name": "Nautical Mile",
+        "description": "",
+        "category": "length",
+        "scale": 1.85200000000000E+03,
+        "dimensions": {"length": 1}
+    },
+    "league": {
+        "name": "League",
+        "description": "",
+        "category": "length",
+        "scale": 5.55600000000000E+03,
+        "dimensions": {"length": 1}
+    },
+    "ly": {
+        "name": "Light Year",
+        "description": "",
+        "category": "length",
+        "scale": 9.46073047258080E+15,
+        "dimensions": {"length": 1}
+    },
+    "parsec": {
+        "name": "Parsec",
+        "description": "",
+        "category": "length",
+        "scale": 3.08567758128155E+16,
+        "dimensions": {"length": 1}
+    },
+    "survey_ft": {
+        "name": "Survey Foot",
+        "description": "",
+        "category": "length",
+        "scale": 3.04800609601219185674E-01,
+        "dimensions": {"length": 1}
+    },
+    "au": {
+        "name": "Astronomical Unit",
+        "description": "",
+        "category": "length",
+        "scale": 1.49597870700000E+11,
+        "dimensions": {"length": 1}
+    },
+    "chain": {
+        "name": "Chain",
+        "description": "",
+        "category": "length",
+        "scale": 2.0116840233680467E+01,
+        "dimensions": {"length": 1}
+    },
+    "link": {
+        "name": "Link",
+        "description": "",
+        "category": "length",
+        "scale": 2.0116840233680467E-01,
+        "dimensions": {"length": 1}
+    },
+    "rod": {
+        "name": "Rod",
+        "description": "",
+        "category": "length",
+        "scale": 5.029210058420117E+0,
+        "dimensions": {"length": 1}
+    },
+    "furlong": {
+        "name": "Furlong",
+        "description": "",
+        "category": "length",
+        "scale": 2.0116840233680466E+2,
+        "dimensions": {"length": 1}
+    },
+    "fathom": {
+        "name": "Fathom",
+        "description": "",
+        "category": "length",
+        "scale": 1.8288E+00,
+        "dimensions": {"length": 1}
+    },
+    "us_fathom": {
+        "name": "U.S. Fathom",
+        "description": "",
+        "category": "length",
+        "scale": 1.828804E+00,
+        "dimensions": {"length": 1}
+    },
+    "fermi": {
+        "name": "Fermi",
+        "description": "",
+        "category": "length",
+        "scale": 1.0E-15,
+        "dimensions": {"length": 1}
+    },
+    "kayser": {
+        "name": "Kayser/Wavenumber",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.0E+02,
+        "dimensions": {"length": -1}
+    },
+    "s": {
+        "name": "Second",
+        "description": "",
+        "category": "time",
+        "scale": 1.0,
+        "dimensions": {"time": 1},
+        "aliases": ["sec"]
+    },
+    "min": {
+        "name": "Minute",
+        "description": "",
+        "category": "time",
+        "scale": 6.0E+01,
+        "dimensions": {"time": 1}
+    },
+    "hr": {
+        "name": "Hour",
+        "description": "",
+        "category": "time",
+        "scale": 3.6E+03,
+        "dimensions": {"time": 1}
+    },
+    "day": {
+        "name": "Day",
+        "description": "",
+        "category": "time",
+        "scale": 8.64E+04,
+        "dimensions": {"time": 1}
+    },
+    "yr": {
+        "name": "Year",
+        "description": "",
+        "category": "time",
+        "scale": 3.1536E+07,
+        "dimensions": {"time": 1}
+    },
+    "shake": {
+        "name": "Shake",
+        "description": "",
+        "category": "time",
+        "scale": 1.0E-08,
+        "dimensions": {"time": 1}
+    },
+    "K": {
+        "name": "Kelvin",
+        "description": "",
+        "category": "temperature",
+        "scale": 1.0,
+        "dimensions": {"temperature": 1}
+    },
+    "degF": {
+        "name": "Degrees Fahrenheit",
+        "description": "",
+        "category": "temperature",
+        "scale": 5.55555555555543E-01,
+        "dimensions": {"temperature": 1},
+        "offset": 2.55372222222222E+02
+    },
+    "deltaF": {
+        "name": "Delta Fahrenheit",
+        "description": "",
+        "category": "temperature",
+        "scale": 5.55555555555543E-01,
+        "dimensions": {"temperature": 1}
+    },
+    "degC": {
+        "name": "Degrees Celsius",
+        "description": "",
+        "category": "temperature",
+        "scale": 1.0,
+        "dimensions": {"temperature": 1},
+        "offset": 2.73150000000000E+02
+    },
+    "deltaC": {
+        "name": "Delta Celsius",
+        "description": "",
+        "category": "temperature",
+        "scale": 1.0,
+        "dimensions": {"temperature": 1}
+    },
+    "Rank": {
+        "name": "Rankine",
+        "description": "",
+        "category": "temperature",
+        "scale": 5.55555555555543E-01,
+        "dimensions": {"temperature": 1}
+    },
+    "Reau": {
+        "name": "Reaumur",
+        "description": "",
+        "category": "temperature",
+        "scale": 1.25,
+        "dimensions": {"temperature": 1},
+        "offset": 2.73150000000000E+02
+    },
+    "deltaReau": {
+        "name": "Delta Reaumur",
+        "description": "",
+        "category": "temperature",
+        "scale": 1.25,
+        "dimensions": {"temperature": 1}
+    },
+    "mph": {
+        "name": "Mile per Hour",
+        "description": "",
+        "category": "velocity",
+        "scale": 4.47040000000000E-01,
+        "dimensions": {"length": 1, "time": -1}
+    },
+    "knot": {
+        "name": "Knot",
+        "description": "",
+        "category": "velocity",
+        "scale": 5.14444444444444E-01,
+        "dimensions": {"length": 1, "time": -1}
+    },
+    "admkn": {
+        "name": "Admirality Knot",
+        "description": "",
+        "category": "velocity",
+        "scale": 5.14773333333333E-01,
+        "dimensions": {"length": 1, "time": -1}
+    },
+    "c": {
+        "name": "Speed of Light",
+        "description": "",
+        "category": "velocity",
+        "scale": 2.99792458000000E+8,
+        "dimensions": {"length": 1, "time": -1}
+    },
+    "grav": {
+        "name": "Standard Gravity",
+        "description": "",
+        "category": "acceleration",
+        "scale": 9.80665000000000E+00,
+        "dimensions": {"length": 1, "time": -2}
+    },
+    "galileo": {
+        "name": "Galileo",
+        "description": "",
+        "category": "acceleration",
+        "scale": 1.0E-02,
+        "dimensions": {"length": 1, "time": -2}
+    },
+    "Pa": {
+        "name": "Pascal",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "mHg": {
+        "name": "Meter of Mercury",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.33322390000000E+05,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "mH2O": {
+        "name": "Meter of Water",
+        "description": "",
+        "category": "pressure",
+        "scale": 9.80665E+03,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "Torr": {
+        "name": "Torr",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.33322368421053E+02,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "psi": {
+        "name": "Pound per Square Inch",
+        "description": "",
+        "category": "pressure",
+        "scale": 6.89475729316836E+03,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "atm": {
+        "name": "Atmosphere",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.01325000000000E+05,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "bar": {
+        "name": "Bar",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.00000e5,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "inHg": {
+        "name": "Inch of Mercury",
+        "description": "",
+        "category": "pressure",
+        "scale": 3.38638866666670E+03,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "inH2O": {
+        "name": "Inch of Water",
+        "description": "",
+        "category": "pressure",
+        "scale": 2.4908891E+02,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "ftHg": {
+        "name": "Foot of Mercury",
+        "description": "",
+        "category": "pressure",
+        "scale": 4.0636664E+04,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "ftH2O": {
+        "name": "Foot of Water",
+        "description": "",
+        "category": "pressure",
+        "scale": 2.98906692E+03,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "Ba": {
+        "name": "Barye",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.0E-01,
+        "dimensions": {"mass": 1, "length": -1, "time": -2}
+    },
+    "Pa-g": {
+        "name": "Gauge Pascal",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": -1, "time": -2},
+        "offset": 1.01325E+05
+    },
+    "kPa-g": {
+        "name": "Gauge Kilopascal",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.0E+03,
+        "dimensions": {"mass": 1, "length": -1, "time": -2},
+        "offset": 1.01325E+05
+    },
+    "bar-g": {
+        "name": "Gauge Bar",
+        "description": "",
+        "category": "pressure",
+        "scale": 1.00000e5,
+        "dimensions": {"mass": 1, "length": -1, "time": -2},
+        "offset": 1.01325E+05
+    },
+    "psi-g": {
+        "name": "Gauge PSI",
+        "description": "",
+        "category": "pressure",
+        "scale": 6.89475729316836E+03,
+        "dimensions": {"mass": 1, "length": -1, "time": -2},
+        "offset": 1.01325E+05
+    },
+    "N": {
+        "name": "Newton",
+        "description": "",
+        "category": "force",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": 1, "time": -2}
+    },
+    "dyn": {
+        "name": "Dyne",
+        "description": "",
+        "category": "force",
+        "scale": 1.0E-05,
+        "dimensions": {"mass": 1, "length": 1, "time": -2}
+    },
+    "gf": {
+        "name": "Gram Force",
+        "description": "",
+        "category": "force",
+        "scale": 9.80665E-03,
+        "dimensions": {"mass": 1, "length": 1, "time": -2},
+        "aliases": ["pond"]
+    },
+    "lbf": {
+        "name": "Pound Force",
+        "description": "",
+        "category": "force",
+        "scale": 4.44822161526050E+00,
+        "dimensions": {"mass": 1, "length": 1, "time": -2}
+    },
+    "ozf": {
+        "name": "Ounce Force",
+        "description": "",
+        "category": "force",
+        "scale": 2.78013850953781E-01,
+        "dimensions": {"mass": 1, "length": 1, "time": -2}
+    },
+    "pdl": {
+        "name": "Poundal",
+        "description": "",
+        "category": "force",
+        "scale": 1.38254954376E-01,
+        "dimensions": {"mass": 1, "length": 1, "time": -2}
+    },
+    "ton-force": {
+        "name": "Ton Force",
+        "description": "",
+        "category": "force",
+        "scale": 8.896443230521E+03,
+        "dimensions": {"mass": 1, "length": 1, "time": -2}
+    },
+    "J": {
+        "name": "Joule",
+        "description": "",
+        "category": "energy",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "eV": {
+        "name": "Electron Volt",
+        "description": "",
+        "category": "energy",
+        "scale": 1.60217648700000E-19,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "erg": {
+        "name": "Erg",
+        "description": "",
+        "category": "energy",
+        "scale": 1.00000000000000E-07,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "cal": {
+        "name": "Kilocalorie/Calorie",
+        "description": "",
+        "category": "energy",
+        "scale": 4.18680000000000E+00,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "BTU": {
+        "name": "British Thermal Unit",
+        "description": "",
+        "category": "energy",
+        "scale": 1.05505585262000E+03,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "Wh": {
+        "name": "Watt-hour",
+        "description": "",
+        "category": "energy",
+        "scale": 3.6E+03,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "HPh": {
+        "name": "Horse Power Hour",
+        "description": "",
+        "category": "energy",
+        "scale": 2.68451953769617E+06,
+        "dimensions": {"mass": 1, "length": 2, "time": -2}
+    },
+    "ft-lb": {
+        "name": "Foot Pound-force",
+        "description": "",
+        "category": "energy",
+        "scale": 1.35581794833140E+00,
+        "dimensions": {"mass": 1, "length": 2, "time": -2},
+        "aliases": ["ft-lbf"]
+    },
+    "RSI": {
+        "name": "R Value (SI)",
+        "description": "",
+        "category": "insulation",
+        "scale": 1.0,
+        "dimensions": {"mass": -1, "time": 3, "temperature": 1}
+    },
+    "RIP": {
+        "name": "R Value (Foot Pound)",
+        "description": "",
+        "category": "insulation",
+        "scale": 1.7611018368230189E-01,
+        "dimensions": {"mass": -1, "time": 3, "temperature": 1}
+    },
+    "clo": {
+        "name": "Clothing",
+        "description": "",
+        "category": "insulation",
+        "scale": 1.55E-01,
+        "dimensions": {"mass": -1, "time": 3, "temperature": 1}
+    },
+    "tog": {
+        "name": "Tog",
+        "description": "",
+        "category": "insulation",
+        "scale": 1.0E-01,
+        "dimensions": {"mass": -1, "time": 3, "temperature": 1}
+    },
+    "W": {
+        "name": "Watt",
+        "description": "",
+        "category": "power",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": 2, "time": -3}
+    },
+    "PS": {
+        "name": "Metric Horsepower",
+        "description": "",
+        "category": "power",
+        "scale": 7.35498750000000E+02,
+        "dimensions": {"mass": 1, "length": 2, "time": -3}
+    },
+    "HP": {
+        "name": "Horsepower",
+        "description": "",
+        "category": "power",
+        "scale": 7.45699871582270E+02,
+        "dimensions": {"mass": 1, "length": 2, "time": -3}
+    },
+    "P": {
+        "name": "Poise",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.0E-01,
+        "dimensions": {"mass": 1, "length": -1, "time": -1}
+    },
+    "rhe": {
+        "name": "Rhe",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.0E+01,
+        "dimensions": {"mass": -1, "length": 1, "time": 1}
+    },
+    "St": {
+        "name": "Stokes",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.0E-04,
+        "dimensions": {"length": 2, "time": -1}
+    },
+    "L": {
+        "name": "Liter",
+        "description": "",
+        "category": "volume",
+        "scale": 1.0E-03,
+        "dimensions": {"length": 3}
+    },
+    "tsp": {
+        "name": "Teaspoon",
+        "description": "",
+        "category": "volume",
+        "scale": 4.92892159375000E-06,
+        "dimensions": {"length": 3}
+    },
+    "tspm": {
+        "name": "Metric Teaspoon",
+        "description": "",
+        "category": "volume",
+        "scale": 5.0E-06,
+        "dimensions": {"length": 3}
+    },
+    "tbs": {
+        "name": "Tablespoon",
+        "description": "",
+        "category": "volume",
+        "scale": 1.47867647812500E-05,
+        "dimensions": {"length": 3}
+    },
+    "fl_oz": {
+        "name": "Fluid Ounce",
+        "description": "",
+        "category": "volume",
+        "scale": 2.95735295625000E-05,
+        "dimensions": {"length": 3}
+    },
+    "uk_fl_oz": {
+        "name": "UK Fluid Ounce",
+        "description": "",
+        "category": "volume",
+        "scale": 2.84130625E-05,
+        "dimensions": {"length": 3}
+    },
+    "cup": {
+        "name": "Cup",
+        "description": "",
+        "category": "volume",
+        "scale": 2.36588236500000E-04,
+        "dimensions": {"length": 3}
+    },
+    "pt": {
+        "name": "Pint",
+        "description": "",
+        "category": "volume",
+        "scale": 5.68261250000000E-04,
+        "dimensions": {"length": 3}
+    },
+    "uk_pt": {
+        "name": "UK Pint",
+        "description": "",
+        "category": "volume",
+        "scale": 5.68261250000000E-04,
+        "dimensions": {"length": 3}
+    },
+    "qt": {
+        "name": "Quart",
+        "description": "",
+        "category": "volume",
+        "scale": 9.46352946000000E-04,
+        "dimensions": {"length": 3}
+    },
+    "uk_qt": {
+        "name": "UK Quart",
+        "description": "",
+        "category": "volume",
+        "scale": 1.13652250000000E-03,
+        "dimensions": {"length": 3}
+    },
+    "gal": {
+        "name": "Gallon",
+        "description": "",
+        "category": "volume",
+        "scale": 3.78541178400000E-03,
+        "dimensions": {"length": 3}
+    },
+    "uk_gal": {
+        "name": "UK Gallon",
+        "description": "",
+        "category": "volume",
+        "scale": 4.54609000000000E-03,
+        "dimensions": {"length": 3}
+    },
+    "bushel": {
+        "name": "Bushel",
+        "description": "",
+        "category": "volume",
+        "scale": 3.52390701668800E-02,
+        "dimensions": {"length": 3}
+    },
+    "barrel": {
+        "name": "Barrel",
+        "description": "",
+        "category": "volume",
+        "scale": 1.58987294928000E-01,
+        "dimensions": {"length": 3}
+    },
+    "MTON": {
+        "name": "Measurement Ton",
+        "description": "",
+        "category": "volume",
+        "scale": 1.13267386368000E+00,
+        "dimensions": {"length": 3}
+    },
+    "GRT": {
+        "name": "Gross Register Tonnage",
+        "description": "",
+        "category": "volume",
+        "scale": 2.83168465920000E+00,
+        "dimensions": {"length": 3}
+    },
+    "gill": {
+        "name": "Gill",
+        "description": "",
+        "category": "volume",
+        "scale": 1.1829411825E-04,
+        "dimensions": {"length": 3}
+    },
+    "uk_gill": {
+        "name": "UK Gill",
+        "description": "",
+        "category": "volume",
+        "scale": 1.420653125E-04,
+        "dimensions": {"length": 3}
+    },
+    "peck": {
+        "name": "Peck",
+        "description": "",
+        "category": "volume",
+        "scale": 8.80976754172E-03,
+        "dimensions": {"length": 3}
+    },
+    "dry_gal": {
+        "name": "Dry Gallon",
+        "description": "",
+        "category": "volume",
+        "scale": 4.40488377086E-03,
+        "dimensions": {"length": 3}
+    },
+    "dry_qt": {
+        "name": "Dry Quart",
+        "description": "",
+        "category": "volume",
+        "scale": 1.101220942715E-03,
+        "dimensions": {"length": 3}
+    },
+    "dry_pt": {
+        "name": "Dry Pint",
+        "description": "",
+        "category": "volume",
+        "scale": 5.506104713575E-04,
+        "dimensions": {"length": 3}
+    },
+    "stere": {
+        "name": "Stere",
+        "description": "",
+        "category": "volume",
+        "scale": 1.0,
+        "dimensions": {"length": 3}
+    },
+    "ar": {
+        "name": "Are",
+        "description": "",
+        "category": "area",
+        "scale": 1.00000000000000E+02,
+        "dimensions": {"length": 2}
+    },
+    "morgen": {
+        "name": "Morgen",
+        "description": "",
+        "category": "area",
+        "scale": 2.50000000000000E+03,
+        "dimensions": {"length": 2}
+    },
+    "acre": {
+        "name": "Acre",
+        "description": "",
+        "category": "area",
+        "scale": 4.04687260987425E+03,
+        "dimensions": {"length": 2},
+        "aliases": ["us_acre"]
+    },
+    "uk_acre": {
+        "name": "UK Acre",
+        "description": "",
+        "category": "area",
+        "scale": 4.04685642240000E+03,
+        "dimensions": {"length": 2}
+    },
+    "ha": {
+        "name": "Hectare",
+        "description": "",
+        "category": "area",
+        "scale": 1.00000000000000E+04,
+        "dimensions": {"length": 2}
+    },
+    "barn": {
+        "name": "Barn",
+        "description": "",
+        "category": "area",
+        "scale": 1.0E-28,
+        "dimensions": {"length": 2}
+    },
+    "b": {
+        "name": "Bit",
+        "description": "",
+        "category": "information",
+        "scale": 1.0,
+        "dimensions": {"information": 1},
+        "aliases": ["bit"]
+    },
+    "B": {
+        "name": "Byte",
+        "description": "",
+        "category": "information",
+        "scale": 8.0,
+        "dimensions": {"information": 1},
+        "aliases": ["byte"]
+    },
+    "word": {
+        "name": "Word",
+        "description": "",
+        "category": "information",
+        "scale": 1.60E+01,
+        "dimensions": {"information": 1}
+    },
+    "dword": {
+        "name": "Double Word",
+        "description": "",
+        "category": "information",
+        "scale": 3.20E+01,
+        "dimensions": {"information": 1}
+    },
+    "baud": {
+        "name": "Baud Rate",
+        "description": "",
+        "category": "information",
+        "scale": 1.0,
+        "dimensions": {"information": 1, "time": -1}
+    },
+    "A": {
+        "name": "Ampere",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"current": 1}
+    },
+    "C": {
+        "name": "Coulomb",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"current": 1, "time": 1}
+    },
+    "e": {
+        "name": "Elementary Charge",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.60217663400000E-19,
+        "dimensions": {"current": 1, "time": 1}
+    },
+    "V": {
+        "name": "Volt",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": 2, "current": -1, "time": -3}
+    },
+    "ohm": {
+        "name": "Ohm",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length": 2, "current": -2, "time": -3}
+    },
+    "F": {
+        "name": "Farad",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"time": 4, "current": 2, "length": -2, "mass": -1}
+    },
+    "H": {
+        "name": "Henry",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"length": 2, "mass": 1, "time": -2, "current": -2}
+    },
+    "S": {
+        "name": "Siemens",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"time": 3, "current": 2, "length": -2, "mass": -1}
+    },
+    "mho": {
+        "name": "Mho",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"time": 3, "current": 2, "length": -2, "mass": -1}
+    },
+    "Wb": {
+        "name": "Weber",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "length":2, "time": -2, "current": -1}
+    },
+    "Mx": {
+        "name": "Maxwell",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0E-8,
+        "dimensions": {"mass": 1, "length": 2, "time": -2, "current": -1}
+    },
+    "T": {
+        "name": "Tesla",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0,
+        "dimensions": {"mass": 1, "current": -1, "time": -2}
+    },
+    "Gs": {
+        "name": "Gauss",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 1.0E-04,
+        "dimensions": {"mass": 1, "current": -1, "time": -2},
+        "aliases": ["gs"]
+    },
+    "Fr": {
+        "name": "Franklin",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 3.3356409519815207E-10,
+        "dimensions": {"current": 1, "time": 1}
+    },
+    "Gi": {
+        "name": "Gilbert",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 7.957747E-01,
+        "dimensions": {"current": 1}
+    },
+    "Oe": {
+        "name": "Oersted",
+        "description": "",
+        "category": "electricity and magnetism",
+        "scale": 7.95774715459476738033E+01,
+        "dimensions": {"current": 1, "length": -1}
+    },
+    "mol": {
+        "name": "Mole",
+        "description": "",
+        "category": "substance",
+        "scale": 1.0,
+        "dimensions": {"substance": 1}
+    },
+    "cd": {
+        "name": "Candela",
+        "description": "",
+        "category": "luminosity",
+        "scale": 1.0,
+        "dimensions": {"luminosity": 1}
+    },
+    "lm": {
+        "name": "Lumen",
+        "description": "",
+        "category": "luminosity",
+        "scale": 1.0,
+        "dimensions": {"luminosity": 1, "rotation": 2}
+    },
+    "lx": {
+        "name": "Lux",
+        "description": "",
+        "category": "luminosity",
+        "scale": 1.0,
+        "dimensions": {"luminosity": 1, "rotation": 2, "length": -2}
+    },
+    "footcandle": {
+        "name": "Footcandle",
+        "description": "",
+        "category": "luminosity",
+        "scale": 1.07639104167097201525E+01,
+        "dimensions": {"luminosity": 1, "rotation": 2, "length": -2}
+    },
+    "footlambert": {
+        "name": "Footlambert",
+        "description": "",
+        "category": "luminosity",
+        "scale": 3.42625909963539010405E+00,
+        "dimensions": {"luminosity": 1, "length": -2}
+    },
+    "lambert": {
+        "name": "Lambert",
+        "description": "",
+        "category": "luminosity",
+        "scale": 3.18309886183790695213E+03,
+        "dimensions": {"luminosity": 1, "length": -2}
+    },
+    "phot": {
+        "name": "Phot",
+        "description": "",
+        "category": "luminosity",
+        "scale": 1.0E+04,
+        "dimensions": {"luminosity": 1, "rotation": 2, "length": -2}
+    },
+    "stilb": {
+        "name": "Stilb",
+        "description": "",
+        "category": "luminosity",
+        "scale": 1.0E+04,
+        "dimensions": {"luminosity": 1, "length": -2}
+    },
+    "rad": {
+        "name": "Radian",
+        "description": "",
+        "category": "rotation",
+        "scale": 1.0,
+        "dimensions": {"rotation": 1}
+    },
+    "sr": {
+        "name": "Steradians",
+        "description": "",
+        "category": "rotation",
+        "scale": 1.0,
+        "dimensions": {"rotation": 2}
+    },
+    "rev": {
+        "name": "Revolution",
+        "description": "",
+        "category": "rotation",
+        "scale": 6.28318530717958623199592693708837032318115234375E+00,
+        "dimensions": {"rotation": 1}
+    },
+    "deg": {
+        "name": "Degree",
+        "description": "",
+        "category": "rotation",
+        "scale": 1.74532925199432954743716805978692718781530857086181640625E-02,
+        "dimensions": {"rotation": 1}
+    },
+    "arcmin": {
+        "name": "Arc Minute",
+        "description": "",
+        "category": "rotation",
+        "scale": 2.908882086657215803975062851094435245613567531108856201171875E-04,
+        "dimensions": {"rotation": 1}
+    },
+    "arcsec": {
+        "name": "Arc Second",
+        "description": "",
+        "category": "rotation",
+        "scale": 4.8481368110953598426983608693507932230204460211098194122314453125E-06,
+        "dimensions": {"rotation": 1}
+    },
+    "rpm": {
+        "name": "Revolutions per Minute",
+        "description": "",
+        "category": "rotation",
+        "scale": 1.0471975511965976590733617967998725362122058868408203125e-1,
+        "dimensions": {"rotation": 1, "time": -1}
+    },
+    "Hz": {
+        "name": "Hertz",
+        "description": "",
+        "category": "miscellaneous",
+        "scale": 1.0,
+        "dimensions": {"time": -1}
+    },
+    "Bq": {
+        "name": "Becquerel",
+        "description": "",
+        "category": "radiology",
+        "scale": 1.0,
+        "dimensions": {"time": -1}
+    },
+    "Gy": {
+        "name": "Gray",
+        "description": "",
+        "category": "radiology",
+        "scale": 1.0,
+        "dimensions": {"length": 2, "time": -2}
+    },
+    "Sv": {
+        "name": "Sievert",
+        "description": "",
+        "category": "radiology",
+        "scale": 1.0,
+        "dimensions": {"length": 2, "time": -2}
+    },
+    "R": {
+        "name": "Rontgen",
+        "description": "",
+        "category": "radiology",
+        "scale": 2.58E-04,
+        "dimensions": {"current": 1, "time": 1, "mass": -1}
+    },
+    "RAD": {
+        "name": "Radiation Absorbed Dose",
+        "description": "",
+        "category": "radiology",
+        "scale": 1.0E-02,
+        "dimensions": {"length": 2, "time": -2}
+    },
+    "rem": {
+        "name": "Rem",
+        "description": "",
+        "category": "radiology",
+        "scale": 1.0E-02,
+        "dimensions": {"length": 2, "time": 2}
+    },
+    "Ci": {
+        "name": "Curie",
+        "description": "",
+        "category": "radiology",
+        "scale": 3.7E+10,
+        "dimensions": {"time": -1}
+    }
+}
