@@ -377,12 +377,12 @@ Table of available units
 | parsec      | Parsec, defined as 648 000 / pi Astronomical units             |
 | survey_ft   | Survey Foot, Very close to a foot of length but defined as 1200/3937 meters instead of 0.3048 meters |
 | au          | Astronomical Unit, approximate distance from the Earth to the Sun |
-| chain       | Chain, U.S customary unit of length equal to 66 survey ft. Sometimes the unit may be based on the internation foot rather than the survey foot, changing the definition slightly |
-| link        | Link, U.S Customary unit of length equal to 1/100 of a chain   |
-| rod         | Rod, U.S Customary unit of length equal to 1/4 of a chain      |
-| furlong     | Furlong, U.S Customary unit of length equal to 10 chains       |
+| chain       | Chain, US customary unit of length equal to 66 survey ft. Sometimes the unit may be based on the internation foot rather than the survey foot, changing the definition slightly |
+| link        | Link, US Customary unit of length equal to 1/100 of a chain   |
+| rod         | Rod, US Customary unit of length equal to 1/4 of a chain      |
+| furlong     | Furlong, US Customary unit of length equal to 10 chains       |
 | fathom      | Fathom, unit of length equal to 6 international foot           |
-| us_fathom   | U.S. Customary Fathom, appox. equal to 6 survey foot           |
+| us_fathom   | US Customary Fathom, appox. equal to 6 survey foot           |
 | fermi       | Fermi, unit of length equal to 10^-15 m. Used in nuclear physics and named after physicist Enrico Fermi who was one of the founders of the field |
 | kayser      | Wavenumber or Kayser, which is the reciprocal of 1 \[c\]m      |
 | sec         | Second, time that is Approximately 1/86400 of a stellar day, formally defined based on the duration of 9 192 631 770 state transitions of the caesium-133 atom at 0 K |
@@ -422,7 +422,7 @@ Table of available units
 | kPa-g       | Gauge version of the [k]Pa, with a zero offset at atmospheric pressure |
 | bar-g       | Gauge version of bar, with a zero offset at atmospheric pressure |
 | psi-g       | Gauge version of psi, with a zero offset at atmospheric pressure |
-| N           | Newton, SI unit for force defined as 1 [k]g m / s^2            |
+| N           | Newton, SI standard unit for force defined as 1 [k]g m / s^2            |
 | dyn         | Dyne, CGS unit for force defined as 1 g [c]m / s^2             |
 | gf          | Gram force, defined as the amount of force exerted by standard gravity on a 1 gram mass |
 | pond        | Pond, same as Gram Force (gf)                                  |
@@ -447,7 +447,7 @@ Table of available units
 | HP          | Mechanical Horsepower, defined as 33 000 ft lbf / min          |
 | P           | Poise, CGS unit for dynamic viscosity                          |
 | rhe         | Rhe, CGS unit for fluidity, equal to exactly 1 P^-1            |
-| St          | Stokes, GGS unit for kinematic viscosity                       |
+| St          | Stokes, CGS unit for kinematic viscosity                       |
 | L           | Liter, Unit of volume that is defined as 1 [d]m^2 or 1e-3 m^3  |
 | tsp         | Teaspoon, US Customary volume unit that is close to 5 mL       |
 | tspm        | Metric teaspoon, volume measurement that is exactly 5 mL       |
@@ -467,7 +467,7 @@ Table of available units
 | GRT         | Gross Register Tonnage, volume unit commonly used in the freight industry equal to 100 f^3 |
 | gill        | U.S. Customary Gill, volume unit equal to 4 US fluid ounces    |
 | uk_gill     | Imperial Gill, volume unit equal to 5 Imperial (UK) fluid ounces |
-| peck        | Peck, U.S. Customary unit for non-fluid volume, defined as 2 dry gallons |
+| peck        | Peck, US Customary unit for non-fluid volume, defined as 2 dry gallons |
 | dry_gal     | Dry Gallon, U.S. Customary unit for non-fluid volume. Defined as exactly 268.8025 cubic inches |
 | dry_qt      | Dry Quart, U.S. Customary unit for non-fluid volume. Defined as 1/4 of a dry gallon |
 | dry_pt      | Dry Pint, U.S. Customary unit for non-fluid volume. Defined as 1/8 of a dry gallon |

@@ -10,7 +10,8 @@ Feature Roadmap for PQM
 0.4.0
 --------------------------------------------------------------------------------
 - [x] root function (sqrt)
-- [ ] Support for non bracketed prefixes
+- [ ] allow use of prefixes on units with offsets 
+- [ ] support for non bracketed prefixes
 - [x] improve unit parser, get rid of regex
 
 0.5.0
