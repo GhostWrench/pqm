@@ -11,14 +11,17 @@ Feature Roadmap for PQM
 --------------------------------------------------------------------------------
 - [x] root function (sqrt)
 - [ ] allow use of prefixes on units with offsets 
-- [ ] support for non bracketed prefixes
+- [ ] generate code unit object and readme tables from database
 - [x] improve unit parser, get rid of regex
 
 0.5.0
 --------------------------------------------------------------------------------
-- [ ] Support for array values
-- [ ] Full test coverage
+- [ ] support for non bracketed prefixes 
+- [ ] support for array values
+- [ ] full test coverage
 
-0.6.0
+1.0.0
 --------------------------------------------------------------------------------
-- [ ] Community testing
+- [ ] community testing
+- [ ] fix any discovered issues
+- [ ] respond to feedback

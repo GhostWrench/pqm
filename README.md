@@ -468,9 +468,9 @@ Table of available units
 | gill        | U.S. Customary Gill, volume unit equal to 4 US fluid ounces    |
 | uk_gill     | Imperial Gill, volume unit equal to 5 Imperial (UK) fluid ounces |
 | peck        | Peck, US Customary unit for non-fluid volume, defined as 2 dry gallons |
-| dry_gal     | Dry Gallon, U.S. Customary unit for non-fluid volume. Defined as exactly 268.8025 cubic inches |
-| dry_qt      | Dry Quart, U.S. Customary unit for non-fluid volume. Defined as 1/4 of a dry gallon |
-| dry_pt      | Dry Pint, U.S. Customary unit for non-fluid volume. Defined as 1/8 of a dry gallon |
+| dry_gal     | Dry Gallon, US Customary unit for non-fluid volume. Defined as exactly 268.8025 cubic inches |
+| dry_qt      | Dry Quart, US Customary unit for non-fluid volume. Defined as 1/4 of a dry gallon |
+| dry_pt      | Dry Pint, US Customary unit for non-fluid volume. Defined as 1/8 of a dry gallon |
 | stere       | stere, unit of volume equal to exactly 1 m^3, typically used to measure large quantities of firewood |
 | ar          | Are, area unit that is equal to 1/100 hectares or 100 m^2      |
 | Morgen      | Morgen, traditionally the area able to be plowed in a single day by a single bladed plow and a Ox or horse, it now is approximately equal to 1/4 of a hectare |
