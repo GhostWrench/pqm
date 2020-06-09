@@ -2,4 +2,4 @@ Convert From, Convert To, Multiply By, Included in PQM
 deltaC, K, 1.0e+00, true
 deltaF, deltaC, 5.555556e-01, true
 deltaF, K, 5.555556e-01, true
-Rank, K, 5.555556e-01, true
+Ra, K, 5.555556e-01, true

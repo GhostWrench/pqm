@@ -119,9 +119,7 @@ let q = pqm.quantity(10, "g m^2 s^-3");
 Unit prefixes such as kilo (k) or micro (m) can be added to units by enclosing 
 them in brackets. The brackets are required to decrease the complexity and 
 increase performance of this module, as well as eliminating the possibility of 
-unit "collisions" where the wrong unit might accidentally be used. Note that
-quantities with a zero offset such as `degC`, `degF` and gauge pressures cannot
-have a prefix added to them when you create a quantity.
+unit "collisions" where the wrong unit might accidentally be used.
 
 ```javascript
 let q = pqm.quantity(10, "[k]m / [m]s");

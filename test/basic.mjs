@@ -188,8 +188,8 @@ function testBasics(div) {
   failures += runner("Test offset unit math with gauge pressures", div, function() {
     let atm = pqm.quantity(1.0, "atm");
     let abs = pqm.quantity(10, "[k]Pa");
-    let gauge = pqm.quantity(10, "kPa-g");
-    let gauge2 = pqm.quantity(20, "kPa-g");
+    let gauge = pqm.quantity(10, "[k]Pa-g");
+    let gauge2 = pqm.quantity(20, "[k]Pa-g");
     if (!gauge.add(abs).eq(gauge2)) {
       return "Addition of zero offset with abs failed";
     }

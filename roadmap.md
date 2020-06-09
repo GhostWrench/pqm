@@ -10,7 +10,7 @@ Feature Roadmap for PQM
 0.4.0
 --------------------------------------------------------------------------------
 - [x] root function (sqrt)
-- [ ] allow use of prefixes on units with offsets 
+- [x] allow use of prefixes on units with offsets 
 - [ ] generate code unit object and readme tables from database
 - [x] improve unit parser, get rid of regex
 

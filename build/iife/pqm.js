@@ -578,7 +578,7 @@ const pqm = (function () {
     return this.with([
       "[k]g", "m", "s", "K", "A", "mol", "cd", "bit", "rad", //Base Units
       "Hz", "N", "Pa", "J", "W", "C", "V", "F", "ohm", "S", "Wb", "T", "H",
-      "lm", "lx", "Bq", "Gy", "Sv"
+      "lm", "lx", "Bq", "Gy"
     ]);
   }
 
@@ -604,7 +604,7 @@ const pqm = (function () {
    */
   Quantity.prototype.inUS = function() {
     return this.with([
-      "lbm", "ft", "s", "deltaF", "gal", "lbf", "BTU", "HP"
+      "lbm", "ft", "s", "Ra", "gal", "lbf", "BTU", "HP"
     ])
   }
 
@@ -621,7 +621,7 @@ const pqm = (function () {
   /**
    * Combined list of all units, conversion factors and unit descriptions
    */
-  let units = {
+  const units = {
     // Non dimensional units
     "1": new Quantity(1),
     "%": new Quantity(0.01),
@@ -684,7 +684,7 @@ const pqm = (function () {
     degF: new Quantity(5.55555555555543E-01, {temperature: 1}, 2.55372222222222E+02),
     deltaC: new Quantity(1, {temperature: 1}),
     degC: new Quantity(1, {temperature: 1}, 2.73150000000000E+02),
-    Rank: new Quantity(5.55555555555543E-01, {temperature: 1}),
+    Ra: new Quantity(5.55555555555543E-01, {temperature: 1}),
     Reau: new Quantity(1.25000000000000E+00, {temperature: 1}, 2.73150000000000E+02),
     deltaReau: new Quantity(1.25000000000000E+00, {temperature: 1}),
     // Velocity Units
@@ -710,7 +710,6 @@ const pqm = (function () {
     Ba: new Quantity(1.0E-01, {mass: 1, length: -1, time: -2}),
     // Gauge Pressures
     "Pa-g": new Quantity(1.0, {mass: 1, length: -1, time: -2}, 1.01325E+05),
-    "kPa-g": new Quantity(1.0E+03, {mass: 1, length: -1, time: -2}, 1.01325E+05),
     "bar-g": new Quantity(1.00000e5, 
       {mass: 1, length: -1, time: -2}, 1.01325E+05
     ),
@@ -918,7 +917,7 @@ const pqm = (function () {
       throw "Error parsing unit: \"" + unitName + "\"";
     }
     if (!units.hasOwnProperty(unitParts[1])) {
-      throw (unitParts[1] + "is not a valid unit");
+      throw (unitParts[1] + " is not a valid unit");
     }
     let unitQuantity = units[unitParts[1]].copy();
     // Exponent
@@ -934,7 +933,7 @@ const pqm = (function () {
     }
     // Put together the parts and return
     if (prefixValue != 1) {
-      unitQuantity = unitQuantity.mul(prefixValue);
+      unitQuantity.magnitude = unitQuantity.magnitude * prefixValue;
     }
     if (powerValue != 1) {
       unitQuantity = unitQuantity.pow(powerValue);
