@@ -1,7 +1,7 @@
 {
     "$schema": "./unitdbschema.json",
     "1": {
-        "name": "1",
+        "name": "One",
         "description": "Unit non-dimensional quantity",
         "category": "unitless",
         "scale": 1.0,

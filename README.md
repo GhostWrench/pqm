@@ -336,194 +336,184 @@ revPerSec.div(oneRev).eq(hz); // true
 Table of available units
 --------------------------------------------------------------------------------
 
-| Unit Symbol | Description                                                    |
-| ----------- |:-------------------------------------------------------------- |
-| 1           | Unit non-dimensional quantity                                  |
-| %           | Non dimensional percent (100 % == 1)                           |
-| g           | Gram, unit of mass defined as 1e-3 kg                          |
-| u           | Atomic Mass Unit, approximately the mass of one proton or neutron |
-| AMU         | Atomic Mass Unit, same as 'u'                                  |
-| grain       | Grain, mass equivalent to a single ideal seed of a cereal, in particular wheat or barley |
-| ozm         | Ounce Mass, imperial unit equal to 1/16 of a Pound Mass        |
-| lbm         | Pound Mass, primary unit of mass in the imperial and US customary unit system |
-| stone       | Stone, imperial unit equal to 14 Pounds Mass                   |
-| sg          | Slug, same as 'slug'                                           |
-| cwt         | Short Hundredweight, mass unit typically used in the US that is equal to 100 lbm |
-| dwt         | Short Pennyweight, mass unit equal to 24 grains                |
-| uk_cwt      | Long Hundredweight, mass unit typically used in the UK that is equal to 8 stone |
-| ton         | Ton, US customary mass unit that is equal to 2000 lbm          |
-| uk_ton      | UK Ton, English customary mass unit that is equal to 20 Long Hundredweight or 160 Stone |
-| metric_ton  | Metric Ton, sometimes used as (tonne). Mass equal to 1000 \[k\]g |
-| slug        | Slug, Imperial unit defined as 1 lbf / Standard Gravity        |
-| carat       | Carat, Mass equal to 200 \[m\]g, typically used to measure gemstones |
-| assay_ton   | Assay Ton, Mass equal to 29 1/6 grams, used to measure the ores of precious metals |
-| denier      | Denier, linear density used in textiles. The linear density of a single strand of silk is approx. 1 denier. |
-| tex         | Tex, linear density equal to 1 g / \[k\]m, mainly used for measuring fiber products |
-| m           | Meter, SI Unit for length                                      |
-| ang         | Angstrom, Unit of measure equal to 10^-10 meters               |
-| picapt      | Pica Point, length used in typography equal to 1/12 of a pica  |
-| pica        | Pica, length used in typography equal to 1/6 of an inch        |
-| in          | Inch, Imperial unit of length equal to 1/12 of a foot          |
-| ft          | Foot, Standard Imperial unit of length                         |
-| yd          | Yard, Imperial unit of length equal to 3 foot                  |
-| ell         | Ell / Cubit, Approximate length of a man's arm from elbow to the tip of the fingers |
-| mi          | Mile, Imperial unit of length equal to 5280 ft                 |
-| survey_mi   | Survey Mile, Imperial unit of length equal to 5280 Survey Feet |
-| Nmi         | Nautical Mile, Length approximately 1/60 of a degree of latitude, formally defined as 1852 meters |
-| league      | League, originally represented the distance a person could walk in one day. The most recent common usage was in maritime where it is equal to 3 nautical miles |
-| ly          | Light Year, the length of travel of light in one year, used in astronomical scales |
-| parsec      | Parsec, defined as 648 000 / pi Astronomical units             |
-| survey_ft   | Survey Foot, Very close to a foot of length but defined as 1200/3937 meters instead of 0.3048 meters |
-| au          | Astronomical Unit, approximate distance from the Earth to the Sun |
-| chain       | Chain, US customary unit of length equal to 66 survey ft. Sometimes the unit may be based on the internation foot rather than the survey foot, changing the definition slightly |
-| link        | Link, US Customary unit of length equal to 1/100 of a chain   |
-| rod         | Rod, US Customary unit of length equal to 1/4 of a chain      |
-| furlong     | Furlong, US Customary unit of length equal to 10 chains       |
-| fathom      | Fathom, unit of length equal to 6 international foot           |
-| us_fathom   | US Customary Fathom, appox. equal to 6 survey foot           |
-| fermi       | Fermi, unit of length equal to 10^-15 m. Used in nuclear physics and named after physicist Enrico Fermi who was one of the founders of the field |
-| kayser      | Wavenumber or Kayser, which is the reciprocal of 1 \[c\]m      |
-| sec         | Second, time that is Approximately 1/86400 of a stellar day, formally defined based on the duration of 9 192 631 770 state transitions of the caesium-133 atom at 0 K |
-| s           | Second, same as 'sec'                                          |
-| min         | Minute, defined as 60 seconds                                  |
-| hr          | Hour, defined as 60 minutes                                    |
-| day         | Day, defined as 24 hours                                       |
-| yr          | Year, defined as 365 days                                      |
-| shake       | Shake, Informal metric unit of time equal to 10^-8 seconds, often used in nuclear physics |
-| K           | Kelvin, SI unit of temperature with 0 defined as absolute zero |
-| degF        | Degrees Fahrenheit, Temperature scale that is approximately 32 at the melting point of ice and 212 at the boiling point of water |
-| deltaF      | Change in temperature as measured in Degrees Fahrenheit, this unit does not have a 0 offset similar to 'degF' and thus is sometimes more useful in computations |
-| degC        | Degrees Celsius, temperature unit with a similar scale to Kelvin, but with the 0 approximately defined as the melting point of ice |
-| deltaC      | Change in temperature measured in Celsius, this unit does not have a 0 offset similar to 'degC' and thus is sometimes more useful in computations |
-| Rank        | Rankine, temperature units with the same scale as Fahrenheit but with 0 at absolute 0 |
-| Reau        | Reaumur, temperature scale that is approximately 0 at the melting point of ice and 80 at the boiling point of water |
-| deltaReau   | Change in temperature as measured in Reaumurs                  |
-| mph         | Miles per Hour, velocity at which a mile is traveled every hour |
-| knot        | Knot, velocity at which a Nautical mile is traveled every hour |
-| admkn       | Admiralty Knot, knot based on the old UK definition of a Nautical mile (1853.184 m) |
-| c           | Speed of Light, unit of velocity defined by how fast light travels |
-| grav        | Standard Gravity, approximate acceleration of gravity at the surface of the earth |
-| galileo     | Galileo, CGS Unit for acceleration                             |
-| Pa          | Pascal, SI unit for pressure defined as 1 N/m^2                |
-| mHg         | Meter of Mercury, pressure defined as the pressure applied by 1 m of Hg at 1 standard gravity, more commonly used as \[m\]mHg or \[c\]mHg |
-| mH2O        | Meter of Water, pressure defined as the pressure applied by 1 m of water at 1 standard gravity and 4 degC. More commonly used as \[m\]mH2O or \[c\]mH2O |
-| Torr        | Torr, Slightly different definition of Millimeter of mercury, very close to the same scale |
-| psi         | Pounds per square inch, unit for pressure defined as lbf / in^2 |
-| atm         | Atmosphere, pressure that is approximately the mean air pressure at sea level |
-| bar         | Bar, unit of pressure defined as 100 000 Pa. This makes it very close to 1 Atmosphere |
-| inHg        | Inches of Mercury, pressure defined as the pressure applied by 1 inch of Hg at 1 standard gravity |
-| inH2O       | Inch of Water, pressure defined as the pressure applied by 1 in of water at 1 standard gravity |
-| ftHg        | Foot of Mercury, pressure defined as the pressure applied by 1 foot of Mercury at 1 standard gravity |
-| ftH2O       | Foot of Water, pressure defined as the pressure applied by 1 foot of water at 1 standard gravity |
-| Ba          | Barye, CGS unit for pressure                                   |
-| Pa-g        | Gauge version of the Pascal, with a zero offset at atmospheric pressure |
-| kPa-g       | Gauge version of the [k]Pa, with a zero offset at atmospheric pressure |
-| bar-g       | Gauge version of bar, with a zero offset at atmospheric pressure |
-| psi-g       | Gauge version of psi, with a zero offset at atmospheric pressure |
-| N           | Newton, SI standard unit for force defined as 1 [k]g m / s^2            |
-| dyn         | Dyne, CGS unit for force defined as 1 g [c]m / s^2             |
-| gf          | Gram force, defined as the amount of force exerted by standard gravity on a 1 gram mass |
-| pond        | Pond, same as Gram Force (gf)                                  |
-| lbf         | Pounds force, defined as the amount of force exerted by standard gravity on a 1 lbm mass |
-| ozf         | Ounce Force, equal to 1/16 lbf                                 |
-| pdl         | Poundal, Unit of force derived from the foot-pound-second system equal to 1 lbm ft / s^2 |
-| ton-force   | Short Ton Force, unit of force equal to 2000 lbf               |
-| J           | Joule, SI unit for energy defined as 1 N m                     |
-| eV          | Electron Volt, Energy gain of an electron after passing through a 1 Volt potential |
-| erg         | Erg, CGS unit for energy defined as 1 dyn cm                   |
-| cal         | Calorie / Kilocalorie, based on the amount of energy to raise the temperature of 1 kg of water 1 degree Celsius. Defined in The Fifth International Conference on the Properties of Steam (London, July 1956) "International Table". Note that there is also a "thermochemical" definition which differs slightly. |
-| BTU         | British Thermal Unit, defined as the amount of energy to raise the temperature of 1 lbm of water 1 degree Fahrenheit. Based on the "International Table" (see definition of "cal") |
-| Wh          | Watt-hour, amount of energy accumulated by 1 Watt over an hour |
-| HPh         | Horsepower-hour, amount of energy accumulated by 1 HP over an hour |
-| ft-lb       | Foot-pound, Torque unit defined as 1 ft lbf                    |
-| RSI         | R value, thermal insulation unit based on the SI units. Defined as 1 K m^2 / W |
-| RIP         | R value, thermal insulation unit based on the foot-pound units of measure. Defined as 1 deltaF ft^2 hr / BTU |
-| clo         | Clothing, thermal insulation unit used in clothing design. This is the amount of insulation that allows a person at rest to maintain thermal equilibrium in an 21 degC, normally ventilated room |
-| tog         | Tog, thermal insulation unit defined as exactly 0.1 K m^2 / W  |
-| W           | Watt, SI unit for energy, defined as 1 J / s                   |
-| PS          | Metric Horsepower, defined as the amount of power to raise a mass of 75 [k]g against standard gravity over a distance of 1 meter in one second |
-| HP          | Mechanical Horsepower, defined as 33 000 ft lbf / min          |
-| P           | Poise, CGS unit for dynamic viscosity                          |
-| rhe         | Rhe, CGS unit for fluidity, equal to exactly 1 P^-1            |
-| St          | Stokes, CGS unit for kinematic viscosity                       |
-| L           | Liter, Unit of volume that is defined as 1 [d]m^2 or 1e-3 m^3  |
-| tsp         | Teaspoon, US Customary volume unit that is close to 5 mL       |
-| tspm        | Metric teaspoon, volume measurement that is exactly 5 mL       |
-| tbs         | Tablespoon, US Customary volume unit that is defined as 3 tsp  |
-| fl_oz       | Fluid Ounce, US Customary volume unit that is defined as 2 tbs |
-| uk_fluid_oz | Fluid Ounce, Imperial unit of volume                           |
-| cup         | Cup, US Customary volume unit that is defined as 8 fluid ounces |
-| pt          | Pint, US Customary volume unit that is defined as 2 cups       |
-| uk_pt       | UK Pint, Imperial volume unit defined as 20 imperial ounces    |
-| qt          | Quart, US Customary volume unit that is defined as 2 pints     |
-| uk_qt       | UK Quart, Imperial volume unit defined as 2 UK pints           |
-| gal         | Gallon, US Customary volume unit that is defined as 4 quarts   |
-| uk_gal      | UK Gallon, Imperial volume unit defined as 4 UK quarts         |
-| bushel      | US Bushel, very old unit of volume that is associated with agricultural production, about 2150.42 in^3 |
-| barrel      | Oil Barrel, volume unit used in the us oil industry            |
-| MTON        | Measurement Ton, volume unit commonly used in the freight industry equal to 40 f^3 |
-| GRT         | Gross Register Tonnage, volume unit commonly used in the freight industry equal to 100 f^3 |
-| gill        | U.S. Customary Gill, volume unit equal to 4 US fluid ounces    |
-| uk_gill     | Imperial Gill, volume unit equal to 5 Imperial (UK) fluid ounces |
-| peck        | Peck, US Customary unit for non-fluid volume, defined as 2 dry gallons |
-| dry_gal     | Dry Gallon, US Customary unit for non-fluid volume. Defined as exactly 268.8025 cubic inches |
-| dry_qt      | Dry Quart, US Customary unit for non-fluid volume. Defined as 1/4 of a dry gallon |
-| dry_pt      | Dry Pint, US Customary unit for non-fluid volume. Defined as 1/8 of a dry gallon |
-| stere       | stere, unit of volume equal to exactly 1 m^3, typically used to measure large quantities of firewood |
-| ar          | Are, area unit that is equal to 1/100 hectares or 100 m^2      |
-| Morgen      | Morgen, traditionally the area able to be plowed in a single day by a single bladed plow and a Ox or horse, it now is approximately equal to 1/4 of a hectare |
-| acre        | US Acre, unit of area traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen. Still in use in the US                    |
-| us_acre     | US Acre, same as 'acre' (common alternative)                   |
-| uk_acre     | UK Acre, unit of area traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen, slightly different than the US Acre. Used in the UK until 1995 |
-| ha          | Hectare, standard international unit for measurement of the area of land, equal to 1000 m^3 |
-| barn        | barn, non-SI metric unit of area equal to 10^-28 m^2. Originally used in nuclear physics for expressing the cross sectional area of nuclei and nuclear reactions. |
-| bit         | Bit, one bit of information that can take one of 2 states (on/off, 0/1, high/low) |
-| b           | Bit, common abbreviation for 'bit'                             |
-| byte        | Byte, equal to 8 bits of information, commonly used in modern computing architectures |
-| B           | Byte (common abbreviation)                                     |
-| word        | Word, equal to 16 bits or 2 bytes                              |
-| baud        | Baud, rate of data transmission                                |
-| A           | Ampere, SI unit for electric current defined as exactly 1 C/s  |
-| C           | Coulomb, SI Unit for electric charge defined as the amount of charge of equal to exactly 6.2415093E+18 elementary charges |
-| e           | Elementary Charge, The electric charge carried by a single proton |
-| V           | Volt, derived SI unit for electric potential, can be defined as J/C |
-| ohm         | Ohm, derived SI unit for electrical resistance                 |
-| F           | Farad, derived SI Unit of electrical capacitance               |
-| H           | Henry, derived SI unit for inductance                          |
-| S           | Siemens, derived SI unit for electrical conductance, equal to 1 / ohm |
-| mho         | mho, or ohm spelled backwards, exactly equivalent to Siemens   |
-| Wb          | Weber, SI unit for magnetic flux defined as 1 [k]g m^2 / (s^2 A) |
-| Mx          | Maxwell, CGS unit for magnetic flux defined as 1 g [c]m^2 / (s^2 A) |
-| T           | Tesla, SI unit for magnetic flux density defined as 1 Wb / m^2 |
-| Gs          | Gauss, CGS unit for magnetic flux density defined as 1 Mx / [c]m^2 |
-| ga          | Gauss, same as 'Gs' (common alternative)                       |
-| Fr          | Franklin or statcoulomb, unit for electrical charge in the EMU-CGS units of measure |
-| Gi          | Gilbert, obsolete unit used in EMU-CGS systems to measure magnetization, dimensionally equivalent to the Amp |
-| Oe          | Oersted, unit of auxiliary magnetic field in the CGS system of units |
-| mol         | Mole, SI unit for amount of substance defined by exactly 6.02214076E+23 elementary entities of said substance |
-| cd          | Candela, SI unit for luminous intensity in a given direction defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency 540E+12 Hz |
-| lm          | Lumen, SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr |
-| lx          | Lux, the SI derived unit of illuminance, measuring luminous flux per unit area. 1 lx = 1 lm/m^2) |
-| footcandle  | Footcandle, common symbols: lc and ft-c . Non-SI unit of illuminance or light intensity. 1 footcandle = 1 lm / ft^2 |
-| footlambert | Footlambert, common symbols: fL, fl, ft-L. 1 footlambert = 1/π cd / ft^2 |
-| lambert     | Lambert, common symbols: L, la, Lb. Non-SI unit of luminance. 1 lambert = 1/π cd / \[c\]m^2 |
-| phot        | Phot, common symbol: ph. CGS unit of illuminance               |
-| stilb       | Stilb, common symbol: sb. CGS unit of luminance                |
-| rad         | Radian, Dimensionless SI unit defined as the ratio of the radius of a circular arc to the radius of the arc. Typically used to describe angles |
-| sr          | Steradian, "square radian" is the SI unit of solid angle. Analogous to the radian, a solid angle of 1 sr, projected onto a unit sphere will have unit area |
-| rev         | Revolutions, dimensionless quantity describing one revolution of periodic motion |
-| deg         | Degree, dimensionless quantity equal to 1/360 of a revolution  |
-| arcmin      | Arc Minute, rotational quantity defined as 1/60 of a degree    |
-| arcsec      | Arc Second, rotational quantity defined as 1/60 of an Arc Minute or 1/3600 of a degree |
-| Hz          | Hertz, unit of frequency defined as 1/sec                      |
-| rpm         | Revolutions per Minute, unit of frequency defined as 1 rev/min |
-| Bq          | Becquerel, SI unit for radiation activity                      |
-| Gy          | Gray, SI unit for radiation absorbed dose                      |
-| Sv          | Sievert, SI unit for radiation equivalent dose                 |
-| R           | Rontgen, conventional unit for radiation exposure              |
-| RAD         | Radiation Absorbed Dose, conventional unit for radiation absorbed dose |
-| rem         | Rem, conventional unit for radiation equivalent dose           |
-| Ci          | Curie, conventional unit for radiation activity                |
+| Unit Name               | Symbol        | Aliases  | Description                                                | 
+| ----------------------- | ------------- | -------- | ---------------------------------------------------------- | 
+| One                     | 1             |          | Unit non-dimensional quantity                              | 
+| Percent                 | %             |          | Non dimensional percent (100 % == 1)                       | 
+| Gram                    | g             |          | unit of mass defined as 1e-3 kg                            | 
+| Atomic Mass Unit        | u             | AMU      | The approximate mass of one proton or neutron              | 
+| Grain                   | grain         |          | Mass approximately equivalent to a single ideal seed of a cereal, in particular wheat or barley | 
+| Ounce                   | ozm           |          | US and Imperial unit equal to 1/16 of a Pound Mass         | 
+| Pound                   | lbm           |          | US and Imperial primary unit of mass                       | 
+| Stone                   | stone         |          | Imperial unit equal to 14 Pounds Mass                      | 
+| Slug                    | sg            | slug     | US and Imperial unit defined as 1 lbf / Standard Gravity   | 
+| Short Hundredweight     | cwt           |          | Typically used in the US, equal to 100 lbm                 | 
+| Short Pennyweight       | dwt           |          | From the weight of an English penny in the Middle Ages, equal to 24 grains or 1/20 of a troy ounce | 
+| Long Hundredweight      | uk_cwt        |          | Typically used in the UK, equal to 8 stone                 | 
+| Ton                     | ton           |          | US customary unit equal to 2000 lbm                        | 
+| UK Ton                  | uk_ton        |          | English customary unit that is equal to 20 Long Hundredweight or 160 Stone | 
+| Metric Ton              | metric_ton    | tonne    | Sometimes seen as 'tonne', this mass equals 1000 kg        | 
+| Carat                   | carat         |          | Equal to 200 mg, typically used to measure gemstones       | 
+| Assay Ton               | assay_ton     |          | Equal to 29 1/6 grams, often used to measure the ores of precious metals | 
+| Denier                  | denier        |          | Linear density used in textiles, the linear density of a single strand of silk is approx. 1 denier | 
+| Tex                     | tex           |          | Linear density equal to 1 g / km, mainly used for measuring fiber products | 
+| Meter                   | m             |          | SI standard unit for length                                | 
+| Angstrom                | ang           |          | Equal to 10^-10 meters, often used to express the size of atoms and molecules | 
+| Pica Point              | picapt        |          | Used in typography, equal to 1/12 of a pica                | 
+| Pica                    | pica          |          | Used in typography, equal to 1/6 of an inch                | 
+| Inch                    | in            |          | US and Imperial unit of length equal to 1/12 of a foot     | 
+| Foot                    | ft            |          | Standard US and Imperial unit of length                    | 
+| Yard                    | yd            |          | US and Imperial unit of length equal to 3 foot             | 
+| Ell/Cubit               | ell           |          | Approximate length of a man's arm from elbow to the tip of the fingers | 
+| Survey Mile             | survey_mi     |          | US Customary unit equal to 5280 Survey Feet                | 
+| Nautical Mile           | nmi           | Nmi      | Approximately 1/60 of a degree of latitude, formally defined as 1852 meters | 
+| League                  | league        |          | Originally represented the distance a person could walk in one day, the most recent common usage was in maritime where it is equal to 3 nautical miles | 
+| Light Year              | ly            |          | Represents the distance light travels in one year in a vacuum, used in astronomical scales | 
+| Parsec                  | parsec        |          | Defined as 648 000 / pi astronomical units (au)            | 
+| Survey Foot             | survey_ft     |          | Slightly different definition of foot defined as 1200/3937 meters instead of 0.3048 meters | 
+| Astronomical Unit       | au            |          | Approximate distance from the Earth to the Sun             | 
+| Chain                   | chain         |          | US customary unit equal to 66 survey ft, sometimes the unit may be based on the internation foot rather than the survey foot changing the definition slightly | 
+| Link                    | link          |          | US Customary unit of length equal to 1/100 of a chain      | 
+| Rod                     | rod           |          | US Customary unit of length equal to 1/4 of a chain        | 
+| Furlong                 | furlong       |          | US Customary unit of length equal to 10 chains             | 
+| Fathom                  | fathom        |          | Equal to 6 international foot, typically used to measure depth in maritime applications | 
+| US Fathom               | us_fathom     |          | US Customary Fathom, appox. equal to 6 survey foot         | 
+| Fermi                   | fermi         |          | Equal to 10^-15 m, Used in nuclear physics and named after physicist Enrico Fermi who was one of the founders of the field | 
+| Kayser/Wavenumber       | kayser        |          | Reciprocal of 1 cm, used in spectroscopy and chemistry to represent the number of wavelengths per cm | 
+| Second                  | s             | sec      | Approximately 1/86400 of a stellar day, formally defined based on the duration of 9 192 631 770 state transitions of the caesium-133 atom at 0 K | 
+| Minute                  | min           |          | Defined as 60 seconds                                      | 
+| Hour                    | hr            |          | defined as 60 minute                                       | 
+| Day                     | day           |          | Approximately equal to the amount of time for the earth to rotate on it's axis, formally defined as 24 hours | 
+| Year                    | yr            |          | Approximately equal to the amount of time for the earth to make one orbit around the sun, formally defined as 365 days | 
+| Shake                   | shake         |          | Informal metric unit equal to 10^-8 seconds, often used in nuclear physics | 
+| Kelvin                  | K             |          | SI standard unit with 0 defined as absolute zero           | 
+| Degrees Fahrenheit      | degF          |          | Temperature scale that is approximately 32 at the melting point of ice and 212 at the boiling point of water | 
+| Degrees Celsius         | degC          |          | Temperature unit with a similar scale to Kelvin, but with the 0 approximately defined as the melting point of ice | 
+| Delta Celsius           | deltaC        |          | Change in temperature measured in Celsius, this unit does not have a 0 offset similar to 'degC' and thus is sometimes more useful in computations | 
+| Rankine                 | Ra            | Rank,deltaF | Units with the same scale as Fahrenheit, but with 0 at absolute 0 | 
+| Reaumur                 | Reau          |          | Temperature scale that is approximately 0 at the melting point of ice and 80 at the boiling point of water | 
+| Delta Reaumur           | deltaReau     |          | Change in temperature as measured in Reaumurs              | 
+| Mile per Hour           | mph           |          | Velocity at which a mile is traveled every hour            | 
+| Knot                    | knot          |          | Velocity at which a Nautical mile is traveled every hour   | 
+| Admirality Knot         | admkn         |          | Knot based on the old UK definition of a Nautical mile (1853.184 m) | 
+| Speed of Light          | c             |          | velocity defined by how fast light travels in a vacuum     | 
+| Standard Gravity        | grav          |          | Approximate acceleration of gravity at the surface of the earth | 
+| Galileo                 | galileo       |          | CGS system standard unit for acceleration                  | 
+| Pascal                  | Pa            |          | SI standard unit for pressure defined as 1 N/m^2           | 
+| Meter of Mercury        | mHg           |          | The pressure applied by 1 m of mercury at 1 standard gravity, more commonly used as mmHg or cmHg | 
+| Meter of Water          | mH2O          |          | The pressure applied by 1 m of water at 1 standard gravity, more commonly used as mmH2O or cmH2O | 
+| Torr                    | Torr          |          | Slightly different definition of mmHg, but very close to the same scale | 
+| Pound per Square Inch   | psi           |          | US and Imperial unit of pressure defined as 1 lbf / in^2   | 
+| Atmosphere              | atm           |          | Approximately the mean air pressure at sea level           | 
+| Bar                     | bar           |          | Defined as 100 000 Pa, which is very close to 1 atmosphere | 
+| Inch of Mercury         | inHg          |          | The pressure applied by 1 inch of mercury at 1 standard gravity | 
+| Inch of Water           | inH2O         |          | The pressure applied by 1 inch of water at 1 standard gravity | 
+| Foot of Mercury         | ftHg          |          | The pressure applied by 1 foot of mercury at 1 standard gravity | 
+| Foot of Water           | ftH2O         |          | The pressure applied by 1 foot of water at 1 standard gravity | 
+| Barye                   | Ba            |          | CGS standard unit for pressure                             | 
+| Gauge Pascal            | Pa-g          |          | Pascal with a zero offset at atmospheric pressure          | 
+| Gauge Bar               | bar-g         |          | Bar with a zero offset at atmospheric pressure             | 
+| Gauge PSI               | psi-g         |          | psi with a zero offset at atmospheric pressure             | 
+| Newton                  | N             |          | SI standard unit for force defined as 1 kg m / s^2         | 
+| Dyne                    | dyn           |          | CGS standard unit for force defined as 1 g [c]m / s^2      | 
+| Gram Force              | gf            | pond     | Defined as the amount of force exerted by standard gravity on a 1 gram mass | 
+| Pound Force             | lbf           |          | Defined as the amount of force exerted by standard gravity on a 1 lbm mass | 
+| Ounce Force             | ozf           |          | Equal to 1/16 lbf                                          | 
+| Poundal                 | pdl           |          | Force unit in the foot-pound-second system equal to 1 lbm ft / s^2 | 
+| Ton Force               | ton-force     |          | Equal to 2000 lbf                                          | 
+| Joule                   | J             |          | SI standard unit for energy defined as 1 N m               | 
+| Electron Volt           | eV            |          | Energy gain of an electron after passing through a 1 Volt potential | 
+| Erg                     | erg           |          | CGS standard unit of energy defined as 1 dyn cm            | 
+| Kilocalorie/Calorie     | cal           |          | Based on the amount of energy needed to raise the temperature of 1 kg of water 1 degree Celsius, defined in The Fifth International Conference on the Properties of Steam (London, July 1956) 'International Table' | 
+| British Thermal Unit    | BTU           |          | Based on the amount of energy needed to raise the temperature of 1 lbm of water 1 degree Fahrenheit, defined in The Fifth International Conference on the Properties of Steam (London, July 1956) 'International Table' | 
+| Watt-hour               | Wh            |          | Amount of energy dissipated by 1 Watt source over an hour  | 
+| Horse Power Hour        | HPh           |          | Amount of energy dissipated by a 1 HP source over an hour  | 
+| Foot Pound-force        | ft-lb         | ft-lbf   | Defined as 1 ft x 1 lbf, typically used to describe torques rather than energy | 
+| R Value (SI)            | RSI           |          | Thermal insulation defined as 1 K m^2 / W                  | 
+| R Value (Foot Pound)    | RIP           |          | Thermal insulation defined as 1 Ra ft^2 hr / BTU           | 
+| Clothing                | clo           |          | Thermal insulation unit used in clothing design, defined as the amount of insulation that allows a person at rest to maintain thermal equilibrium in an 21 degC, normally ventilated room | 
+| Tog                     | tog           |          | Thermal insulation unit defined as exactly 0.1 K m^2 / W   | 
+| Watt                    | W             |          | SI standard unit for energy, defined as 1 J / s            | 
+| Metric Horsepower       | PS            |          | Defined as the amount of power to raise a mass of 75 kg against standard gravity over a distance of 1 meter in one second | 
+| Mechanical Horsepower   | HP            |          | Defined as 33 000 ft lbf / min                             | 
+| Poise                   | P             |          | CGS unit for dynamic viscosity                             | 
+| Rhe                     | rhe           |          | CGS unit for fluidity, equal to exactly 1 P^-1             | 
+| Stokes                  | St            |          | CGS unit for kinematic viscosity                           | 
+| Liter                   | L             |          | Volume defined as 1 [d]m^3 or 10^-3 m^3                    | 
+| Teaspoon                | tsp           |          | US Customary volume unit that is close to 5 mL             | 
+| Metric Teaspoon         | tspm          |          | Based on the US Teaspoon, but defined as exactly 5 mL      | 
+| Tablespoon              | tbs           |          | US Customary volume unit that is defined as 3 tsp          | 
+| Fluid Ounce             | fl_oz         |          | US Customary volume unit that is defined as 2 tbs          | 
+| UK Fluid Ounce          | uk_fl_oz      |          | Imperial unit approximately equal to the volume of 1 avoirdupois ounce of water | 
+| Cup                     | cup           |          | US Customary volume unit that is defined as 8 fluid ounces | 
+| Pint                    | pt            |          | US Customary volume unit that is defined as 2 cups         | 
+| UK Pint                 | uk_pt         |          | Imperial volume unit defined as 20 imperial ounces         | 
+| Quart                   | qt            |          | US Customary volume unit that is defined as 2 pints        | 
+| UK Quart                | uk_qt         |          | Imperial volume unit defined as 2 UK pints                 | 
+| Gallon                  | gal           |          | US Customary volume unit that is defined as 4 quarts       | 
+| UK Gallon               | uk_gal        |          | Imperial volume unit defined as 4 UK quarts                | 
+| Bushel                  | bushel        |          | Very old unit of volume that is associated with agricultural production, about 2150.42 in^3 | 
+| Oil Barrel              | bbl           | barrel   | Defined internationally as 42 US Gallons, typically used in the oil industry | 
+| Measurement Ton         | MTON          |          | Commonly used in the freight industry, equal to 40 ft^3    | 
+| Gross Register Tonnage  | GRT           |          | commonly used in the freight industry equal to 100 ft^3    | 
+| Gill                    | gill          |          | US Customary unit of volume equal to 4 US fluid ounces     | 
+| UK Gill                 | uk_gill       |          | Imperial unit equal to 5 Imperial (UK) fluid ounces        | 
+| Peck                    | peck          |          | US Customary unit for non-fluid volume, defined as 2 dry gallons | 
+| Dry Gallon              | dry_gal       |          | US Customary unit for non-fluid volume, defined as exactly 268.8025 cubic inches | 
+| Dry Quart               | dry_qt        |          | US Customary unit for non-fluid volume, defined as 1/4 of a dry gallon | 
+| Dry Pint                | dry_pt        |          | US Customary unit for non-fluid volume, defined as 1/8 of a dry gallon | 
+| Stere                   | stere         |          | Equal to exactly 1 m^3, typically used to measure large quantities of firewood | 
+| Are                     | ar            |          | Equal to 1/100 hectares or 100 m^2                         | 
+| Morgen                  | morgen        |          | Traditionally the area able to be plowed in a single day by a single bladed plow and an ox or horse, it now is approximately equal to 1/4 of a hectare | 
+| Acre                    | acre          | us_acre  | Traditionally defined as the amount of area that could be plowed in one day by a yoke of oxen, still in use in the US | 
+| UK Acre                 | uk_acre       |          | Slightly different than the US Acre, used in the UK until 1995 | 
+| Hectare                 | ha            |          | Internationally used metric unit for measurement of the area of land, equal to 1000 m^3 | 
+| Barn                    | barn          |          | Equal to 10^-28 m^2, originally used in nuclear physics for expressing the cross sectional area of nuclei and nuclear reactions | 
+| Bit                     | b             | bit      | Basic unit of information that can take one of 2 states (on/off, 0/1, high/low) | 
+| Byte                    | B             | byte     | Equal to 8 bits of information, commonly used in modern computing architectures | 
+| Word                    | word          |          | Equal to 16 bits or 2 bytes                                | 
+| Double Word             | dword         |          | Equal to 32 bits, 4 bytes or 2 words                       | 
+| Baud Rate               | baud          |          | Rate of data transmission equal to 1 bit / second          | 
+| Ampere                  | A             |          | SI standard unit for electric current, equal to 1 C/s      | 
+| Coulomb                 | C             |          | SI standard unit for electric charge defined as the amount of charge of exactly 6.2415093E+18 elementary charges | 
+| Elementary Charge       | e             |          | The electric charge carried by a single proton             | 
+| Volt                    | V             |          | Derived SI unit for electric potential, can be defined as J/C | 
+| Ohm                     | ohm           |          | Derived SI unit for electrical resistance                  | 
+| Farad                   | F             |          | Derived SI unit of electrical capacitance                  | 
+| Henry                   | H             |          | Derived SI unit for inductance                             | 
+| Siemens                 | S             | mho      | Derived SI unit for electrical conductance, equal to 1 / ohm | 
+| Weber                   | Wb            |          | SI unit for magnetic flux defined as 1 kg m^2 / (s^2 A)    | 
+| Maxwell                 | Mx            |          | CGS unit for magnetic flux defined as 1 g cm^2 / (s^2 A)   | 
+| Tesla                   | T             |          | SI unit for magnetic flux density defined as 1 Wb / m^2    | 
+| Gauss                   | Gs            | gs       | CGS unit for magnetic flux density defined as 1 Mx / cm^2  | 
+| Franklin                | Fr            |          | Standard unit of electrical charge in the EMU-CGS units of measure | 
+| Gilbert                 | Gi            |          | Obsolete unit used in EMU-CGS systems to measure magnetization, dimensionally equivalent to the Amp | 
+| Oersted                 | Oe            |          | CGS unit of auxiliary magnetic field                       | 
+| Mole                    | mol           |          | SI standard unit for an amount of substance, defined as exactly 6.02214076E+23 elementary entities (usually molecules) | 
+| Candela                 | cd            |          | SI standard unit for luminous intensity in a given direction defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency 540E+12 Hz | 
+| Lumen                   | lm            |          | SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr | 
+| Lux                     | lx            |          | SI derived unit of illuminance, measuring luminous flux per unit area. 1 lx = 1 lm/m^2) | 
+| Footcandle              | footcandle    |          |                                                            | 
+| Footlambert             | footlambert   |          | Non-SI unit of illuminance or light intensity. 1 footcandle = 1 lm / ft^2 | 
+| Lambert                 | lambert       |          | Non-SI unit of luminance. 1 lambert = 1/π cd / cm^2        | 
+| Phot                    | phot          |          | CGS unit of illuminance                                    | 
+| Stilb                   | stilb         |          | CGS unit of luminance                                      | 
+| Radian                  | rad           |          | Defined as the ratio of the radius of a circular arc to the radius of the arc, typically used to describe angles | 
+| Steradians              | sr            |          | A 'square radian' is a unit of solid angle analogous to the radian, a solid angle of 1 sr projected onto a unit sphere will have unit area | 
+| Revolution              | rev           |          | Angle describing one full revolution around an axis        | 
+| Degree                  | deg           |          | Angle measurement equal to 1/360 of a revolution           | 
+| Arc Minute              | arcmin        |          | Angle measurement defined as 1/60 of a degree              | 
+| Arc Second              | arcsec        |          | Angle measurement defined as 1/60 of a arc minue           | 
+| Revolutions per Minute  | rpm           |          | Rotational frequency describing the number of revolution around an axis in a minute | 
+| Hertz                   | Hz            |          | Frequency defined as 1/sec                                 | 
+| Becquerel               | Bq            |          | SI derived unit for radiation activity                     | 
+| Gray                    | Gy            |          | SI derived unit for radiation absorbed dose                | 
+| Sievert                 | Sv            |          | SI unit for radiation equivalent dose, although dimensionally equivalent to Gy, it also includes a weighting function for types of radiation effects on human cells, and is thus not exactly equal | 
+| Rontgen                 | R             |          | Conventional unit for radiation exposure                   | 
+| Radiation Absorbed Dose | RAD           |          | Conventional unit for radiation absorbed dose              | 
+| Roentgen Equivalent Man | rem           |          | Conventional unit for radiation equivalent dose            | 
+| Curie                   | Ci            |          | Conventional unit for radiation activity                   | 
+
 
 Table of available unit prefixes
 --------------------------------------------------------------------------------
