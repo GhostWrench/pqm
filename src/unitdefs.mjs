@@ -198,4 +198,4 @@ const units = {
   "Ci" : {"s": 3.70000000000000000000e+10, "d": [0,0,-1,0,0,0,0,0,0,]},
 };
 
-export default units
+export default units;

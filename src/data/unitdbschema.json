@@ -2,10 +2,38 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "description": "Schema for the unit database JSON file",
     "type": "object",
-    "additionalProperties": {"$ref": "#/definitions/unit"},
+    "required": [
+        "prefixes",
+        "units"
+    ],
+    "additionalProperties": {"type": "string"},
+    "properties": {
+        "prefixes": {
+            "description": "Prefixes that are prepended to units to modify magnitude",
+            "type": "object",
+            "additionalProperties": {"$ref": "#/definitions/prefix"}
+        },
+        "units": {
+            "description": "Unit definitions with information needed to use",
+            "type": "object",
+            "additionalProperties": {"$ref": "#/definitions/unit"}
+        }
+    },
     "definitions": {
+        "prefix": {
+            "type": "object",
+            "required": [
+                "name",
+                "scale"
+            ],
+            "properties": {
+                "name": {"type": "string"},
+                "scale": {"type": "number"}
+            }
+        },
         "unit": {
             "description": "Schema for a single unit",
+            "type": "object",
             "required": [
                 "name",
                 "description",

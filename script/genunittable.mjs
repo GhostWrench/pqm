@@ -2,7 +2,7 @@ import fs from "fs";
 
 // Read the unit database
 let dbfile = fs.readFileSync("src/data/unitdb.json");
-let unitdb = JSON.parse(dbfile)
+let unitdb = JSON.parse(dbfile).units;
 
 // Create the output table
 let table = "";

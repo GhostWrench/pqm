@@ -1,13 +1,10 @@
 import fs from "fs";
 
-// Prefixes
-const prefixes = ["y", "z", "a", "f", "p", "n", "u", "m", "c", "d",
-                  "da", "h", "k", "M", "G", "T", "P", "E", "Z", "Y",
-                  "Ki", "Mi", "Gi", "Ti", "Pi", "Ei", "Zi", "Yi"];
-
 // Read the unit database
 let dbfile = fs.readFileSync("src/data/unitdb.json");
-let unitdb = JSON.parse(dbfile)
+let fulldb = JSON.parse(dbfile);
+let prefixes = Object.keys(fulldb.prefixes);
+let unitdb = fulldb.units;
 
 let collisiondb = new Object();
 
