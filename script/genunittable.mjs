@@ -1,5 +1,4 @@
 import fs from "fs";
-import pqm from "../src/pqm.mjs";
 
 // Read the unit database
 let dbfile = fs.readFileSync("src/data/unitdb.json");
@@ -26,7 +25,7 @@ for (let key in unitdb) {
 }
 
 // Write the output to a file
-fs.writeFileSync("build/units/table.md", table);
+fs.writeFileSync("build/temp/unittable.md", table);
 
 function tableLine(name, symbol, addSyms, description, isHeader) {
   let output = "| ";
