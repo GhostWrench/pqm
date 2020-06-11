@@ -192,6 +192,13 @@
         "scale": 1.14300000000000E+00,
         "dimensions": {"length": 1}
     },
+    "mi": {
+        "name": "Mile",
+        "description": "US and Imperial measure of distance equal to 5280 feet or 1,609.344 meters",
+        "category": "length",
+        "scale": 1.60934400000000E+03,
+        "dimensions": {"length": 1}
+    },
     "survey_mi": {
         "name": "Survey Mile",
         "description": "US Customary unit equal to 5280 Survey Feet",
@@ -346,7 +353,8 @@
         "description": "SI standard unit with 0 defined as absolute zero",
         "category": "temperature",
         "scale": 1.0,
-        "dimensions": {"temperature": 1}
+        "dimensions": {"temperature": 1},
+        "aliases": ["deltaC"]
     },
     "degF": {
         "name": "Degrees Fahrenheit",
@@ -363,13 +371,6 @@
         "scale": 1.0,
         "dimensions": {"temperature": 1},
         "offset": 2.73150000000000E+02
-    },
-    "deltaC": {
-        "name": "Delta Celsius",
-        "description": "Change in temperature measured in Celsius, this unit does not have a 0 offset similar to 'degC' and thus is sometimes more useful in computations",
-        "category": "temperature",
-        "scale": 1.0,
-        "dimensions": {"temperature": 1}
     },
     "Ra": {
         "name": "Rankine",
@@ -774,7 +775,7 @@
         "name": "Pint",
         "description": "US Customary volume unit that is defined as 2 cups",
         "category": "volume",
-        "scale": 5.68261250000000E-04,
+        "scale": 4.73176473000000E-04,
         "dimensions": {"length": 3}
     },
     "uk_pt": {
@@ -1236,7 +1237,7 @@
         "description": "Conventional unit for radiation equivalent dose",
         "category": "radiology",
         "scale": 1.0E-02,
-        "dimensions": {"length": 2, "time": 2}
+        "dimensions": {"length": 2, "time": -2}
     },
     "Ci": {
         "name": "Curie",
