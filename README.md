@@ -365,6 +365,7 @@ Table of available units
 | Foot                    | ft            |          | Standard US and Imperial unit of length                    | 
 | Yard                    | yd            |          | US and Imperial unit of length equal to 3 foot             | 
 | Ell/Cubit               | ell           |          | Approximate length of a man's arm from elbow to the tip of the fingers | 
+| Mile                    | mi            |          | US and Imperial measure of distance equal to 5280 feet or 1,609.344 meters | 
 | Survey Mile             | survey_mi     |          | US Customary unit equal to 5280 Survey Feet                | 
 | Nautical Mile           | nmi           | Nmi      | Approximately 1/60 of a degree of latitude, formally defined as 1852 meters | 
 | League                  | league        |          | Originally represented the distance a person could walk in one day, the most recent common usage was in maritime where it is equal to 3 nautical miles | 
@@ -386,10 +387,9 @@ Table of available units
 | Day                     | day           |          | Approximately equal to the amount of time for the earth to rotate on it's axis, formally defined as 24 hours | 
 | Year                    | yr            |          | Approximately equal to the amount of time for the earth to make one orbit around the sun, formally defined as 365 days | 
 | Shake                   | shake         |          | Informal metric unit equal to 10^-8 seconds, often used in nuclear physics | 
-| Kelvin                  | K             |          | SI standard unit with 0 defined as absolute zero           | 
+| Kelvin                  | K             | deltaC   | SI standard unit with 0 defined as absolute zero           | 
 | Degrees Fahrenheit      | degF          |          | Temperature scale that is approximately 32 at the melting point of ice and 212 at the boiling point of water | 
 | Degrees Celsius         | degC          |          | Temperature unit with a similar scale to Kelvin, but with the 0 approximately defined as the melting point of ice | 
-| Delta Celsius           | deltaC        |          | Change in temperature measured in Celsius, this unit does not have a 0 offset similar to 'degC' and thus is sometimes more useful in computations | 
 | Rankine                 | Ra            | Rank,deltaF | Units with the same scale as Fahrenheit, but with 0 at absolute 0 | 
 | Reaumur                 | Reau          |          | Temperature scale that is approximately 0 at the melting point of ice and 80 at the boiling point of water | 
 | Delta Reaumur           | deltaReau     |          | Change in temperature as measured in Reaumurs              | 
