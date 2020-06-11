@@ -34,7 +34,7 @@ for (let mainSym in unitdb) {
   }
   // Get the definition of the unit in string form
   let unitDef = "{" +
-                "\"s\": " + unitdb[mainSym].scale.toExponential(20) + ", ";
+                "\"s\": " + unitdb[mainSym].scale.toExponential(16) + ", ";
   let dimArr = "[";
   for (let dimIdx=0; dimIdx<dimensionTypes.length; dimIdx++) {
     if (unitdb[mainSym].dimensions.hasOwnProperty(dimensionTypes[dimIdx])) {
@@ -46,7 +46,7 @@ for (let mainSym in unitdb) {
   dimArr += "]";
   unitDef += ("\"d\": " + dimArr);
   if (unitdb[mainSym].hasOwnProperty("offset")) {
-    unitDef += ", \"o\": " + unitdb[mainSym].offset.toExponential(20);
+    unitDef += ", \"o\": " + unitdb[mainSym].offset.toExponential(16);
   }
   unitDef += "},\n";
   // Create an array with the unit and aliases to loop through
