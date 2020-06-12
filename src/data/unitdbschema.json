@@ -28,7 +28,7 @@
             ],
             "properties": {
                 "name": {"type": "string"},
-                "scale": {"type": "number"}
+                "scale": {"type": "string"}
             }
         },
         "unit": {
@@ -44,7 +44,7 @@
             "properties": {
                 "name": {"type": "string"},
                 "description": {"type": "string"},
-                "scale": {"type": "number"},
+                "scale": {"type": "string"},
                 "category": {
                     "type": "string",
                     "enum": [
@@ -71,7 +71,7 @@
                         "miscellaneous"
                     ]
                 },
-                "offset": {"type": "number"},
+                "offset": {"type": "string"},
                 "aliases": {
                     "type": "array",
                     "items": {"type": "string"}
