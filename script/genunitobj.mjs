@@ -21,7 +21,7 @@ code += "export const dimensionTypes = [\n";
 for (let dimTypeIdx=0; dimTypeIdx<dimensionTypes.length; dimTypeIdx++) {
   code += "  \"" + dimensionTypes[dimTypeIdx] + "\",\n"; 
 }
-code += "};\n\n";
+code += "];\n\n";
 
 // Generate the prefix definition object
 let prefixdb = fulldb.prefixes;

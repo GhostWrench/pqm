@@ -14,7 +14,7 @@ export const dimensionTypes = [
   "luminosity",
   "information",
   "rotation",
-};
+];
 
 export const prefixes = {
   "y": 1e-24,
