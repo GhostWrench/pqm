@@ -3,13 +3,13 @@
   "version": "0.3.2",
   "description": "Node.js and browser library for dealing with numbers with units",
   "type": "module",
-  "main": "./build/commonjs/pqm.cjs",
+  "main": "./build/cjs/pqm.cjs",
   "directories": {
     "test": "test"
   },
   "exports": {
-    "import": "./src/pqm.mjs",
-    "require": "./build/commonjs/pqm.cjs"
+    "import": "./build/es/pqm.mjs",
+    "require": "./build/cjs/pqm.cjs"
   },
   "readmeFilename": "README.md",
   "scripts": {

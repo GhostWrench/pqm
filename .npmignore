@@ -7,3 +7,5 @@ script/
 src/
 pqm.code-workspace
 roadmap.md
+rollup.config.js
+pqm.min.*
