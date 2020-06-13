@@ -37,7 +37,7 @@
     "metric"
   ],
   "author": "Daniel Kuntz <daniel.kuntz@ghostwrench.net>",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/GhostWrench/pqm/issues"
   },
