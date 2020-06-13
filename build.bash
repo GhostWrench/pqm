@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Generate the unit documentation table
+eval "node './script/genunittable.mjs'"
 # Generate the unit definitions file from the unit database
 eval "node './script/genunitobj.mjs'"
 # Rollup the code into the build folder

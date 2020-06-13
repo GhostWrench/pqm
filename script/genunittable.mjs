@@ -1,3 +1,8 @@
+/**
+ * This script generated the unit definition table that goes into the doc 
+ * folder. This keeps the units definitions up to date with the code.
+ */
+
 import fs from "fs";
 
 // Read the unit database
@@ -25,7 +30,7 @@ for (let key in unitdb) {
 }
 
 // Write the output to a file
-fs.writeFileSync("build/temp/unittable.md", table);
+fs.writeFileSync("doc/unittable.md", table);
 
 function tableLine(name, symbol, addSyms, description, isHeader) {
   let output = "| ";
