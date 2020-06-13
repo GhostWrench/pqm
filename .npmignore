@@ -5,6 +5,9 @@ test/
 bench/
 script/
 src/
+build.bash
+build/iife/
+build/temp/
 pqm.code-workspace
 roadmap.md
 rollup.config.js
