@@ -18,6 +18,7 @@ Feature Roadmap for PQM
 --------------------------------------------------------------------------------
 - [ ] support for non bracketed prefixes 
 - [ ] support for array values
+- [ ] more units!
 - [ ] full test coverage
 
 1.0.0

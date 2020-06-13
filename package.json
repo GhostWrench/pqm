@@ -45,6 +45,7 @@
   "dependencies": {},
   "devDependencies": {
     "c8": "^7.1.2",
+    "rollup": "^2.16.0",
     "terser": "^4.7.0"
   }
 }

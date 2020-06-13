@@ -4,5 +4,6 @@ coverage/
 test/
 bench/
 script/
+src/
 pqm.code-workspace
 roadmap.md
