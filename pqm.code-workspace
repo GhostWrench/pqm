@@ -9,5 +9,28 @@
 		"[javascript]": {
 			"editor.tabSize": 2
 		}
+	},
+	"launch": {
+		"configurations": [
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Debug Tests",
+				"skipFiles": [
+					"<node_internals>/**"
+				],
+				"program": "${workspaceFolder}/test/node/test.mjs"
+			},
+			{
+				"type": "node",
+				"request": "launch",
+				"name": "Debug Current File",
+				"skipFiles": [
+					"<node_internals>/**"
+				],
+				"program": "${file}"
+			}
+		],
+		"compounds": []
 	}
 }
