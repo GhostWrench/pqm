@@ -22,7 +22,7 @@ const mod = require('module');
 require = performance.timerify(require);
 
 // Call and test performance
-const pqm = require("../build/commonjs/pqm.cjs");
+const pqm = require("../build/cjs/pqm.cjs");
 
 // Function to define and convert a complex quantity
 function defineAndConvertInner(message) {
