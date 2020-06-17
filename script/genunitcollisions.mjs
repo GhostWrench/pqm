@@ -6,6 +6,8 @@ let fulldb = JSON.parse(dbfile);
 let prefixes = Object.keys(fulldb.prefixes);
 let unitdb = fulldb.units;
 
+console.log("Number of total base units: " + Object.keys(unitdb).length);
+
 let collisiondb = new Object();
 
 // Loop and look for collisions
