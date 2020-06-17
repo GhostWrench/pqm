@@ -278,7 +278,7 @@ var pqm = (function () {
    * forms of arithmetic such as addition and multiplication.
    * 
    * @param {number} magnitude Relative magnitude from reference unit
-   * @param {Object} dimensions Base dimensions of the unit
+   * @param {number[]} dimensions Base dimensions of the unit
    * @param {number} offsets Base offsets from nominal of the unit (temperature 
    *                 scales only valid for units that do not have compound 
    *                 dimensions
@@ -286,25 +286,13 @@ var pqm = (function () {
   function Quantity(magnitude, dimensions, offset) {
     // Fill in member values
     this.magnitude = magnitude;
-    this.dimensions = new Array(numDimensionTypes);
-    for (let ii=0; ii<numDimensionTypes; ii++) {
-      this.dimensions[ii] = 0;
-    }
+    //this.dimensions = new Array(numDimensionTypes);
     if (dimensions) {
-      if (Array.isArray(dimensions)) {
-        this.dimensions = dimensions;
-      } else {
-        for (let dim in dimensions) {
-          let dimensionIdx = dimensionTypes.indexOf(dim);
-          // Check for valid user input
-          if (dimensionIdx == -1) { // not a valid dimension type
-            throw "Cannot create physical quantity with dimension '" + dim + "'";
-          }
-          if (!Number.isInteger(this.dimensions[dimensionIdx])) {
-            throw "Units may only be raised to integer powers";
-          }
-          this.dimensions[dimensionIdx] = dimensions[dim];
-        }
+      this.dimensions = dimensions;
+    } else {
+      this.dimensions = new Array(numDimensionTypes);
+      for (let dimIdx=0; dimIdx<numDimensionTypes; dimIdx++) {
+        this.dimensions[dimIdx] = 0;
       }
     }
     // Finally, set the offset
