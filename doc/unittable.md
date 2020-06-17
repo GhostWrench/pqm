@@ -2,10 +2,14 @@
 | ----------------------- | ------------- | -------- | ---------------------------------------------------------- | 
 | One                     | 1             |          | Unit non-dimensional quantity                              | 
 | Percent                 | %             |          | Non dimensional percent (100 % == 1)                       | 
+| Parts per Million       | ppm           |          | Unitless quantity defined as 1 / 10^6                      | 
+| Parts per Billion       | ppb           |          | Unitless quantity defined as 1 / 10^9                      | 
+| Parts per Trillion      | ppt           |          | Unitless quantity defined as 1 / 10^12                     | 
 | Gram                    | g             |          | unit of mass defined as 1e-3 kg                            | 
-| Atomic Mass Unit        | u             | AMU      | The approximate mass of one proton or neutron              | 
+| Dalton                  | Da            | u,AMU    | Sometimes called an atomic mass unit, defined as 1/12 of the mass of an unbound neutral atom of carbon-12 in its nuclear and electronic ground state and at rest | 
 | Grain                   | grain         |          | Mass approximately equivalent to a single ideal seed of a cereal, in particular wheat or barley | 
 | Ounce                   | ozm           |          | US and Imperial unit equal to 1/16 of a Pound Mass         | 
+| Dram                    | dram          |          | Unit of mass historically used by apothecaries equal to 1/16 of an ounce | 
 | Pound                   | lbm           |          | US and Imperial primary unit of mass                       | 
 | Stone                   | stone         |          | Imperial unit equal to 14 Pounds Mass                      | 
 | Slug                    | sg            | slug     | US and Imperial unit defined as 1 lbf / Standard Gravity   | 
@@ -24,6 +28,7 @@
 | Pica Point              | picapt        |          | Used in typography, equal to 1/12 of a pica                | 
 | Pica                    | pica          |          | Used in typography, equal to 1/6 of an inch                | 
 | Inch                    | in            |          | US and Imperial unit of length equal to 1/12 of a foot     | 
+| Mil                     | mil           |          | US and Imperial units for milli-inch, avoids a unit collision with the unit 'min' | 
 | Foot                    | ft            |          | Standard US and Imperial unit of length                    | 
 | Yard                    | yd            |          | US and Imperial unit of length equal to 3 foot             | 
 | Ell                     | ell           |          | Formerly used in the english tayloring industry and defined as a yard and a quarter, now obsolete | 
@@ -34,7 +39,7 @@
 | Light Year              | ly            |          | Represents the distance light travels in one year in a vacuum, used in astronomical scales | 
 | Parsec                  | parsec        |          | Defined as 648 000 / pi astronomical units (au)            | 
 | Survey Foot             | survey_ft     |          | Slightly different definition of foot defined as 1200/3937 meters instead of 0.3048 meters | 
-| Astronomical Unit       | au            |          | Approximate distance from the Earth to the Sun             | 
+| Astronomical Unit       | AU            |          | Approximate distance from the Earth to the Sun             | 
 | Chain                   | chain         |          | US customary unit equal to 66 survey ft, sometimes the unit may be based on the internation foot rather than the survey foot changing the definition slightly | 
 | Link                    | link          |          | US Customary unit of length equal to 1/100 of a chain      | 
 | Rod                     | rod           |          | US Customary unit of length equal to 1/4 of a chain        | 
@@ -42,11 +47,14 @@
 | Fathom                  | fathom        |          | Equal to 6 international foot, typically used to measure depth in maritime applications | 
 | US Fathom               | us_fathom     |          | US Customary Fathom, appox. equal to 6 survey foot         | 
 | Fermi                   | fermi         |          | Equal to 10^-15 m, Used in nuclear physics and named after physicist Enrico Fermi who was one of the founders of the field | 
+| Data Mile               | datamile      |          | A distance used in radar measurements equal to 6000 international feet | 
 | Kayser/Wavenumber       | kayser        |          | Reciprocal of 1 cm, used in spectroscopy and chemistry to represent the number of wavelengths per cm | 
 | Second                  | s             | sec      | Approximately 1/86400 of a stellar day, formally defined based on the duration of 9 192 631 770 state transitions of the caesium-133 atom at 0 K | 
 | Minute                  | min           |          | Defined as 60 seconds                                      | 
 | Hour                    | hr            |          | defined as 60 minute                                       | 
 | Day                     | day           |          | Approximately equal to the amount of time for the earth to rotate on it's axis, formally defined as 24 hours | 
+| Week                    | week          |          | Defined as 7 days                                          | 
+| Fortnight               | fortnight     |          | Amount of time defined as 2 weeks or 14 days               | 
 | Year                    | yr            |          | Approximately equal to the amount of time for the earth to make one orbit around the sun, formally defined as 365 days | 
 | Shake                   | shake         |          | Informal metric unit equal to 10^-8 seconds, often used in nuclear physics | 
 | Kelvin                  | K             | deltaC   | SI standard unit with 0 defined as absolute zero           | 
@@ -55,7 +63,9 @@
 | Rankine                 | Ra            | Rank,deltaF | Units with the same scale as Fahrenheit, but with 0 at absolute 0 | 
 | Reaumur                 | Reau          |          | Temperature scale that is approximately 0 at the melting point of ice and 80 at the boiling point of water | 
 | Delta Reaumur           | deltaReau     |          | Change in temperature as measured in Reaumurs              | 
+| Kilometer per Hour      | kph           |          | Velocity at which a kilometer is traveled every hour       | 
 | Mile per Hour           | mph           |          | Velocity at which a mile is traveled every hour            | 
+| Feet per Second         | fps           |          | Velocity where 1 foot is traveled every second             | 
 | Knot                    | knot          |          | Velocity at which a Nautical mile is traveled every hour   | 
 | Admirality Knot         | admkn         |          | Knot based on the old UK definition of a Nautical mile (1853.184 m) | 
 | Speed of Light          | c             |          | velocity defined by how fast light travels in a vacuum     | 
@@ -86,8 +96,10 @@
 | Joule                   | J             |          | SI standard unit for energy defined as 1 N m               | 
 | Electron Volt           | eV            |          | Energy gain of an electron after passing through a 1 Volt potential | 
 | Erg                     | erg           |          | CGS standard unit of energy defined as 1 dyn cm            | 
-| Kilocalorie/Calorie     | cal           |          | Based on the amount of energy needed to raise the temperature of 1 kg of water 1 degree Celsius, defined in The Fifth International Conference on the Properties of Steam (London, July 1956) 'International Table' | 
+| Calorie                 | cal           |          | Based on the amount of energy needed to raise the temperature of 1 kg of water 1 degree Celsius, defined in The Fifth International Conference on the Properties of Steam (London, July 1956) 'International Table' | 
+| Kilo-calorie            | Cal           |          | Commonly used to measure the energy in food in the US, equal to 1000 calories and often refered to as a 'calorie' rather than a kilo-calorie | 
 | British Thermal Unit    | BTU           |          | Based on the amount of energy needed to raise the temperature of 1 lbm of water 1 degree Fahrenheit, defined in The Fifth International Conference on the Properties of Steam (London, July 1956) 'International Table' | 
+| Therm                   | thm           |          | Unit of energy equal to 100 000 BTU, approximately the energy equivalent of burning 100 ft^3 of natural gas | 
 | Watt-hour               | Wh            |          | Amount of energy dissipated by 1 Watt source over an hour  | 
 | Horse Power Hour        | HPh           |          | Amount of energy dissipated by a 1 HP source over an hour  | 
 | Foot Pound-force        | ft-lb         | ft-lbf   | Defined as 1 ft x 1 lbf, typically used to describe torques rather than energy | 
@@ -115,7 +127,9 @@
 | Gallon                  | gal           |          | US Customary volume unit that is defined as 4 quarts       | 
 | UK Gallon               | uk_gal        |          | Imperial volume unit defined as 4 UK quarts                | 
 | Bushel                  | bushel        |          | Very old unit of volume that is associated with agricultural production, about 2150.42 in^3 | 
-| Oil Barrel              | bbl           | barrel   | Defined internationally as 42 US Gallons, typically used in the oil industry | 
+| Oil Barrel              | bbl           | oilbarrel | Defined internationally as 42 US Gallons, typically used in the oil industry | 
+| US Beer Barrel          | beerbarrel    |          | Volume associated with beer trade in the US, equal to 31 US Gallons | 
+| Imperial Beer Barrel    | uk_beerbarrel |          | Appoximate volume of a barrel used for transporting beer in the UK, equal to 36 imperial gallons | 
 | Measurement Ton         | MTON          |          | Commonly used in the freight industry, equal to 40 ft^3    | 
 | Gross Register Tonnage  | GRT           |          | commonly used in the freight industry equal to 100 ft^3    | 
 | Gill                    | gill          |          | US Customary unit of volume equal to 4 US fluid ounces     | 
@@ -138,6 +152,7 @@
 | Baud Rate               | baud          |          | Rate of data transmission equal to 1 bit / second          | 
 | Ampere                  | A             |          | SI standard unit for electric current, equal to 1 C/s      | 
 | Coulomb                 | C             |          | SI standard unit for electric charge defined as the amount of charge of exactly 6.2415093e18 elementary charges | 
+| Amp Hour                | Ah            |          | Charge collected from 1 Amp over 1 hour                    | 
 | Elementary Charge       | e             |          | The electric charge carried by a single proton             | 
 | Volt                    | V             |          | Derived SI unit for electric potential, can be defined as J/C | 
 | Ohm                     | ohm           |          | Derived SI unit for electrical resistance                  | 
@@ -152,6 +167,9 @@
 | Gilbert                 | Gi            |          | Obsolete unit used in EMU-CGS systems to measure magnetization, dimensionally equivalent to the Amp | 
 | Oersted                 | Oe            |          | CGS unit of auxiliary magnetic field                       | 
 | Mole                    | mol           |          | SI standard unit for an amount of substance, defined as exactly 6.02214076e23 elementary entities (usually molecules) | 
+| Molar Concentration     | molar         | M        | Amount of substance per Liter of solution                  | 
+| Katal                   | kat           |          | Unit of catalytic activity, defined as 1 mol / sec         | 
+| Enzyme                  | U             |          | Unit of catalytic activity, defined as 1 [u]mol / min      | 
 | Candela                 | cd            |          | SI standard unit for luminous intensity in a given direction defined by taking the fixed numerical value of the luminous efficacy of monochromatic radiation of frequency 540e12 Hz | 
 | Lumen                   | lm            |          | SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr | 
 | Lux                     | lx            |          | SI derived unit of illuminance, measuring luminous flux per unit area. 1 lx = 1 lm/m^2) | 

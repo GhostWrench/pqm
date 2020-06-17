@@ -1,6 +1,6 @@
 Convert From, Convert To, Multiply By, Included in PQM
 acre survey_ft, m^3, 1.233489e+03, true
-barrel, m^3, 1.589873e-01, true
+bbl, m^3, 1.589873e-01, true
 bushel, m^3, 3.523907e-02, true
 cord, m^3, 3.624556e+00, false
 ft^3, m^3, 2.831685e-02, true
