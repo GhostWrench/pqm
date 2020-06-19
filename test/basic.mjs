@@ -301,13 +301,6 @@ function testBasics(div) {
     return "Pass";
   });
 
-  // Throw error if any of the tests failed
-  if (failures > 0) {
-    throw `${failures} tests failed`;
-  } else {
-    console.log("All basic tests passed");
-  }
-
   failures += runner("Ensure that math operations are atomic", div, function() {
     let q1 = pqm.quantity(5.0, "mph");
     let q1c = q1.copy();
@@ -343,7 +336,36 @@ function testBasics(div) {
       return "Exponentiation is not atomic";
     }
     return "Pass";
-  })
+  });
+
+  failures += runner("Test units without explict prefix", div, function() {
+    // Test single prefix detection
+    let q1 = pqm.quantity(1, "[k]m / [m]s");
+    let q2 = pqm.quantity(1, "km / ms");
+    if (!q1.eq(q2)) {
+      return "Prefix detection failed";
+    }
+    // Test single prefix detection with collision
+    q1 = pqm.quantity(1, "min");
+    q2 = pqm.quantity(1, "[m]in");
+    if (q1.sameDimensions(q2)) {
+      return "Prefix detection with collision failed";
+    }
+    // Test two letter prefix detection
+    q1 = pqm.quantity(1, "[Ki]B");
+    q2 = pqm.quantity(1, "KiB");
+    if (!q1.eq(q2)) {
+      return "Prefix with two letter detection failed";
+    }
+    return "Pass";
+  });
+
+  // Throw error if any of the tests failed
+  if (failures > 0) {
+    throw `${failures} tests failed`;
+  } else {
+    console.log("All basic tests passed");
+  }
 };
 
 /**

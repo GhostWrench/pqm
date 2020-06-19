@@ -624,7 +624,7 @@ function getUnitQuantity(unitName) {
     unitParts[appendIdx] += unitName[ii];
   }
   // Try to find the specified parts of the unit
-  // Prefix
+  // Explicit Prefix
   let prefixValue;
   if (unitParts[0]) {
     prefixValue = prefixes[unitParts[0]];
@@ -635,13 +635,29 @@ function getUnitQuantity(unitName) {
     prefixValue = 1;
   }
   // Unit
+  let unitSymbol;
   if (!unitParts[1]) {
     throw "Error parsing unit: \"" + unitName + "\"";
   }
-  if (!units.hasOwnProperty(unitParts[1])) {
+  // Easiest case, unit exists and is ready to use
+  if (units.hasOwnProperty(unitParts[1])) {
+    unitSymbol = unitParts[1];
+  // Check to see if the unit is a length 1 prefix and unit combined
+  } else if (    (prefixValue == 1) 
+              && units.hasOwnProperty(unitParts[1].slice(1))
+              && prefixes.hasOwnProperty(unitParts[1].slice(0,1))) {
+    prefixValue = prefixes[unitParts[1].slice(0,1)];
+    unitSymbol = unitParts[1].slice(1);
+  // Check to see if the unit is a length 2 prefix and unit combined
+  } else if (    (prefixValue == 1)
+              && units.hasOwnProperty(unitParts[1].slice(2))
+              && prefixes.hasOwnProperty([unitParts[1].slice(0,2)])) {
+    prefixValue = prefixes[unitParts[1].slice(0,2)];
+    unitSymbol = unitParts[1].slice(2);
+  } else {
     throw (unitParts[1] + " is not a valid unit");
   }
-  let unitStructure = units[unitParts[1]];
+  let unitStructure = units[unitSymbol];
   let scale = unitStructure.s;
   let dims = new Array(numDimensionTypes);
   for (let ii=0; ii<numDimensionTypes; ii++) {

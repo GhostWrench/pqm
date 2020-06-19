@@ -76,6 +76,7 @@ If using PQM in a browser, the ESM module can be used directly:
 
 Or a simple IIFE package can be found in `build\iife\pqm.js`.
 
+
 Creation of Basic Quantity Variables
 --------------------------------------------------------------------------------
 
@@ -116,22 +117,42 @@ let q = pqm.quantity(10, "g m^2 s^-3");
 
 ### Create a quantity with unit prefixes
 
-Unit prefixes such as kilo (k) or micro (m) can be added to units by enclosing 
-them in brackets. The brackets are required to decrease the complexity and 
-increase performance of this module, as well as eliminating the possibility of 
-unit "collisions" where the wrong unit might accidentally be used.
+Prefixes such as kilo (`k`) or micro (`m`) can be added to any unit. The 
+prefered syntax for doing so is to enclose the prefix in brackets in front of
+the unit. For instance use `[k]g` instead of `kg`. There are multiple reasons
+for this convention.
+
+1) Using brackets will give your code a slight performance boost
+2) You will completely avoid 'unit collision' where you might use the wrong 
+   unit on accident. Consider `min` (minute) vs. `[m]in` (milliinch)
+3) Your units will be explicit and easy to read
+
+Of course, if you would prefer not to use brackets, the quantity function will
+try to figure out what prefix-unit pair you meant by trial and error.
 
 ```javascript
 let q = pqm.quantity(10, "[k]m / [m]s");
 ```
 
+Here is the full list of unit collisions to be aware of
+
+| Unit Symbol | Returns                    | Does Not Return       |
+| ----------- | -------------------------- | --------------------- |
+| `ppt`       | `ppt` (Parts per Trillion) | `[p]pt` (pico-pint)   |
+| `min`       | `min` (Minute)             | `[m]in` (milli-inch)  |
+| `nmi`       | `nmi` (Nautical Mile)      | `[n]mi` (nano-mile)   |
+| `Gs`        | `Gs` (Gauss)               | `[G]s` (Giga-second)  |
+| `PS`        | `PS` (Metric Horsepower)   | `[P]S` (Peta-Siemens) |
+| `dword`     | `dword` (Double Word)      | `[d]word` (deci-word) |
+
+
 ### Notes on quantity creation
 
-At the bottom of this readme there is a table of all units supported by PQM,
-use it as a reference and use the unit symbols there for best results. Be aware
-that unit names are _case sensitive_ and no aliases are provided (to avoid 
-further avoid unit collision). For example a `rad` is a Radian and a `RAD` is
-a Radiation Absorbed Dose.
+[This is a table of all units supported by PQM](doc/unittable.md), use it as 
+a reference for all the available units provided by this package. Be aware
+that unit names are _case sensitive_. For example a `rad` is a Radian and a 
+`RAD` is a Radiation Absorbed Dose.
+
 
 Convert quantities to a different unit of measure
 --------------------------------------------------------------------------------
@@ -162,6 +183,7 @@ useful for troubleshooting and understanding what the current state of a
 quantity is, so they have been included in PQM. Also note that only `inSI` can
 represent any quantity. Other functions may throw errors if they cannot be used
 to fully represent the quantity.
+
 
 Perform math operations on physical quantities
 --------------------------------------------------------------------------------
