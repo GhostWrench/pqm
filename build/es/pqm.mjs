@@ -273,7 +273,7 @@ const numDimensionTypes = dimensionTypes.length;
  * Class representing a physical quantity, that can be used in various 
  * forms of arithmetic such as addition and multiplication.
  * 
- * @param {number} magnitude Relative magnitude from reference unit
+ * @param {number|number[]} magnitude Relative magnitude from reference unit
  * @param {number[]} dimensions Base dimensions of the unit
  * @param {number} offsets Base offsets from nominal of the unit (temperature 
  *                 scales only valid for units that do not have compound 
@@ -281,7 +281,17 @@ const numDimensionTypes = dimensionTypes.length;
  */
 function Quantity(magnitude, dimensions, offset) {
   // Fill in member values
-  this.magnitude = magnitude;
+  let magInputLength;
+  if (magnitude instanceof Array) {
+    magInputLength = magnitude.length;
+  } else {
+    magInputLength = 1;
+    magnitude = [magnitude];
+  }
+  this.magnitude = new Array(magInputLength);
+  for (let ii=0; ii<magInputLength; ii++) {
+    this.magnitude[ii] = magnitude[ii];
+  }
   //this.dimensions = new Array(numDimensionTypes);
   if (dimensions) {
     this.dimensions = dimensions;
@@ -318,7 +328,7 @@ Quantity.prototype.dimensionality = function() {
 /**
  * Make a copy of the this unit's dimensions
  * 
- * @returns {Array} Copy of this array's dimensions
+ * @returns {Array} Copy of this quantity's dimensions array
  */
 Quantity.prototype.copyDimensions = function() {
   let dimCopy = new Array(numDimensionTypes);
@@ -329,12 +339,25 @@ Quantity.prototype.copyDimensions = function() {
 };
 
 /**
+ * Make a copy of this unit's magnitude
+ * 
+ * @returns {Array} Copy of this quantity's magnitude array
+ */
+Quantity.prototype.copyMagnitude= function() {
+  let magCopy = new Array(numDimensionTypes);
+  for (let ii=0; ii<numDimensionTypes; ii++) {
+    magCopy[ii] = this.magnitude[ii];
+  }
+  return magCopy;
+};
+
+/**
 * Make a copy of this physical quantity
 * 
 * @returns {Quantity} Copy of the Quantity
 */
 Quantity.prototype.copy = function() {
-  return new Quantity(this.magnitude, this.copyDimensions(), this.offset);
+  return new Quantity(this.copyMagnitude(), this.copyDimensions(), this.offset);
 };
 
 /**
@@ -379,7 +402,7 @@ Quantity.prototype.add = function(other) {
   }
   // Adding a value treats the second input value as a delta, in the case of 
   // units with offsets
-  let newMagnitude = this.magnitude + other.magnitude;
+  let newMagnitude = arrayAdd(this.magnitude, other.magnitude);
   return new Quantity(newMagnitude, this.copyDimensions(), this.offset);
 };
 
@@ -397,8 +420,10 @@ Quantity.prototype.sub = function(other) {
   if (!this.sameDimensions(other)) {
     throw "Cannot subtract units that are not alike";
   }
-  let newMagnitude =   (this.magnitude + this.offset) 
-                      - (other.magnitude + other.offset);
+  let newMagnitude = arraySub(
+    arrayAdd(this.magnitude, [this.offset]),
+    arrayAdd(other.magnitude, [other.offset])
+  );
   let newOffset = 0;
   if (other.offset != 0) {
     // Subtracting a unit with an zero offset, result should be a 'delta'
@@ -408,7 +433,7 @@ Quantity.prototype.sub = function(other) {
     // Subtracting a unit with no zero offset, this unit's offset is 
     // preserved
     newOffset = this.offset;
-    newMagnitude -= newOffset;
+    newMagnitude = arraySub(newMagnitude, [newOffset]);
   }
   // Same as addition, treat the second unit as a delta if has an offset
   return new Quantity(newMagnitude, this.copyDimensions(), newOffset);
@@ -431,8 +456,7 @@ Quantity.prototype.mul = function(other) {
             "temperatures consider using 'deltaC' or 'deltaF' instead");
   }
   // Multiply the magnitude
-  let newMagnitude = this.magnitude;
-  newMagnitude *= other.magnitude;
+  let newMagnitude = arrayMul(this.magnitude, other.magnitude);
   let newDimensions = new Array(numDimensionTypes);
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] = this.dimensions[ii] + other.dimensions[ii];
@@ -452,7 +476,7 @@ Quantity.prototype.inv = function() {
     throw ("Cannot invert dimensions with an offset, if using " +
             "temperatures consider using 'deltaC' or 'deltaF' instead");
   }
-  let newMagnitude = 1.0 / this.magnitude;
+  let newMagnitude = arrayDiv([1.0], this.magnitude);
   let newDimensions = this.copyDimensions();
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] = -newDimensions[ii];
@@ -496,7 +520,7 @@ Quantity.prototype.pow = function(n) {
   if (n == 0) {
     return new Quantity(1);
   }
-  let newMagnitude = Math.pow(this.magnitude, n);
+  let newMagnitude = arrayPow(this.magnitude, [n]);
   let newDimensions = this.copyDimensions();
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] *= n;
@@ -532,7 +556,7 @@ Quantity.prototype.root = function(n) {
     }
     newDimensions[ii] = update;
   }
-  let newMagnitude = Math.pow(this.magnitude, 1/n);
+  let newMagnitude = arrayPow(this.magnitude, [1/n]);
   // Return the new quantity
   return new Quantity(newMagnitude, newDimensions, this.offset);
 };
@@ -560,7 +584,7 @@ Quantity.prototype.compare = function(other, tolerance) {
   }
   // Only quantities with the same units can be compared
   if (!this.sameDimensions(other)) {
-    throw "Cannot compare quantities with unlike units";
+    throw "Cannot compare quantities with different dimensions";
   }
   // default value for tolerance
   if (typeof(tolerance) === "undefined") {
@@ -586,15 +610,17 @@ Quantity.prototype.compare = function(other, tolerance) {
     absoluteTolerance = this.magnitude * tolerance;
   }
   // Do the comparison and return the result
-  let thisMag = this.magnitude + this.offset;
-  let otherMag = other.magnitude + other.offset;
-  if (otherMag - thisMag < -absoluteTolerance) {
-    return 1;
-  } else if (otherMag - thisMag > absoluteTolerance) {
-    return -1;
-  } else {
-    return 0;
-  }
+  let thisMag = arrayAdd(this.magnitude, [this.offset]);
+  let otherMag = arrayAdd(other.magnitude, [other.offset]);
+  return arrayOp(thisMag, otherMag, false, function(a, b) {
+    if (otherMag - thisMag < -absoluteTolerance) {
+      return 1;
+    } else if (otherMag - thisMag > absoluteTolerance) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
 };
 
 /**
@@ -610,7 +636,9 @@ Quantity.prototype.compare = function(other, tolerance) {
  * @return {boolean} Returns true if quantities are equal, false if not
  */
 Quantity.prototype.eq = function(other, tolerance) {
-  return (this.compare(other, tolerance) == 0);
+  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
+    return a == 0;
+  });
 };
 
 /**
@@ -627,7 +655,9 @@ Quantity.prototype.eq = function(other, tolerance) {
  *                   quantity.
  */
 Quantity.prototype.lt = function(other, tolerance) {
-  return (this.compare(other, tolerance) < 0);
+  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
+    return a < 0;
+  });
 };
 
 /**
@@ -644,7 +674,9 @@ Quantity.prototype.lt = function(other, tolerance) {
  *                   to this quantity.
  */
 Quantity.prototype.lte = function(other, tolerance) {
-  return (this.compare(other, tolerance) <= 0);
+  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
+    return a <= 0;
+  });
 };
 
 /**
@@ -661,7 +693,9 @@ Quantity.prototype.lte = function(other, tolerance) {
  *                    this quantity.
  */
 Quantity.prototype.gt = function(other, tolerance) {
-  return (this.compare(other, tolerance) > 0);
+  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
+    return a > 0;
+  });
 };
 
 /**
@@ -678,7 +712,9 @@ Quantity.prototype.gt = function(other, tolerance) {
  *                    equal to this quantity.
  */
 Quantity.prototype.gte = function(other, tolerance) {
-  return (this.compare(other, tolerance) >= 0);
+  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
+    return a >= 0;
+  });
 };
 
 /**
@@ -696,11 +732,11 @@ Quantity.prototype.in = function(unitString) {
     throw "Cannot convert units that are not alike";
   }
   // Get the current magnitude without the offset
-  var currentMagnitude = this.magnitude + this.offset;
+  let currentMagnitude = arrayAdd(this.magnitude, [this.offset]);
   // Subtract off the offset of the new unit
-  var newMagnitude = currentMagnitude - convertQuantity.offset;
+  let newMagnitude = arraySub(currentMagnitude, [convertQuantity.offset]);
   // Finally, divide by the magnitude of the new unit
-  var newMagnitude = newMagnitude / convertQuantity.magnitude;
+  newMagnitude = arrayDiv(newMagnitude, convertQuantity.magnitude);
   return newMagnitude;
 };
 
@@ -857,6 +893,76 @@ Quantity.prototype.toString = function() {
 };
 
 /**
+ * Do the provided function operation as a vector operation on provided arrays
+ * arr1 and arr2
+ * 
+ * @param {number[]} arr1 First vector to combine using op
+ * @param {number[]} arr2 Second vector to combine using op
+ * @param {boolean} collapse If this is true and the return value is a length
+ *                           one array. Return the 0 element, not the array
+ * @param {function} op Function to combine the two arrays. Must have the 
+ *                      signature op(number, number) -> number
+ */
+function arrayOp(arr1, arr2, collapse, op) {
+  let maxLength = Math.max(arr1.length, arr2.length);
+  let output = new Array(maxLength);
+  // Equal length vectors
+  if (arr1.length == arr2.length) {
+    for (let ii=0; ii<maxLength; ii++) {
+      output[ii] = op(arr1[ii], arr2[ii]);
+    }
+  // arr1 is scalar and arr2 is an array
+  } else if (arr1.length == 1) {
+    for (let ii=0; ii<maxLength; ii++) {
+      output[ii] = op(arr1[0], arr2[ii]);
+    }
+  // arr2 is scalar and arr1 is an array
+  } else if (arr2.length == 1) {
+    for (let ii=0; ii<maxLength; ii++) {
+      output[ii] = op(arr1[ii], arr2[0]);
+    }
+  } else {
+    throw ("Vector operations arguments must have the same length or at " +
+           "least one must be scalar (length 1)");
+  }
+  if (collapse && (output.length == 1)) {
+    return output[0];
+  }
+  return output;
+}
+// Add as an array
+function arrayAdd(a, b) {
+  return arrayOp(a, b, false, function(c, d) {
+    return c + d;
+  });
+}
+// Subtract as an array
+function arraySub(a, b) {
+  return arrayOp(a, b, false, function(c, d) {
+    return c - d;
+  });
+}
+// Multiply as an array
+function arrayMul(a, b) {
+  return arrayOp(a, b, false, function(c, d) {
+    return c * d;
+  });
+}
+// Divide as an array
+function arrayDiv(a, b) {
+  return arrayOp(a, b, false, function(c, d) {
+    return c / d;
+  });
+}
+// Power as an array
+// Divide as an array
+function arrayPow(a, b) {
+  return arrayOp(a, b, false, function(c, d) {
+    return Math.pow(c, d);
+  });
+}
+
+/**
  * Convert the provided unit string to a quantity or throw and error if
  * it does not exist.
  * 
@@ -942,7 +1048,9 @@ function getUnitQuantity(unitName) {
   }
   // Put together the parts and return
   if (prefixValue != 1) {
-    unitQuantity.magnitude = unitQuantity.magnitude * prefixValue;
+    // Cannot use the .mul function because it prohibits multiplication for
+    // values with offsets, this is an exception to that rule
+    unitQuantity.magnitude = arrayMul(unitQuantity.magnitude, [prefixValue]);
   }
   if (powerValue != 1) {
     unitQuantity = unitQuantity.pow(powerValue);
@@ -965,7 +1073,7 @@ function getUnitQuantity(unitName) {
 * @return {Quantity} The unit of measurement as  
 */
 function quantity(magnitude, unitString) {
-  let returnQuantity = new Quantity(1);
+  let returnQuantity = new Quantity(magnitude);
   if (unitString) {
     let sections = unitString.split("/");
     if (sections.length > 2) {
@@ -992,8 +1100,6 @@ function quantity(magnitude, unitString) {
       }
     }
   }
-  // Multiply through by magnitude and return
-  returnQuantity.magnitude *= magnitude;
   return returnQuantity;
 }
 

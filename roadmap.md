@@ -1,12 +1,6 @@
 Feature Roadmap for PQM
 ================================================================================
 
-0.3.0
---------------------------------------------------------------------------------
-- [x] performance benchmarking
-- [x] get code coverage reporting working
-- [x] ensure math functions are atomic
-
 0.4.0
 --------------------------------------------------------------------------------
 - [x] root function (sqrt)
@@ -18,7 +12,8 @@ Feature Roadmap for PQM
 --------------------------------------------------------------------------------
 - [ ] full update of documentation
 - [x] support for non bracketed prefixes 
-- [ ] support for array values
+- [ ] allow toString to accept units
+- [x] support for array values
 - [x] remove rotational units (they don't work nicely like the others)
 - [x] more units!
 - [ ] full test coverage
