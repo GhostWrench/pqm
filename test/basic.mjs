@@ -295,8 +295,7 @@ function testBasics(div) {
   failures += runner("Test use of rotational units", div, function() {
     let revPerSec = pqm.quantity(2*Math.PI, "rad / s");
     let hz = pqm.quantity(1.0, "Hz");
-    let oneRev = pqm.quantity(1.0, "rev");
-    if (!revPerSec.div(oneRev).eq(hz)) {
+    if (!revPerSec.eq(hz)) {
       return "Rotational unit to Hz conversion failed";
     }
     return "Pass";

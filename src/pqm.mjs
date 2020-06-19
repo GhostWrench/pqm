@@ -38,7 +38,7 @@ function Quantity(magnitude, dimensions, offset) {
   } else {
     this.offset = 0;
   }
-};
+}
 
 /**
  * Get the dimensionality of the quantity (total number of dimensions of 
@@ -54,7 +54,7 @@ Quantity.prototype.dimensionality = function() {
     }
   }
   return total;
-}
+};
 
 /**
  * Make a copy of the this unit's dimensions
@@ -352,7 +352,7 @@ Quantity.prototype.compare = function(other, tolerance) {
  */
 Quantity.prototype.eq = function(other, tolerance) {
   return (this.compare(other, tolerance) == 0);
-}
+};
 
 /**
  * Check if this quantity is less than another quantity
@@ -369,7 +369,7 @@ Quantity.prototype.eq = function(other, tolerance) {
  */
 Quantity.prototype.lt = function(other, tolerance) {
   return (this.compare(other, tolerance) < 0);
-}
+};
 
 /**
  * Check if this quantity is less than or equal to another quantity
@@ -386,7 +386,7 @@ Quantity.prototype.lt = function(other, tolerance) {
  */
 Quantity.prototype.lte = function(other, tolerance) {
   return (this.compare(other, tolerance) <= 0);
-}
+};
 
 /**
  * Check if this quantity is greater than another quantity
@@ -403,7 +403,7 @@ Quantity.prototype.lte = function(other, tolerance) {
  */
 Quantity.prototype.gt = function(other, tolerance) {
   return (this.compare(other, tolerance) > 0);
-}
+};
 
 /**
  * Check if this quantity is greater than or equal to another quantity
@@ -420,7 +420,7 @@ Quantity.prototype.gt = function(other, tolerance) {
  */
 Quantity.prototype.gte = function(other, tolerance) {
   return (this.compare(other, tolerance) >= 0);
-}
+};
 
 /**
 * Get the magnitude of the physical quantity with the supplied unit
@@ -555,9 +555,9 @@ Quantity.prototype.with = function(unitList) {
  */
 Quantity.prototype.inSI = function() {
   return this.with([
-    "[k]g", "m", "s", "K", "A", "mol", "cd", "bit", "rad", //Base Units
+    "[k]g", "m", "s", "K", "A", "mol", "cd", "bit", //Base Units
     "Hz", "N", "Pa", "J", "W", "C", "V", "F", "ohm", "S", "Wb", "T", "H",
-    "lm", "lx", "Bq", "Gy"
+    "lm", "lx", "Bq", "Gy" // Derived Units
   ]);
 };
 
@@ -570,7 +570,7 @@ Quantity.prototype.inSI = function() {
  */
 Quantity.prototype.inCGS = function() {
   return this.with([
-    "g", "[c]m", "s", "deltaC", "dyn", "erg", "Ba", "P", "St"
+    "g", "[c]m", "s", "deltaC", "dyn", "erg", "Ba", "P", "St", "cd", "bit"
   ]);
 };
 
@@ -583,8 +583,8 @@ Quantity.prototype.inCGS = function() {
  */
 Quantity.prototype.inUS = function() {
   return this.with([
-    "lbm", "ft", "s", "Ra", "gal", "lbf", "BTU", "HP"
-  ])
+    "lbm", "ft", "s", "Ra", "gal", "lbf", "BTU", "HP", "cd", "bit"
+  ]);
 };
 
 /**
@@ -720,7 +720,7 @@ function quantity(magnitude, unitString) {
   // Multiply through by magnitude and return
   returnQuantity.magnitude *= magnitude;
   return returnQuantity;
-};
+}
 
 /**
  * Define an arbitrary unit symbol that can be used in calculations

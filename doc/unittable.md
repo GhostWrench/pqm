@@ -185,7 +185,7 @@
 | Arc Minute              | arcmin        |          | Angle measurement defined as 1/60 of a degree              | 
 | Arc Second              | arcsec        |          | Angle measurement defined as 1/60 of a arc minue           | 
 | Revolutions per Minute  | rpm           |          | Rotational frequency describing the number of revolution around an axis in a minute | 
-| Hertz                   | Hz            |          | Frequency defined as 1/sec                                 | 
+| Hertz                   | Hz            |          | Frequency defined as 1 (cycle or rotation) / sec           | 
 | Becquerel               | Bq            |          | SI derived unit for radiation activity                     | 
 | Gray                    | Gy            |          | SI derived unit for radiation absorbed dose                | 
 | Sievert                 | Sv            |          | SI unit for radiation equivalent dose, although dimensionally equivalent to Gy, it also includes a weighting function for types of radiation effects on human cells, and is thus not exactly equal | 

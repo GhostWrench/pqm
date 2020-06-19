@@ -78,6 +78,7 @@
                 },
                 "dimensions": {
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "mass": {"type": "integer"},
                         "length": {"type": "integer"},
@@ -86,8 +87,7 @@
                         "current": {"type": "integer"},
                         "substance": {"type": "integer"},
                         "luminosity": {"type": "integer"},
-                        "information": {"type": "integer"},
-                        "rotation": {"type": "integer"}
+                        "information": {"type": "integer"}
                     }
                 }
             }

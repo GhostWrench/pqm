@@ -1339,21 +1339,21 @@
             "description": "SI derived unit of luminous flux, a measure of the total quantity of visible light emitted by a source. 1 lm = 1 cd sr",
             "category": "luminosity",
             "scale": "1",
-            "dimensions": {"luminosity": 1, "rotation": 2}
+            "dimensions": {"luminosity": 1}
         },
         "lx": {
             "name": "Lux",
             "description": "SI derived unit of illuminance, measuring luminous flux per unit area. 1 lx = 1 lm/m^2)",
             "category": "luminosity",
             "scale": "1",
-            "dimensions": {"luminosity": 1, "rotation": 2, "length": -2}
+            "dimensions": {"luminosity": 1, "length": -2}
         },
         "footcandle": {
             "name": "Footcandle",
             "description": "",
             "category": "luminosity",
             "scale": "1/Math.pow(3.048e-1,2)",
-            "dimensions": {"luminosity": 1, "rotation": 2, "length": -2}
+            "dimensions": {"luminosity": 1, "length": -2}
         },
         "footlambert": {
             "name": "Footlambert",
@@ -1374,7 +1374,7 @@
             "description": "CGS unit of illuminance",
             "category": "luminosity",
             "scale": "1e4",
-            "dimensions": {"luminosity": 1, "rotation": 2, "length": -2}
+            "dimensions": {"luminosity": 1, "length": -2}
         },
         "stilb": {
             "name": "Stilb",
@@ -1388,55 +1388,55 @@
             "description": "Defined as the ratio of the radius of a circular arc to the radius of the arc, typically used to describe angles",
             "category": "rotation",
             "scale": "1",
-            "dimensions": {"rotation": 1}
+            "dimensions": {}
         },
         "sr": {
             "name": "Steradians",
             "description": "A 'square radian' is a unit of solid angle analogous to the radian, a solid angle of 1 sr projected onto a unit sphere will have unit area",
             "category": "rotation",
             "scale": "1",
-            "dimensions": {"rotation": 2}
+            "dimensions": {}
         },
         "rev": {
             "name": "Revolution",
             "description": "Angle describing one full revolution around an axis",
             "category": "rotation",
             "scale": "2*Math.PI",
-            "dimensions": {"rotation": 1}
+            "dimensions": {}
         },
         "deg": {
             "name": "Degree",
             "description": "Angle measurement equal to 1/360 of a revolution",
             "category": "rotation",
             "scale": "(1/180)*Math.PI",
-            "dimensions": {"rotation": 1}
+            "dimensions": {}
         },
         "arcmin": {
             "name": "Arc Minute",
             "description": "Angle measurement defined as 1/60 of a degree",
             "category": "rotation",
             "scale": "(1/60)*(1/180)*Math.PI",
-            "dimensions": {"rotation": 1}
+            "dimensions": {}
         },
         "arcsec": {
             "name": "Arc Second",
             "description": "Angle measurement defined as 1/60 of a arc minue",
             "category": "rotation",
             "scale": "(1/3600)*(1/180)*Math.PI",
-            "dimensions": {"rotation": 1}
+            "dimensions": {}
         },
         "rpm": {
             "name": "Revolutions per Minute",
             "description": "Rotational frequency describing the number of revolution around an axis in a minute",
             "category": "rotation",
             "scale": "(2*Math.PI)/60",
-            "dimensions": {"rotation": 1, "time": -1}
+            "dimensions": {"time": -1}
         },
         "Hz": {
             "name": "Hertz",
-            "description": "Frequency defined as 1/sec",
+            "description": "Frequency defined as 1 (cycle or rotation) / sec",
             "category": "miscellaneous",
-            "scale": "1",
+            "scale": "2*Math.PI",
             "dimensions": {"time": -1}
         },
         "Bq": {

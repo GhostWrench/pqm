@@ -217,8 +217,6 @@ console.log(pqm.quantity(1, "BTU").in("J")); // 1055.05585262
 console.log(pqm.quantity(1, "BTU_th").in("J")); // 1054.3502644888652
 ```
 
-
-
 Comparisons of Quantities
 --------------------------------------------------------------------------------
 
@@ -307,31 +305,6 @@ freezingDegC.in("deltaC"); // = 273.15
 Also note that you cannot use prefixes with zero offset units, doing so will 
 result in an error.
 
-Rotational Units
---------------------------------------------------------------------------------
-Traditionally, a 'rotation' is not treated as a base dimension in the SI units
-of measure, and units that describe a rotation such as `rad` and `deg` are 
-defined as unitless. PQM does actually add a rotation base dimension and does
-not treat these as unitless because it is seen as a tragic loss of information.
-This decision does create a few instances where the library may not appear to 
-behave as expected by someone used to the SI convention.
-
-For example, conversions from `rad / s` and `rpm` to Hz are perfectly fine if
-rotation is not treated as a base dimension, but in PQM you will get an error. 
-The issue here is that there is an implicit full rotation assumed in the
-conversion from `rad / s` to `Hz` that is usually divided out as a conversion 
-factor of `2π`. The trick with PQM is to make this conversion explicit as in 
-the following example:
-
-```javascript
-let revPerSec = pqm.quantity(2*Math.PI, "rad / s");
-let hz = pqm.quantity(1.0, "Hz");
-
-revPerSec.eq(hz) // error
-
-let oneRev = pqm.quantity(1.0, "rev");
-revPerSec.div(oneRev).eq(hz); // true
-```
 
 Table of available units
 --------------------------------------------------------------------------------
