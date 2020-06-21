@@ -354,9 +354,9 @@ Quantity.prototype.compare = function(other, tolerance) {
   let thisMag = arrayAdd(this.magnitude, [this.offset]);
   let otherMag = arrayAdd(other.magnitude, [other.offset]);
   return arrayOp(thisMag, otherMag, false, function(a, b) {
-    if (otherMag - thisMag < -absoluteTolerance) {
+    if (b - a < -absoluteTolerance) {
       return 1;
-    } else if (otherMag - thisMag > absoluteTolerance) {
+    } else if (b - a > absoluteTolerance) {
       return -1;
     } else {
       return 0;
@@ -814,7 +814,7 @@ function getUnitQuantity(unitName) {
 * @return {Quantity} The unit of measurement as  
 */
 function quantity(magnitude, unitString) {
-  let returnQuantity = new Quantity(magnitude);
+  let returnQuantity = new Quantity(1);
   if (unitString) {
     let sections = unitString.split("/");
     if (sections.length > 2) {
@@ -827,13 +827,11 @@ function quantity(magnitude, unitString) {
         if (si > 0) {
           unitQuantity = unitQuantity.inv();
         }
-        // Multiply through the prefixes and powers to get the appropriate
-        // quantity
+        // Multiply normally if the unit does not have an offset or if the unit
+        // is non-compound
         if (unitQuantity.offset == 0) {
           returnQuantity = returnQuantity.mul(unitQuantity);
         } else if (sections.length == 1 && unitSyms.length == 1) {
-          // This is the only circumstance where a unit with a zero offset
-          // may be returned. (Non-compound unit)
           returnQuantity = unitQuantity;
         } else {
           throw "Cannot create compound units from units with zero offsets";
@@ -841,6 +839,9 @@ function quantity(magnitude, unitString) {
       }
     }
   }
+  // Can't use normal multiplication here because .mul function will not allow
+  // multiplication if quantity has an offset
+  returnQuantity.magnitude = arrayMul(returnQuantity.magnitude, [magnitude]);
   return returnQuantity;
 }
 
