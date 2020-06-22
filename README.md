@@ -325,9 +325,6 @@ let freezingDegC = pqm.quantity(0, "degC");
 freezingDegC.in("deltaC"); // = 273.15
 ```
 
-Also note that you cannot use prefixes with zero offset units, doing so will 
-result in an error.
-
 
 Table of available units
 --------------------------------------------------------------------------------

@@ -438,7 +438,6 @@ var pqm = (function () {
     if (!this.sameDimensions(other)) {
       throw "Cannot subtract units that are not alike";
     }
-    let allScalar = (this.isScalar && other.isScalar);
     let newMagnitude = arraySub(
       arrayAdd(this.magnitude, [this.offset], false),
       arrayAdd(other.magnitude, [other.offset], false),
@@ -453,9 +452,12 @@ var pqm = (function () {
       // Subtracting a unit with no zero offset, this unit's offset is 
       // preserved
       newOffset = this.offset;
-      newMagnitude = arraySub(newMagnitude, [newOffset], allScalar);
     }
     // Same as addition, treat the second unit as a delta if has an offset
+    newMagnitude = arraySub(
+      newMagnitude, [newOffset], 
+      (this.isScalar && other.isScalar)
+    );
     return new Quantity(newMagnitude, this.copyDimensions(), newOffset);
   };
 
@@ -1119,14 +1121,8 @@ var pqm = (function () {
       powerValue = 1;
     }
     // Put together the parts and return
-    if (prefixValue != 1) {
-      // Cannot use the .mul function because it prohibits multiplication for
-      // values with offsets, this is an exception to that rule
-      unitQuantity.magnitude = arrayMul(unitQuantity.magnitude, [prefixValue]);
-    }
-    if (powerValue != 1) {
-      unitQuantity = unitQuantity.pow(powerValue);
-    }
+    unitQuantity = unitQuantity.mul(prefixValue);
+    unitQuantity = unitQuantity.pow(powerValue);
     return unitQuantity;
   }
 

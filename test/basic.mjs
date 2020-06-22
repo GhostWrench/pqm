@@ -413,6 +413,21 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Test complex math with arrays", div, function() {
+    const A = pqm.quantity([1, 2, 3], "m / s");
+    const B = pqm.quantity([1, 2, 3], "[k]g");
+    const C = pqm.quantity([1, 2, 3], "s");
+    let part1 = A.mul(B).div(C);
+    let part2 = A.mul(B).div(C);
+    let part3 = A.mul(B).div(C);
+    let result = part1.add(part2).sub(part3).pow(4).root(2);
+    let expected = pqm.quantity([1, 4, 9], "N^2");
+    if (!result.eq(expected).every((val) => val)) {
+      return "Complex array math failed";
+    }
+    return "Pass";
+  });
+
   // Throw error if any of the tests failed
   if (failures > 0) {
     throw `${failures} tests failed`;
