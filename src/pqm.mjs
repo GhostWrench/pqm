@@ -25,9 +25,11 @@ function Quantity(magnitude, dimensions, offset) {
   let magInputLength;
   if (magnitude instanceof Array) {
     magInputLength = magnitude.length;
+    this.isScalar = false;
   } else {
     magInputLength = 1;
     magnitude = [magnitude];
+    this.isScalar = true;
   }
   this.magnitude = new Array(magInputLength);
   for (let ii=0; ii<magInputLength; ii++) {
@@ -84,7 +86,7 @@ Quantity.prototype.copyDimensions = function() {
  * 
  * @returns {Array} Copy of this quantity's magnitude array
  */
-Quantity.prototype.copyMagnitude= function() {
+Quantity.prototype.copyMagnitude = function() {
   let magCopy = new Array(numDimensionTypes);
   for (let ii=0; ii<numDimensionTypes; ii++) {
     magCopy[ii] = this.magnitude[ii];
@@ -143,7 +145,10 @@ Quantity.prototype.add = function(other) {
   }
   // Adding a value treats the second input value as a delta, in the case of 
   // units with offsets
-  let newMagnitude = arrayAdd(this.magnitude, other.magnitude);
+  let newMagnitude = arrayAdd(
+    this.magnitude, other.magnitude, 
+    (this.isScalar && other.isScalar)
+  );
   return new Quantity(newMagnitude, this.copyDimensions(), this.offset);
 };
 
@@ -161,9 +166,11 @@ Quantity.prototype.sub = function(other) {
   if (!this.sameDimensions(other)) {
     throw "Cannot subtract units that are not alike";
   }
+  let allScalar = (this.isScalar && other.isScalar);
   let newMagnitude = arraySub(
-    arrayAdd(this.magnitude, [this.offset]),
-    arrayAdd(other.magnitude, [other.offset])
+    arrayAdd(this.magnitude, [this.offset], false),
+    arrayAdd(other.magnitude, [other.offset], false),
+    false
   );
   let newOffset = 0;
   if (other.offset != 0) {
@@ -174,7 +181,7 @@ Quantity.prototype.sub = function(other) {
     // Subtracting a unit with no zero offset, this unit's offset is 
     // preserved
     newOffset = this.offset;
-    newMagnitude = arraySub(newMagnitude, [newOffset]);
+    newMagnitude = arraySub(newMagnitude, [newOffset], allScalar);
   }
   // Same as addition, treat the second unit as a delta if has an offset
   return new Quantity(newMagnitude, this.copyDimensions(), newOffset);
@@ -197,7 +204,10 @@ Quantity.prototype.mul = function(other) {
             "temperatures consider using 'deltaC' or 'deltaF' instead");
   }
   // Multiply the magnitude
-  let newMagnitude = arrayMul(this.magnitude, other.magnitude);
+  let newMagnitude = arrayMul(
+    this.magnitude, other.magnitude, 
+    (this.isScalar && other.isScalar)
+  );
   let newDimensions = new Array(numDimensionTypes);
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] = this.dimensions[ii] + other.dimensions[ii];
@@ -217,7 +227,10 @@ Quantity.prototype.inv = function() {
     throw ("Cannot invert dimensions with an offset, if using " +
             "temperatures consider using 'deltaC' or 'deltaF' instead");
   }
-  let newMagnitude = arrayDiv([1.0], this.magnitude);
+  let newMagnitude = arrayDiv(
+    [1.0], this.magnitude,
+    this.isScalar
+  );
   let newDimensions = this.copyDimensions();
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] = -newDimensions[ii];
@@ -261,7 +274,10 @@ Quantity.prototype.pow = function(n) {
   if (n == 0) {
     return new Quantity(1);
   }
-  let newMagnitude = arrayPow(this.magnitude, [n]);
+  let newMagnitude = arrayPow(
+    this.magnitude, [n], 
+    this.isScalar
+  );
   let newDimensions = this.copyDimensions();
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] *= n;
@@ -297,7 +313,10 @@ Quantity.prototype.root = function(n) {
     }
     newDimensions[ii] = update;
   }
-  let newMagnitude = arrayPow(this.magnitude, [1/n]);
+  let newMagnitude = arrayPow(
+    this.magnitude, [1/n],
+    this.isScalar
+  );
   // Return the new quantity
   return new Quantity(newMagnitude, newDimensions, this.offset);
 };
@@ -311,6 +330,9 @@ Quantity.prototype.root = function(n) {
  *                                    equal. Can be provided as an absolute 
  *                                    quantity, or as a fraction of this 
  *                                    quantity. default=0
+ * @param {boolean} preventCollapse Providing this parameter will prevent this
+ *                                  function from collapsing an array into a 
+ *                                  scalar if possible.
  * 
  * @return {number} Number indicating the result of the comparison.
  *                    -1: other is greater than this quantity
@@ -318,7 +340,7 @@ Quantity.prototype.root = function(n) {
  *                        the provided tolerance
  *                     1: other is less than this quantity
  */
-Quantity.prototype.compare = function(other, tolerance) {
+Quantity.prototype.compare = function(other, tolerance, preventCollapse) {
   // Convert to a quantity if a number is supplied as input
   if (typeof(other) === "number") {
     other = new Quantity(other);
@@ -350,18 +372,28 @@ Quantity.prototype.compare = function(other, tolerance) {
     }
     absoluteTolerance = this.magnitude * tolerance;
   }
+  let doCollapse;
+  if (preventCollapse) {
+    doCollapse = false;
+  } else {
+    doCollapse = (this.isScalar && other.isScalar);
+  }
   // Do the comparison and return the result
   let thisMag = arrayAdd(this.magnitude, [this.offset]);
   let otherMag = arrayAdd(other.magnitude, [other.offset]);
-  return arrayOp(thisMag, otherMag, false, function(a, b) {
-    if (b - a < -absoluteTolerance) {
-      return 1;
-    } else if (b - a > absoluteTolerance) {
-      return -1;
-    } else {
-      return 0;
+  return arrayOp(
+    thisMag, otherMag, 
+    doCollapse, 
+    function(a, b) {
+      if (b - a < -absoluteTolerance) {
+        return 1;
+      } else if (b - a > absoluteTolerance) {
+        return -1;
+      } else {
+        return 0;
+      }
     }
-  });
+  );
 };
 
 /**
@@ -377,9 +409,13 @@ Quantity.prototype.compare = function(other, tolerance) {
  * @return {boolean} Returns true if quantities are equal, false if not
  */
 Quantity.prototype.eq = function(other, tolerance) {
-  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
-    return a == 0;
-  });
+  return arrayOp(
+    this.compare(other, tolerance, true), [0], 
+    (this.isScalar && other.isScalar), 
+    function(a,b) {
+      return a == 0;
+    }
+  );
 };
 
 /**
@@ -396,9 +432,13 @@ Quantity.prototype.eq = function(other, tolerance) {
  *                   quantity.
  */
 Quantity.prototype.lt = function(other, tolerance) {
-  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
-    return a < 0;
-  });
+  return arrayOp(
+    this.compare(other, tolerance, true), [0], 
+    (this.isScalar, other.isScalar), 
+    function(a,b) {
+      return a < 0;
+    }
+  );
 };
 
 /**
@@ -415,9 +455,13 @@ Quantity.prototype.lt = function(other, tolerance) {
  *                   to this quantity.
  */
 Quantity.prototype.lte = function(other, tolerance) {
-  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
-    return a <= 0;
-  });
+  return arrayOp(
+    this.compare(other, tolerance, true), [0], 
+    (this.isScalar && other.isScalar), 
+    function(a,b) {
+      return a <= 0;
+    }
+  );
 };
 
 /**
@@ -434,9 +478,13 @@ Quantity.prototype.lte = function(other, tolerance) {
  *                    this quantity.
  */
 Quantity.prototype.gt = function(other, tolerance) {
-  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
-    return a > 0;
-  });
+  return arrayOp(
+    this.compare(other, tolerance, true), [0], 
+    (this.isScalar && other.isScalar), 
+    function(a,b) {
+      return a > 0;
+    }
+  );
 };
 
 /**
@@ -453,9 +501,13 @@ Quantity.prototype.gt = function(other, tolerance) {
  *                    equal to this quantity.
  */
 Quantity.prototype.gte = function(other, tolerance) {
-  return arrayOp(this.compare(other, tolerance), [0], true, function(a,b) {
-    return a >= 0;
-  });
+  return arrayOp(
+    this.compare(other, tolerance, true), [0], 
+    (this.isScalar && other.isScalar), 
+    function(a,b) {
+      return a >= 0;
+    }
+  );
 };
 
 /**
@@ -473,11 +525,11 @@ Quantity.prototype.in = function(unitString) {
     throw "Cannot convert units that are not alike";
   }
   // Get the current magnitude without the offset
-  let currentMagnitude = arrayAdd(this.magnitude, [this.offset]);
+  let currentMagnitude = arrayAdd(this.magnitude, [this.offset], false);
   // Subtract off the offset of the new unit
-  let newMagnitude = arraySub(currentMagnitude, [convertQuantity.offset]);
+  let newMagnitude = arraySub(currentMagnitude, [convertQuantity.offset], false);
   // Finally, divide by the magnitude of the new unit
-  newMagnitude = arrayDiv(newMagnitude, convertQuantity.magnitude);
+  newMagnitude = arrayDiv(newMagnitude, convertQuantity.magnitude, this.isScalar);
   return newMagnitude;
 };
 
@@ -672,33 +724,33 @@ function arrayOp(arr1, arr2, collapse, op) {
   return output;
 }
 // Add as an array
-function arrayAdd(a, b) {
-  return arrayOp(a, b, false, function(c, d) {
+function arrayAdd(a, b, collapse) {
+  return arrayOp(a, b, collapse, function(c, d) {
     return c + d;
   });
 }
 // Subtract as an array
-function arraySub(a, b) {
-  return arrayOp(a, b, false, function(c, d) {
+function arraySub(a, b, collapse) {
+  return arrayOp(a, b, collapse, function(c, d) {
     return c - d;
   });
 }
 // Multiply as an array
-function arrayMul(a, b) {
-  return arrayOp(a, b, false, function(c, d) {
+function arrayMul(a, b, collapse) {
+  return arrayOp(a, b, collapse, function(c, d) {
     return c * d;
   });
 }
 // Divide as an array
-function arrayDiv(a, b) {
-  return arrayOp(a, b, false, function(c, d) {
+function arrayDiv(a, b, collapse) {
+  return arrayOp(a, b, collapse, function(c, d) {
     return c / d;
   });
 }
 // Power as an array
 // Divide as an array
-function arrayPow(a, b) {
-  return arrayOp(a, b, false, function(c, d) {
+function arrayPow(a, b, collapse) {
+  return arrayOp(a, b, collapse, function(c, d) {
     return Math.pow(c, d);
   });
 }

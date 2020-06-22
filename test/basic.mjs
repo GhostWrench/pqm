@@ -27,6 +27,9 @@ function testBasics(div) {
     if (v3.in("ft") != 40) {
       return "Add in failed"
     }
+    if (Array.isArray(v3.in("ft"))) {
+      return "Scalar operation returned an array";
+    }
     return "Pass";
   });
 
@@ -40,6 +43,9 @@ function testBasics(div) {
     }
     if (v3.in("ft") != -20) {
       return "Subtract in failed";
+    }
+    if (Array.isArray(v3.in("ft"))) {
+      return "Scalar operation returned an array";
     }
     return "Pass";
   });
@@ -55,6 +61,9 @@ function testBasics(div) {
     if (v3.in("ft^2") != 300) {
       return "Multiply in failed";
     }
+    if (Array.isArray(v3.in("ft^2"))) {
+      return "Scalar operation returned an array";
+    }
     return "Pass";
   });
 
@@ -69,6 +78,9 @@ function testBasics(div) {
     if (Math.abs(v3.in("ft") - 2) >= 1e-10) {
       return "Division in failed";
     }
+    if (Array.isArray(v3.in("ft"))) {
+      return "Scalar operation returned an array";
+    }
     return "Pass";
   });
 
@@ -81,6 +93,9 @@ function testBasics(div) {
     }
     if (v2.in("m^2") != 0.0001) {
       return "Power in failed";
+    }
+    if (Array.isArray(v2.in("m^2"))) {
+      return "Scalar operation returned an array";
     }
     return "Pass";
   });
