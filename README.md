@@ -287,22 +287,23 @@ q1.pow(2).div(10).eq(q2, 1e-6); // true
 Note on temperatures and other units with zero offsets
 --------------------------------------------------------------------------------
 
-There are a few temperature units that have zero offsets. This means that 0 is 
-not the same in these units as it is in the SI base unit (Kelvin, "K"). The two
-most widely used of these units are `degC` (Degrees Celsius) and `degF`
-(Degrees Fahrenheit). These units are limited in what operations can be done to
-them. There are also two complimentary units `deltaC` and `deltaF` that 
-represent changes in temperature that do not have these restrictions, but do 
-not convert the way it is normally expected that these units convert. The table 
-below gives the available operations for each type of unit.
+There are a few temperature and pressure units that have zero offsets. This 
+means that 0 is not the same in these units as it is in the SI base unit 
+(Kelvin, "K"). The two most widely used of these units are `degC` 
+(Degrees Celsius) and `degF` (Degrees Fahrenheit). These units are limited in 
+what operations can be done to them. There are also two complimentary units 
+`deltaC` and `deltaF` that represent changes in temperature that do not have 
+these restrictions, but do not convert the way it is normally expected that 
+these units convert. The table below gives the available operations for each 
+type of unit.
 
 | Operation | `deg` unit behavior                     | Example                |
 | --------- |:--------------------------------------- |:---------------------- |
 | `in`      | Can be converted to any compatible unit | 0 degC -> 32 degF      |
 | `add`     | Allowed, but only with delta unit       | 10 degC + 10 deltaC -> 20 degC |
 | `sub`     | Allowed, subtracting a delta unit will preserve the zero offset, subtracting a zero offset unit will create a new delta unit | 20 degC - 10 deltaC -> 10 degC </br> 20 degC - 10 degC -> 10 deltaC |
-| `mul`     | Not allowed                             |                        |
-| `div`     | Not allowed                             |                        |
+| `mul`     | Allowed only with unitless quantity     | 10 degC * 10 -> 100 degC |
+| `div`     | Allowed only with unitless quantity     | 10 degC / 2 -> 5 degC  |
 | `inv`     | Not allowed                             |                        |
 | `pow`     | Not allowed                             |                        |
 | Comparison operators (`eq`, `lt`, `lte`, `gt`, `gte`) | Allowed, but only with absolute tolerances | 10 degC > 32 degF -> true |

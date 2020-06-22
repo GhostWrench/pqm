@@ -53,6 +53,20 @@ function Quantity(magnitude, dimensions, offset) {
 }
 
 /**
+ * Get the input value as a quantity, if the input is a number, array or 
+ * is already a quantity;
+ * 
+ * 
+ */
+Quantity.toQuantity = function(value) {
+  if (value instanceof Quantity) {
+    return value;
+  } else {
+    return new Quantity(value);
+  }
+};
+
+/**
  * Get the dimensionality of the quantity (total number of dimensions of 
  * all types)
  * 
@@ -132,10 +146,8 @@ Quantity.prototype.sameDimensions = function(other) {
 * @return {Quantity} Added value
 */
 Quantity.prototype.add = function(other) {
-  // Convert to a quantity if a number is supplied as input
-  if (typeof(other) === "number") {
-    other = new Quantity(other);
-  }
+  // Check user input
+  other = Quantity.toQuantity(other);
   if (!this.sameDimensions(other)) {
     throw "Cannot add units that are not alike";
   }
@@ -159,10 +171,8 @@ Quantity.prototype.add = function(other) {
 * @return {Quantity} Result of the subtraction
 */
 Quantity.prototype.sub = function(other) {
-  // Convert to a quantity if a number is supplied as input
-  if (typeof(other) === "number") {
-    other = new Quantity(other);
-  }
+  // Check user input
+  other = Quantity.toQuantity(other);
   if (!this.sameDimensions(other)) {
     throw "Cannot subtract units that are not alike";
   }
@@ -194,14 +204,16 @@ Quantity.prototype.sub = function(other) {
 * @return {Quantity} New Quantity object representing the new value
 */
 Quantity.prototype.mul = function(other) {
-  // Convert to a quantity if a number is supplied as input
-  if (typeof(other) === "number") {
-    other = new Quantity(other);
-  }
+  // Check user input
+  other = Quantity.toQuantity(other);
   // Check if the offsets are compatible
-  if (this.offset != 0 || other.offset != 0) {
-    throw ("Cannot multiply dimensions with an offset, if using " +
+  if (this.offset != 0 && other.offset != 0) {
+    throw ("Cannot multiply two dimensions with a zero offset, if using " +
             "temperatures consider using 'deltaC' or 'deltaF' instead");
+  }
+  if (this.offset !=0 && other.dimensionality() != 0) {
+    throw ("Can only multiply quantities with an offset by a dimensionless " +
+           "quantity");
   }
   // Multiply the magnitude
   let newMagnitude = arrayMul(
@@ -212,7 +224,7 @@ Quantity.prototype.mul = function(other) {
   for (let ii=0; ii<numDimensionTypes; ii++) {
     newDimensions[ii] = this.dimensions[ii] + other.dimensions[ii];
   }
-  return new Quantity(newMagnitude, newDimensions);
+  return new Quantity(newMagnitude, newDimensions, this.offset);
 };
 
 /**
@@ -246,11 +258,9 @@ Quantity.prototype.inv = function() {
 * @return {Quantity} New value that is the result of the division.
 */
 Quantity.prototype.div = function(other) {
-  // Convert to a quantity if a number is supplied as input
-  if (typeof(other) === "number") {
-    other = new Quantity(other);
-  }
-  if (this.offset != 0 || other.offset != 0) {
+  // Check user input
+  other = Quantity.toQuantity(other);
+  if (this.offset != 0 && other.offset != 0) {
     throw ("Cannot divide dimensions with an offset, if using " +
             "temperatures consider using 'deltaC' or 'deltaF' instead");
   }
@@ -265,6 +275,10 @@ Quantity.prototype.div = function(other) {
 * @returns {Quantity} Physical quantity raised to provided power
 */
 Quantity.prototype.pow = function(n) {
+  // Check user input
+  if (!(typeof(n) == "number")) {
+    throw "Input to pow must be a number";
+  }
   if (!Number.isInteger(n)) {
     throw "Quantities don't support dimensions with fractional powers";
   }
@@ -293,6 +307,9 @@ Quantity.prototype.pow = function(n) {
  */
 Quantity.prototype.root = function(n) {
   // Check user input
+  if (!(typeof(n) == "number")) {
+    throw "Input to root must be a number";
+  }
   if (!Number.isInteger(n) || (n < 1)) {
     throw "Root may only be a positive integer greater than or equal to 1";
   }
@@ -412,8 +429,8 @@ Quantity.prototype.eq = function(other, tolerance) {
   return arrayOp(
     this.compare(other, tolerance, true), [0], 
     (this.isScalar && other.isScalar), 
-    function(a,b) {
-      return a == 0;
+    function(a, b) {
+      return a == b;
     }
   );
 };
@@ -435,8 +452,8 @@ Quantity.prototype.lt = function(other, tolerance) {
   return arrayOp(
     this.compare(other, tolerance, true), [0], 
     (this.isScalar, other.isScalar), 
-    function(a,b) {
-      return a < 0;
+    function(a, b) {
+      return a < b;
     }
   );
 };
@@ -458,8 +475,8 @@ Quantity.prototype.lte = function(other, tolerance) {
   return arrayOp(
     this.compare(other, tolerance, true), [0], 
     (this.isScalar && other.isScalar), 
-    function(a,b) {
-      return a <= 0;
+    function(a, b) {
+      return a <= b;
     }
   );
 };
@@ -481,8 +498,8 @@ Quantity.prototype.gt = function(other, tolerance) {
   return arrayOp(
     this.compare(other, tolerance, true), [0], 
     (this.isScalar && other.isScalar), 
-    function(a,b) {
-      return a > 0;
+    function(a, b) {
+      return a > b;
     }
   );
 };
@@ -504,8 +521,8 @@ Quantity.prototype.gte = function(other, tolerance) {
   return arrayOp(
     this.compare(other, tolerance, true), [0], 
     (this.isScalar && other.isScalar), 
-    function(a,b) {
-      return a >= 0;
+    function(a, b) {
+      return a >= b;
     }
   );
 };
@@ -891,10 +908,7 @@ function quantity(magnitude, unitString) {
       }
     }
   }
-  // Can't use normal multiplication here because .mul function will not allow
-  // multiplication if quantity has an offset
-  returnQuantity.magnitude = arrayMul(returnQuantity.magnitude, [magnitude]);
-  return returnQuantity;
+  return returnQuantity.mul(magnitude);
 }
 
 /**

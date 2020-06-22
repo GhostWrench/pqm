@@ -375,6 +375,44 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Ensure array and non-array ops return array", div, function() {
+    const scalar = pqm.quantity(1, "m^2");
+    const arr = pqm.quantity([1], "m^2");
+    const operation = [
+      "add",
+      "subtract",
+      "multiply",
+      "divide",
+      "power",
+      "root",
+    ];
+    const result = [
+      scalar.add(arr),
+      arr.sub(scalar),
+      scalar.mul(arr),
+      arr.div(scalar),
+      arr.pow(2),
+      arr.root(2),
+    ];
+    const expected = [
+      pqm.quantity([2], "m^2"),
+      pqm.quantity([0], "m^2"),
+      pqm.quantity([1], "m^4"),
+      pqm.quantity([1]),
+      pqm.quantity([1], "m^4"),
+      pqm.quantity([1], "m"),
+    ];
+    for (let opIdx=0; opIdx<operation.length; opIdx++) {
+      if (!result[opIdx].eq(expected[opIdx]).every((val) => val)) {
+        return "Array " + operation[opIdx] + " failed";
+      }
+      if (!Array.isArray(result[opIdx].inSI()[0])) {
+        return "Array " + operation[opIdx] + " did not return an array";
+      }
+    }
+    return "Pass";
+  });
+
   // Throw error if any of the tests failed
   if (failures > 0) {
     throw `${failures} tests failed`;
