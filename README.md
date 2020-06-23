@@ -23,32 +23,34 @@ Comparison to similar packages
 | Feature                       | pqm      | js-quantities | convert-units | mathjs    | unitmath |
 |:----------------------------- | -------- | ------------- | ------------- | --------- | -------- |
 | __Overview__                                                                                    |
-| Version Tested                | 0.2.0    | 1.7.5         | 2.3.4         | 7.0.0     | 0.8.5    |
+| Version Tested                | 0.4.4    | 1.7.5         | 2.3.4         | 7.0.0     | 0.8.5    |
 | Number of Dependencies        | 0        | 0             | 2             | 8         | 1        |
 | Number of Dependents          | 0        | 39            | 143           | 984       | 0        |
 | Unpacked Size                 | 216 kB   | 585 kB        | 106 kB        | 10.1 MB   | 522 kB   |
-| Minified Size (BundlePhobia)  | 13.6 kB  | 30.1 kB       | 23.8 kB       | 623.5 kB  | 34.1 kB  |
+| Minified & GZip Size          | 5.7 kB   | 8.8 kB        | 5.8  kB       | 152.0 kB  | 9.7  kB  |
 | Node (CommonJS)               | Yes      | Yes           | Yes           | Yes       | Yes      |
 | Browser                       | Yes      | Yes           | No            | Yes       | Probably |
 | ES Module                     | Yes      | Yes           | Yes           | Yes       | Yes      |
 | Support for Unit Prefixes     | Yes      | Yes           | Limited       | Yes       | Yes      |
-| Number of Base Units Supported| 186      | 187           | 61            | 162       | 135      |
+| Number of Base Units Supported| 193      | 187           | 61            | 162       | 135      |
 | Define Custom Units           | Yes      | No            | No            | Yes       | Yes      |
 | Tracks input units            | No       | Yes           | No            | Yes       | Yes      |
 | Support For Basic Math        | Yes      | Yes           | No            | Yes       | Yes      |
-| Test Coverage *               | 70%      | Good          | Good          | Good      | 99%      |
+| Test Coverage                 | 78%      | Unknown       | Unknown       | Unknown   | 99%      |
 | __Supported Operators__                                                                         |
 | Add / Subtract                | Yes      | Yes           | No            | Yes       | Yes      |
 | Multiply / Divide             | Yes      | Yes           | No            | Yes       | Yes      |
 | Raise Power                   | Yes      | No            | No            | Yes       | Yes      |
-| Square Root                   | No       | No            | No            | Yes       | Yes      |
+| Root                          | Yes      | No            | No            | Yes       | Yes      |
 | Comparison Operators          | Yes      | Yes           | No            | == only   | Yes      |
-| Works with arrays             | No       | Yes           | No            | Yes       | No       |
+| Works with arrays             | Yes      | Yes           | No            | Yes       | No       |
 | __Benchmarks__                                                                                  |
-| Module load time              | 3.2 ms   | 4.5  ms       | 14.7 ms       | 366 ms    | 39.5 ms  |
-| Simple Conversion (mL -> gal) | 0.38 ms  | 5.0 ms        | 0.27 ms       | 0.34 ms   | 0.40 ms  |
-| Compound Unit Conversion      | 0.50 ms  | 5.0 ms        | N/A           | 0.44 ms   | 0.50 ms  |
-| Chained Math Operations (multiple of floating point equivalent) | 8.5x | 50x | N/A | 22x | 24x | 
+| Module load time              | 1.9 ms   | 4.5 ms        | 14.7 ms       | 366 ms    | 39.5 ms  |
+| Simple Conversion (mL -> gal) | 0.60 ms  | 5.0 ms        | 0.27 ms       | 0.34 ms   | 0.40 ms  |
+| Compound Unit Conversion      | 0.75 ms  | 5.0 ms        | N/A           | 0.44 ms   | 0.50 ms  |
+| Math Operations               | 0.18 ms  | 50x           | N/A           | 22x       | 24x      |
+| Math with length 1000 Arrays  | 4.5 ms   | 
+
 
 Installing and importing PQM
 --------------------------------------------------------------------------------

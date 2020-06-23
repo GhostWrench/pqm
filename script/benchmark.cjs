@@ -26,8 +26,10 @@ const pqm = require("../build/cjs/pqm.cjs");
 
 // Function to define and convert a complex quantity
 function defineAndConvertInner(message) {
-  let value = pqm.quantity(1.0, "[k]g m^2 / [m]s K");
-  return value.in("BTU [k]s / deltaF");
+  //let value = pqm.quantity(1.0, "[k]g m^2 / [m]s K");
+  //return value.in("BTU [k]s / deltaF");
+  let value = pqm.quantity(1.0, "[m]L");
+  return value.in("gal");
 }
 const defineAndConvert = performance.timerify(defineAndConvertInner);
 
@@ -35,9 +37,9 @@ const defineAndConvert = performance.timerify(defineAndConvertInner);
 defineAndConvert("Define And Convert");
 
 // Function to do a lot of math operations
-const A = pqm.quantity(10.0, "[k]g");
-const B = pqm.quantity(5.0, "[c]m");
-const C = pqm.quantity(10.0 ,"s");
+let A = pqm.quantity(10.0, "[k]g");
+let B = pqm.quantity(5.0, "[c]m");
+let C = pqm.quantity(10.0 ,"s");
 // 4*(A * B^2 / C^2) * 2*(A * B^2 / C^2) - (3*(A * B^2 / C^2) * (A * B^2 / C^2))
 function doUnitMathInner(message) {
   return (A.mul(B.pow(2)).div(C.pow(2))).mul(4).mul(
@@ -63,3 +65,12 @@ const doConversion = performance.timerify(doConversionInner);
 // Call and test performance
 let convertedTo = doConversion("Do Conversion");
 console.log(`${convertedTo[0]} ${convertedTo[1]}`);
+
+// Test math with arrays
+randomArray = (length, max) => [...new Array(length)]
+    .map(() => Math.round(Math.random() * max));
+A = pqm.quantity(randomArray(1000, 10), "[k]g");
+B = pqm.quantity(randomArray(1000, 10), "[c]m");
+C = pqm.quantity(randomArray(1000, 10) ,"s");
+
+doUnitMath("Unit Math with Arrays");
