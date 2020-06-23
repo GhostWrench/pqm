@@ -6,11 +6,14 @@ units like "10 meters". With it you can create variables that represent these
 physical quantities and use them for math just like a normal numeric variable.
 
 PQM is designed to be simple, lightweight and fast. In addition:
-* It has no dependencies 
-* The entire module, including unit definitions live in a single small file
-* Quantity objects require a strict unit definition that eliminates the 
+* It has no dependencies
+* Provides definitions for nearly 200 common units, as well as providing the
+  ability for the user to define their own
+* The minified and zipped module is less than 6 kB
+* Quantity objects have an optional strict unit definition that eliminates the 
   possibility of "unit collisions" that plague many other libraries of 
   this type
+* Arrays are fully supported for more efficient processing
 * Conversion factors are tested against conversions defined in 
   [Special Publication 811: NIST Guide to the SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9)
 
@@ -118,7 +121,7 @@ let q = pqm.quantity(10, "g m^2 s^-3");
 ### Create a quantity with unit prefixes
 
 Prefixes such as kilo (`k`) or micro (`m`) can be added to any unit. The 
-prefered syntax for doing so is to enclose the prefix in brackets in front of
+preferred syntax for doing so is to enclose the prefix in brackets in front of
 the unit. For instance use `[k]g` instead of `kg`. There are multiple reasons
 for this convention.
 
@@ -302,8 +305,8 @@ type of unit.
 | `in`      | Can be converted to any compatible unit | 0 degC -> 32 degF      |
 | `add`     | Allowed, but only with delta unit       | 10 degC + 10 deltaC -> 20 degC |
 | `sub`     | Allowed, subtracting a delta unit will preserve the zero offset, subtracting a zero offset unit will create a new delta unit | 20 degC - 10 deltaC -> 10 degC </br> 20 degC - 10 degC -> 10 deltaC |
-| `mul`     | Allowed only with unitless quantity     | 10 degC * 10 -> 100 degC |
-| `div`     | Allowed only with unitless quantity     | 10 degC / 2 -> 5 degC  |
+| `mul`     | Allowed only with unit-less quantity    | 10 degC * 10 -> 100 degC |
+| `div`     | Allowed only with unit-less quantity    | 10 degC / 2 -> 5 degC  |
 | `inv`     | Not allowed                             |                        |
 | `pow`     | Not allowed                             |                        |
 | Comparison operators (`eq`, `lt`, `lte`, `gt`, `gte`) | Allowed, but only with absolute tolerances | 10 degC > 32 degF -> true |
@@ -325,6 +328,52 @@ let freezingDegC = pqm.quantity(0, "degC");
 freezingDegC.in("deltaC"); // = 273.15
 ```
 
+Using arrays
+--------------------------------------------------------------------------------
+
+Full support for arrays is available, when crunching large amounts of data, it 
+is much more efficient to use quantity arrays. A quantity array can be created
+the same way a normal quantity is created using the `quantity` constructor:
+
+```javascript
+let qarr1 = pqm.quantity([1,2,3], "m / s^2");
+let qarr2 = pqm.quantity([1,4,3], "m / s^2");
+```
+
+Array quantities use any of the math operations available to scalar quantities,
+but the `in`, `inSI` and comparison functions like `eq` will return an array
+rather than a number or boolean value.
+
+```javascript
+qarr1.in("[k]m / s^2"); // [1e-3, 2e-3, 3e-3]
+qarr1.eq(qarr2); // [true, false, true]
+```
+
+Operations such as `add`, `sub`, `mul` operate slightly differently depending
+on their inputs.
+
+  1. For two array of the same length, the operation is done element-wise
+  2. For a scalar (or length 1 array) with an array, the scalar is applied
+     through the full array.
+
+For example:
+
+```javascript
+qarr1.add(qarr2).in("m / s^2"); // [2, 6, 6]
+let scalar = pqm.quantity(2, "[k]g");
+let len1 = pqm.quantity([2], "m");
+scalar.mul(qarr1).in("N"); // [2, 4, 6]
+qarr1.div(len1).in("1 / s^2"); // [0.5, 1, 1.5]
+```
+
+Finally, note that any operation with an array will result in an array value,
+even if the array is of length one. This may necessitate a change in the 
+calling code if it is expecting a number instead of an array.
+
+```javascript
+scalar.in("g"); // 1000
+scalar.mul(len1).in("g m"); // [1000]
+```
 
 Table of available units
 --------------------------------------------------------------------------------
