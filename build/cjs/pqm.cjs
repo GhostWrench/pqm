@@ -958,11 +958,29 @@ Quantity.prototype.inUS = function() {
 /**
  * Display the Quantity as a string
  * 
+ * @param {string} unitStr Optional unit string to use to represent the unit
+ *                         in
+ * 
  * @returns {string} Quantity displayed as a string
  */
-Quantity.prototype.toString = function() {
-  let asSI = this.inSI();
-  return asSI[0].toString() + " " + asSI[1];
+Quantity.prototype.toString = function(unitStr) {
+  let outUnitStr;
+  let outMag;
+  if (unitStr) {
+    outUnitStr = unitStr;
+    outMag = this.in(unitStr);
+  } else {
+    let arrSI = this.inSI();
+    outUnitStr = arrSI[1];
+    outMag = arrSI[0];
+  }
+  let outMagStr;
+  if (outMag instanceof Array) {
+    outMagStr = "[" + outMag.toString() + "]";
+  } else {
+    outMagStr = outMag.toString();
+  }
+  return outMagStr + " " + outUnitStr;
 };
 
 /**

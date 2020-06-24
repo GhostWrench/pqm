@@ -428,6 +428,19 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Convert quantities to a string", div, function() {
+    const q = pqm.quantity([1000, 2000, 4000], "[m]m");
+    let strSI = q.toString();
+    if (strSI != "[1,2,4] m") {
+      return "To SI string failed";
+    }
+    let strkm = q.toString("[k]m");
+    if (strkm != "[0.001,0.002,0.004] [k]m") {
+      return "To km string failed";
+    }
+    return "Pass";
+  });
+
   // Throw error if any of the tests failed
   if (failures > 0) {
     throw `${failures} tests failed`;
