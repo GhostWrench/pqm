@@ -125,8 +125,13 @@ let q = pqm.quantity(10, "g m^2 s^-3");
 
 Prefixes such as kilo (`k`) or micro (`m`) can be added to any unit. The 
 preferred syntax for doing so is to enclose the prefix in brackets in front of
-the unit. For instance use `[k]g` instead of `kg`. There are multiple reasons
-for this convention.
+the unit. For example:
+
+```javascript
+let q = pqm.quantity(10, "[k]m / [m]s"); // 10 kilometers per millisecond
+```
+
+There are multiple reasons for this convention.
 
 1) Using brackets will give your code a slight performance boost
 2) You will completely avoid 'unit collision' where you might use the wrong 
@@ -136,9 +141,7 @@ for this convention.
 Of course, if you would prefer not to use brackets, the quantity function will
 try to figure out what prefix-unit pair you meant by trial and error.
 
-```javascript
-let q = pqm.quantity(10, "[k]m / [m]s");
-```
+
 
 Here is the full list of unit collisions to be aware of
 

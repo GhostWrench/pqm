@@ -63,4 +63,4 @@ long the conversion to SI units takes. Bonus if the resulting unit is `J^2`
 | 0.3.2       | 14.3.0       | 0          | 14.0 kB       |                 | --     | --         | --                 | --     |
 | 0.4.0       | 14.3.0       | 0          | 14.8 kB       |                 | 1.8 ms | 0.50 ms    | --                 | --     |
 | 0.4.1       | 14.3.0       | 0          | 14.8 kB       | 4.6 kB          | --     | --         | --                 | --     |
-| o.4.4       | 14.3.0       | 0          | 22.3 kB       | 5.7 kB          | 1.9 ms | 0.60 ms    | 0.18 ms {4.4 ms}   | 1.1 ms |
+| 0.4.4       | 14.3.0       | 0          | 22.3 kB       | 5.7 kB          | 1.9 ms | 0.60 ms    | 0.18 ms {4.4 ms}   | 1.1 ms |
