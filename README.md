@@ -26,8 +26,8 @@ Comparison to similar packages
 | Version Tested                | 0.4.4    | 1.7.5         | 2.3.4         | 7.0.0     | 0.8.5    |
 | Number of Dependencies        | 0        | 0             | 2             | 8         | 1        |
 | Number of Dependents          | 0        | 39            | 143           | 984       | 0        |
-| Unpacked Size                 | 216 kB   | 585 kB        | 106 kB        | 10.1 MB   | 522 kB   |
-| Minified & GZip Size          | 5.7 kB   | 8.8 kB        | 5.8  kB       | 152.0 kB  | 9.7  kB  |
+| Unpacked Size                 | 136 kB   | 585 kB        | 106 kB        | 10.1 MB   | 522 kB   |
+| Minified & GZip Size          | 5.0 kB   | 8.8 kB        | 5.8  kB       | 152.0 kB  | 9.7  kB  |
 | Node (CommonJS)               | Yes      | Yes           | Yes           | Yes       | Yes      |
 | Browser                       | Yes      | Yes           | No            | Yes       | Probably |
 | ES Module                     | Yes      | Yes           | Yes           | Yes       | Yes      |
