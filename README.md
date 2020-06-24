@@ -43,14 +43,15 @@ Comparison to similar packages
 | Raise Power                   | Yes      | No            | No            | Yes       | Yes      |
 | Root                          | Yes      | No            | No            | Yes       | Yes      |
 | Comparison Operators          | Yes      | Yes           | No            | == only   | Yes      |
-| Works with arrays             | Yes      | Yes           | No            | Yes       | No       |
+| Support for array operations  | Yes      | Convert Only  | No            | Yes       | No       |
 | __Benchmarks__                                                                                  |
 | Module load time              | 1.9 ms   | 4.5 ms        | 14.7 ms       | 366 ms    | 39.5 ms  |
 | Simple Conversion (mL -> gal) | 0.60 ms  | 5.0 ms        | 0.27 ms       | 0.34 ms   | 0.40 ms  |
 | Compound Unit Conversion      | 0.75 ms  | 5.0 ms        | N/A           | 0.44 ms   | 0.50 ms  |
-| Math Operations               | 0.18 ms  | 50x           | N/A           | 22x       | 24x      |
-| Math with length 1000 Arrays  | 4.5 ms   | 
+| Math Operations *             | 0.18 ms (8x) | 1.15 ms (50x) | N/A       | 0.50 ms (22x) | 0.55 ms (24x) |
+| Math with Array(1000) *       | 4.4 ms  (5x) | N/A       | N/A           | 38.5 ms (30x) | N/A  |
 
+`* : Value in parenthesis is the multiple of the same operation using just floats`
 
 Installing and importing PQM
 --------------------------------------------------------------------------------
