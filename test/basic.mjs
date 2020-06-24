@@ -441,6 +441,59 @@ function testBasics(div) {
     return "Pass";
   });
 
+  failures += runner("Check user input for math", div, function() {
+    let Ra = pqm.quantity(1, "Ra");
+    let degF = pqm.quantity(1, "degF");
+    let ft = pqm.quantity(1, "ft");
+    let negative_ft2 = pqm.quantity(-1, "ft^2");
+    if (!fails(() => {Ra.add(degF)})) {
+      return "Bad addition allowed (variant 1)";
+    }
+    if (!fails(() => {Ra.add(ft)})) {
+      return "Bad addition allowed (variant 2)";
+    }
+    if (!fails(() => {Ra.sub(ft)})) {
+      return "Bad subtraction allowed";
+    }
+    if (!fails(() => {degF.mul(degF)})) {
+      return "Bad multiplication allowed (variant 1)";
+    }
+    if (!fails(() => {degF.mul(ft)})) {
+      return "Bad multiplication allowed (variant 2)";
+    }
+    if (!fails(() => {degF.inv()})) {
+      return "Bad invert allowed";
+    }
+    if (!fails(() => {degF.div(degF)})) {
+      return "Bad division allowed";
+    }
+    if (!fails(() => {ft.pow([2, 3])})) {
+      return "Bad power allowed (variant 1)";
+    }
+    if (!fails(() => {ft.pow(1.2)})) {
+      return "Bad power allowed (variant 2)";
+    }
+    if (!fails(() => {degF.pow(2)})) {
+      return "Bad power allowed (variant 3)";
+    } 
+    if (!fails(() => {Ra.root([2,3])})) {
+      return "Bad root allowed (variant 1)";
+    }
+    if (!fails(() => {Ra.root(1.2)})) {
+      return "Bad root allowed (variant 2)";
+    }
+    if (!fails(() => {Ra.root(0)})) {
+      return "Bad root allowed (variant 3)";
+    }
+    if (!fails(() => {negative_ft2.root(2)})) {
+      return "Bad root allowed (variant 4)";
+    }
+    if (!fails(() => {ft.root(2)})) {
+      return "Bad root allowed (variant 5)";
+    }
+    return "Pass";
+  });
+
   // Throw error if any of the tests failed
   if (failures > 0) {
     throw `${failures} tests failed`;
@@ -492,6 +545,23 @@ function runner(name, div, func) {
   }
   console.log(`${name}: ${result}`);
   return returnValue;
+}
+
+/**
+ * Simple utility function that returns true when the provided operation 
+ * throws and error, otherwise it returns false
+ * 
+ * @param {function} func Operation to perform as a closure
+ * 
+ * @returns {boolean} True if error is thrown, false if it is not
+ */
+function fails(func) {
+  try {
+    func()
+    return false;
+  } catch (err) {
+    return true;
+  }
 }
 
 export default testBasics;

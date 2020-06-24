@@ -387,9 +387,7 @@ Quantity.prototype.copy = function() {
 */
 Quantity.prototype.sameDimensions = function(other) {
   // Convert to a quantity if a number is supplied as input
-  if (typeof(other) === "number") {
-    other = new Quantity(other);
-  }
+  other = Quantity.toQuantity(other);
   for (let ii=0; ii<numDimensionTypes; ii++) {
     if (this.dimensions[ii] != other.dimensions[ii]) {
       return false;
@@ -576,9 +574,6 @@ Quantity.prototype.root = function(n) {
   if (!Number.isInteger(n) || (n < 1)) {
     throw "Root may only be a positive integer greater than or equal to 1";
   }
-  if (this.offset != 0 && n > 1) {
-    throw "Cannot take root of units with zero offset";
-  }
   // Check that quantity does not have a negative magnitude
   if (this.magnitude < 0) {
     throw ("Root function not supported for magnitudes with negative " +
@@ -587,7 +582,7 @@ Quantity.prototype.root = function(n) {
   let newDimensions = this.copyDimensions();
   for (let ii=0; ii<numDimensionTypes; ii++) {
     let update = newDimensions[ii] / n;
-    if (!Number.isInteger(n)) {
+    if (!Number.isInteger(update)) {
       throw ("Root operation would result in a fractional dimensional " +
               "power. This is not supported"); 
     }
@@ -622,9 +617,7 @@ Quantity.prototype.root = function(n) {
  */
 Quantity.prototype.compare = function(other, tolerance, preventCollapse) {
   // Convert to a quantity if a number is supplied as input
-  if (typeof(other) === "number") {
-    other = new Quantity(other);
-  }
+  other = Quantity.toQuantity(other);
   // Only quantities with the same units can be compared
   if (!this.sameDimensions(other)) {
     throw "Cannot compare quantities with different dimensions";
