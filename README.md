@@ -29,7 +29,7 @@ Comparison to similar packages
 | Unpacked Size                 | 136 kB   | 585 kB        | 106 kB        | 10.1 MB   | 522 kB   |
 | Minified & GZip Size          | 5.0 kB   | 8.8 kB        | 5.8  kB       | 152.0 kB  | 9.7  kB  |
 | Node (CommonJS)               | Yes      | Yes           | Yes           | Yes       | Yes      |
-| Browser                       | Yes      | Yes           | No            | Yes       | Probably |
+| Browser                       | Yes      | Yes           | No            | Yes       | Yes      |
 | ES Module                     | Yes      | Yes           | Yes           | Yes       | Yes      |
 | Support for Unit Prefixes     | Yes      | Yes           | Limited       | Yes       | Yes      |
 | Number of Base Units Supported| 193      | 187           | 61            | 162       | 135      |
