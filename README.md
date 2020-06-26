@@ -23,11 +23,11 @@ Comparison to similar packages
 | Feature                       | pqm      | js-quantities | convert-units | mathjs    | unitmath |
 |:----------------------------- | -------- | ------------- | ------------- | --------- | -------- |
 | __Overview__                                                                                    |
-| Version Tested                | 0.4.4    | 1.7.5         | 2.3.4         | 7.0.0     | 0.8.5    |
+| Version Tested                | 0.5.0    | 1.7.5         | 2.3.4         | 7.0.0     | 0.8.5    |
 | Number of Dependencies        | 0        | 0             | 2             | 8         | 1        |
 | Number of Dependents          | 0        | 39            | 143           | 984       | 0        |
 | Unpacked Size                 | 136 kB   | 585 kB        | 106 kB        | 10.1 MB   | 522 kB   |
-| Minified & GZip Size          | 5.0 kB   | 8.8 kB        | 5.8  kB       | 152.0 kB  | 9.7  kB  |
+| Minified & GZip Size          | 5.8 kB   | 8.8 kB        | 5.8  kB       | 152.0 kB  | 9.7  kB  |
 | Node (CommonJS)               | Yes      | Yes           | Yes           | Yes       | Yes      |
 | Browser                       | Yes      | Yes           | No            | Yes       | Yes      |
 | ES Module                     | Yes      | Yes           | Yes           | Yes       | Yes      |
@@ -36,7 +36,7 @@ Comparison to similar packages
 | Define Custom Units           | Yes      | No            | No            | Yes       | Yes      |
 | Tracks input units            | No       | Yes           | No            | Yes       | Yes      |
 | Support For Basic Math        | Yes      | Yes           | No            | Yes       | Yes      |
-| Test Coverage                 | 78%      | Unknown       | Unknown       | Unknown   | 99%      |
+| Test Coverage                 | 100%     | Unknown       | Unknown       | Unknown   | 99%      |
 | __Supported Operators__                                                                         |
 | Add / Subtract                | Yes      | Yes           | No            | Yes       | Yes      |
 | Multiply / Divide             | Yes      | Yes           | No            | Yes       | Yes      |
@@ -140,8 +140,6 @@ There are multiple reasons for this convention.
 
 Of course, if you would prefer not to use brackets, the quantity function will
 try to figure out what prefix-unit pair you meant by trial and error.
-
-
 
 Here is the full list of unit collisions to be aware of
 
@@ -346,7 +344,7 @@ let qarr1 = pqm.quantity([1,2,3], "m / s^2");
 let qarr2 = pqm.quantity([1,4,3], "m / s^2");
 ```
 
-Array quantities use any of the math operations available to scalar quantities,
+Array quantities can use all of the same functionality as scalar quantitites
 but the `in`, `inSI` and comparison functions like `eq` will return an array
 rather than a number or boolean value.
 
