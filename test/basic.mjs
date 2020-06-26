@@ -97,6 +97,10 @@ function testBasics(div) {
     if (Array.isArray(v2.in("m^2"))) {
       return "Scalar operation returned an array";
     }
+    let unity = pqm.quantity(1);
+    if (!v1.pow(0).eq(unity)) {
+      "Power of zero did not return unity";
+    }
     return "Pass";
   });
 
@@ -417,6 +421,7 @@ function testBasics(div) {
     const A = pqm.quantity([1, 2, 3], "m / s");
     const B = pqm.quantity([1, 2, 3], "[k]g");
     const C = pqm.quantity([1, 2, 3], "s");
+    const D = pqm.quantity([1, 2], "m / s");
     let part1 = A.mul(B).div(C);
     let part2 = A.mul(B).div(C);
     let part3 = A.mul(B).div(C);
@@ -425,18 +430,47 @@ function testBasics(div) {
     if (!result.eq(expected).every((val) => val)) {
       return "Complex array math failed";
     }
+    if (!fails(() => {A.add(D)})) {
+      return "Allowed operation on mismatched arrays";
+    }
     return "Pass";
   });
 
   failures += runner("Convert quantities to a string", div, function() {
-    const q = pqm.quantity([1000, 2000, 4000], "[m]m");
-    let strSI = q.toString();
-    if (strSI != "[1,2,4] m") {
-      return "To SI string failed";
+    const sq = pqm.quantity(1000, "mm");
+    if (sq.toString() != "1 m") {
+      return "Scalar to SI string failed"
     }
-    let strkm = q.toString("[k]m");
-    if (strkm != "[0.001,0.002,0.004] [k]m") {
-      return "To km string failed";
+    const aq = pqm.quantity([1000, 2000, 4000], "[m]m");
+    let strSI = aq.toString();
+    if (strSI != "[1,2,4] m") {
+      return "Array to SI string failed";
+    }
+    let strkm = aq.toString("km");
+    if (strkm != "[0.001,0.002,0.004] km") {
+      return "Array to km string failed";
+    }
+    return "Pass";
+  });
+
+  failures += runner("Check user quantity construction errors", div, function() {
+    if (!fails(() => {pqm.quantity(1, "[GG]m")})) {
+      return "Allowed invalid prefix";
+    }
+    if (!fails(() => {pqm.quantity(1, "[k]bugs")})) {
+      return "Allowed use of invalid unit";
+    }
+    if (!fails(() => {pqm.quantity(1, "[k]")})) {
+      return "Allowed ill-defined unit";
+    }
+    if (!fails(() => {pqm.quantity(1, "[k]m^d")})) {
+      return "Allowed bad unit power";
+    }
+    if (!fails(() => {pqm.quantity(1, "1 / s / s")})) {
+      return "Allowed double division unit creation";
+    }
+    if (!fails(() => {pqm.quantity(1, "degC / Pa-g")})) {
+      return "Allowed compound unit with offsets";
     }
     return "Pass";
   });
@@ -490,6 +524,68 @@ function testBasics(div) {
     }
     if (!fails(() => {ft.root(2)})) {
       return "Bad root allowed (variant 5)";
+    }
+    if (!fails(() => {ft.in("kg")})) {
+      return "Allowed conversion to different type";
+    }
+    return "Pass";
+  });
+
+  failures += runner("Check user inputs for comparisons", div, function() {
+    let ft = pqm.quantity(1, "ft");
+    let inch = pqm.quantity(1, "in");
+    let kg = pqm.quantity(1, "kg");
+    let g = pqm.quantity(1, "grav");
+    let degF = pqm.quantity(32, "degF");
+    let degC = pqm.quantity(0, "degC")
+    if (!fails(() => {ft.eq(kg)})) {
+      return "Allowed compare between unlike quantities";
+    }
+    if (!fails(() => {ft.eq(inch, kg)})) {
+      return "Allowed compare with unlike tolerance";
+    }
+    if (!fails(() => {degC.eq(degF, degC)})) {
+      return "Allowed "
+    }
+    if (!fails(() => {degC.eq(degF, 0.01)})) {
+      return "Allowed fractional tolerance for unit with zero offset";
+    }
+    if (ft.compare(inch, inch, false) instanceof Array) {
+      return "Scalar comparison returned an array";
+    } 
+    return "Pass";
+  });
+
+  failures += runner("Check output of 'with' function", div, function() {
+    let ft = pqm.quantity(1, "ft");
+    let sec = pqm.quantity(1, "s^2");
+    if (!fails(() => {ft.with(["K", "kg"])})) {
+      return "Allowed 'with' conversion with incompatible units";
+    }
+    if (ft.div(sec).with(["ft", "s"])[1] != "ft / s^2") {
+      return "with function did not return correct units";
+    }
+    return "Pass";
+  });
+
+  failures += runner("Test user defined units", div, function() {
+    pqm.define("unity");
+    pqm.define("dblmeter", 2, "m");
+    pqm.define("offmeter", 1, "m", 10);
+    let unity = pqm.quantity(1, "unity");
+    let dblmeter = pqm.quantity(1, "dblmeter");
+    let offmeter = pqm.quantity(1, "offmeter");
+    // Test addition
+    let expected = pqm.quantity(12, "m");
+    if (!offmeter.add(dblmeter).eq(expected)) {
+      return "Operation on user defined units did not work";
+    }
+    expected = pqm.quantity(10, "m");
+    if (!offmeter.mul(unity).eq(expected)) {
+      return "Operation on user defined units did not work";
+    }
+    if (!fails(() => {pqm.define("m", 2, "ft")})) {
+      return "Allowed redefinition of existing unit";
     }
     return "Pass";
   });

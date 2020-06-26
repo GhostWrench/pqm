@@ -16,7 +16,7 @@ Feature Roadmap for PQM
 - [x] support for array values
 - [x] remove rotational units (they don't work nicely like the others)
 - [x] more units!
-- [ ] full test coverage
+- [x] full test coverage
 
 1.0.0
 --------------------------------------------------------------------------------
