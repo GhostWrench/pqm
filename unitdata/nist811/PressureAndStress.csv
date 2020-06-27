@@ -1,4 +1,4 @@
-Convert From, Convert To, Multiply By, Included in PQM
+Convert From, Convert To, Multiply By, Supported
 atm, Pa, 1.01325e+05, true
 atm, [k]Pa, 1.01325e+02, true
 bar, Pa, 1.0e+05, true

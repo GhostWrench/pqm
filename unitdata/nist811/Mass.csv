@@ -1,4 +1,4 @@
-Convert From, Convert To, Multiply By, Included in PQM
+Convert From, Convert To, Multiply By, Supported
 carat, [k]g, 2.0e-04, true
 grain, [k]g, 6.479891e-05, true
 uk_cwt (long hundredweight), [k]g, 5.080235e+01, true
@@ -13,7 +13,7 @@ slug, [k]g, 1.459390e+01, true
 assay_ton, [k]g, 2.916667e-02, true
 uk_ton (long ton), [k]g, 1.016047e+03, true
 metric_ton, [k]g, 1.0e+03, true
-tonne (metric ton), [k]g, 1.0e+03, false
+tonne (metric ton), [k]g, 1.0e+03, true
 ton (short ton), [k]g, 9.071847e+02, true
 ozm / ft^2, [k]g / m^2, 3.051517e-01, true
 ozm / in^2, [k]g / m^2, 4.394185e+01, true

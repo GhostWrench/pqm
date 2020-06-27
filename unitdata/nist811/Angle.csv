@@ -1,4 +1,4 @@
-Convert From, Convert To, Multiply By, Included in PQM
+Convert From, Convert To, Multiply By, Supported
 deg, rad, 1.745329e-02, true
 gon (grade), rad, 1.570796e-02, false
 mil (angular mil), rad, 9.817477e-04, false

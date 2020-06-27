@@ -5,17 +5,16 @@ verifying conversion accuracy of units in the db.json file.
 
 They have the following basic format:
 
-| Convert From | Convert To | Multipy By | Included in PQM |
+| Convert From | Convert To | Multipy By | Supported       |
 | ------------ | ---------- | ---------- | --------------- |
 | ft / s       | m / s      | 3.048e-01  | true            |
 
 Which means that (1 ft / s) approximately equals (3.048e-01 m / s). The last 
-row indicates if all parts of the unit are supported by PQM, as they might or
-might not be useful to include / exclude in the future. Non obvious or 
-confusing units may have a full name included in parenthesis to avoid
-confusion. For example:
+row indicates if the conversion is supported by the units located in the
+`unitdata/db.json` database file. Non obvious or confusing units may have a 
+full name included in parenthesis to avoid confusion. For example:
 
-| Convert From  | Convert To | Multipy By | Included in PQM |
+| Convert From  | Convert To | Multipy By | Supported       |
 | ------------- | ---------- | ---------- | --------------- |
 | Gal (Galileo) | \[c\]m / s^2 | 1.0      | false           |
 
