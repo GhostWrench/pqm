@@ -5,8 +5,8 @@
 
 import fs from "fs";
 
-let unitschema = JSON.parse(fs.readFileSync("src/data/unitdbschema.json"));
-let fulldb = JSON.parse(fs.readFileSync("src/data/unitdb.json"))
+let unitschema = JSON.parse(fs.readFileSync("unitdata/schema.json"));
+let fulldb = JSON.parse(fs.readFileSync("unitdata/db.json"))
 
 // Generate the module comments
 let code = "/**\n" +

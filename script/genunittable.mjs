@@ -6,7 +6,7 @@
 import fs from "fs";
 
 // Read the unit database
-let dbfile = fs.readFileSync("src/data/unitdb.json");
+let dbfile = fs.readFileSync("unitdata/db.json");
 let unitdb = JSON.parse(dbfile).units;
 console.log("Number of base units: " + Object.keys(unitdb).length.toString());
 

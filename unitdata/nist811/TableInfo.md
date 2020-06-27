@@ -1,7 +1,7 @@
 The following tables in CSV format are an abbreviated version of the NIST 
 ["Special Publication 811: NIST Guide to the SI" Appendix B.9](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9). 
 They are converted to a more easily machine readable format and are used for 
-verifying conversion accuracy for this javascript module.
+verifying conversion accuracy of units in the db.json file.
 
 They have the following basic format:
 
