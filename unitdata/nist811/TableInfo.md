@@ -17,7 +17,7 @@ confusion. For example:
 
 | Convert From  | Convert To | Multipy By | Included in PQM |
 | ------------- | ---------- | ---------- | --------------- |
-| Gal (Galileo) | \[c\]m / s^2 | 1.0        | false           |
+| Gal (Galileo) | \[c\]m / s^2 | 1.0      | false           |
 
 It is assumed that most people would easily confuse this unit with the more
 common "Gallon". So special notation is helpful.
