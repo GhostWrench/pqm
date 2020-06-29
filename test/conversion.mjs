@@ -48,27 +48,27 @@ function testConversions() {
 
   let totalFailures = 0;
 
-  // Test the files in unitdata/nist811
-  totalFailures += testTables("unitdata/nist811/Acceleration.csv");
-  totalFailures += testTables("unitdata/nist811/Angle.csv");
-  totalFailures += testTables("unitdata/nist811/Area.csv");
-  totalFailures += testTables("unitdata/nist811/ElectricityAndMagnetism.csv");
-  totalFailures += testTables("unitdata/nist811/Energy.csv");
-  totalFailures += testTables("unitdata/nist811/FlowRate.csv");
-  totalFailures += testTables("unitdata/nist811/Force.csv");
-  totalFailures += testTables("unitdata/nist811/FuelConsumption.csv");
-  totalFailures += testTables("unitdata/nist811/Heat.csv");
-  totalFailures += testTables("unitdata/nist811/Length.csv");
-  totalFailures += testTables("unitdata/nist811/Luminosity.csv");
-  totalFailures += testTables("unitdata/nist811/Mass.csv");
-  totalFailures += testTables("unitdata/nist811/Power.csv");
-  totalFailures += testTables("unitdata/nist811/PressureAndStress.csv");
-  totalFailures += testTables("unitdata/nist811/Radiology.csv");
-  totalFailures += testTables("unitdata/nist811/TemperatureDelta.csv");
-  totalFailures += testTables("unitdata/nist811/Time.csv");
-  totalFailures += testTables("unitdata/nist811/Velocity.csv");
-  totalFailures += testTables("unitdata/nist811/Viscosity.csv");
-  totalFailures += testTables("unitdata/nist811/Volume.csv");
+  // Test the files in unitdb/nist811
+  totalFailures += testTables("unitdb/nist811/Acceleration.csv");
+  totalFailures += testTables("unitdb/nist811/Angle.csv");
+  totalFailures += testTables("unitdb/nist811/Area.csv");
+  totalFailures += testTables("unitdb/nist811/ElectricityAndMagnetism.csv");
+  totalFailures += testTables("unitdb/nist811/Energy.csv");
+  totalFailures += testTables("unitdb/nist811/FlowRate.csv");
+  totalFailures += testTables("unitdb/nist811/Force.csv");
+  totalFailures += testTables("unitdb/nist811/FuelConsumption.csv");
+  totalFailures += testTables("unitdb/nist811/Heat.csv");
+  totalFailures += testTables("unitdb/nist811/Length.csv");
+  totalFailures += testTables("unitdb/nist811/Luminosity.csv");
+  totalFailures += testTables("unitdb/nist811/Mass.csv");
+  totalFailures += testTables("unitdb/nist811/Power.csv");
+  totalFailures += testTables("unitdb/nist811/PressureAndStress.csv");
+  totalFailures += testTables("unitdb/nist811/Radiology.csv");
+  totalFailures += testTables("unitdb/nist811/TemperatureDelta.csv");
+  totalFailures += testTables("unitdb/nist811/Time.csv");
+  totalFailures += testTables("unitdb/nist811/Velocity.csv");
+  totalFailures += testTables("unitdb/nist811/Viscosity.csv");
+  totalFailures += testTables("unitdb/nist811/Volume.csv");
 
   if (totalFailures > 0) {
     throw `${totalFailures} failed unit conversions`;

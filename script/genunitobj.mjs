@@ -5,8 +5,8 @@
 
 import fs from "fs";
 
-let unitschema = JSON.parse(fs.readFileSync("unitdata/schema.json"));
-let fulldb = JSON.parse(fs.readFileSync("unitdata/db.json"))
+let unitschema = JSON.parse(fs.readFileSync("unitdb/schema.json"));
+let fulldb = JSON.parse(fs.readFileSync("unitdb/db.json"))
 
 // Generate the module comments
 let code = "/**\n" +
@@ -82,5 +82,10 @@ fs.writeFileSync("src/unitdefs.mjs", code);
 
 
 function niceNumber(strNum) {
+  // pi constants
+  strNum = strNum.replace("pi", "Math.PI");
+  // Power operations
+  let powRegex = /([\w\.]+)\s*\^\s*([\w\.]+)/;
+  strNum = strNum.replace(powRegex, "Math.pow($1,$2)");
   return eval(strNum).toExponential();
 }

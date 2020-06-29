@@ -1,0 +1,3 @@
+[submodule "unitdb"]
+	path = unitdb
+	url = git@github.com:GhostWrench/unitdb.git

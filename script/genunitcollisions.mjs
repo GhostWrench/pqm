@@ -1,7 +1,7 @@
 import fs from "fs";
 
 // Read the unit database
-let dbfile = fs.readFileSync("unitdata/db.json");
+let dbfile = fs.readFileSync("unitdb/db.json");
 let fulldb = JSON.parse(dbfile);
 let prefixes = Object.keys(fulldb.prefixes);
 let unitdb = fulldb.units;

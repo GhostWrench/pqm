@@ -51,7 +51,7 @@
 | Kayser/Wavenumber       | kayser        |          | Reciprocal of 1 cm, used in spectroscopy and chemistry to represent the number of wavelengths per cm | 
 | Second                  | s             | sec      | Approximately 1/86400 of a stellar day, formally defined based on the duration of 9 192 631 770 state transitions of the caesium-133 atom at 0 K | 
 | Minute                  | min           |          | Defined as 60 seconds                                      | 
-| Hour                    | hr            |          | defined as 60 minute                                       | 
+| Hour                    | hr            |          | Defined as 60 minute                                       | 
 | Day                     | day           |          | Approximately equal to the amount of time for the earth to rotate on it's axis, formally defined as 24 hours | 
 | Week                    | week          |          | Defined as 7 days                                          | 
 | Fortnight               | fortnight     |          | Amount of time defined as 2 weeks or 14 days               | 
