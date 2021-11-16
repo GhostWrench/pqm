@@ -17,6 +17,29 @@ PQM is designed to be simple, lightweight and fast. In addition:
 * Conversion factors are tested against conversions defined in 
   [Special Publication 811: NIST Guide to the SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9)
 
+Developers
+--------------------------------------------------------------------------------
+For the best experience developing pqm, install the following software first:
+
+* Node JS
+* NPM
+
+The package requires a submodule, so clone from github as follows:
+
+> git clone --recurse-submodules https://github.com/GhostWrench/pqm.git
+
+After making changes to source build the package using the very simple `build.bash` script.
+
+> ./build.bash
+
+You can test the package for node/browser and check coverage with the following commands (do this after you build):
+
+> npm test
+
+> npm run-script testbrowser
+
+> npm run-script coverage
+
 Comparison to similar packages
 --------------------------------------------------------------------------------
 
