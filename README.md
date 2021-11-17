@@ -35,7 +35,7 @@ Install NPM development dependencies
 After making changes to source build the package using the very simple build scripts.
 
 Linux
-> ./build.bash
+> ./build.sh
 
 Windows
 > .\build
