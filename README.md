@@ -28,9 +28,17 @@ The package requires a submodule, so clone from github as follows:
 
 > git clone --recurse-submodules https://github.com/GhostWrench/pqm.git
 
-After making changes to source build the package using the very simple `build.bash` script.
+Install NPM development dependencies
 
+> npm install
+
+After making changes to source build the package using the very simple build scripts.
+
+Linux
 > ./build.bash
+
+Windows
+> .\build
 
 You can test the package for node/browser and check coverage with the following commands (do this after you build):
 
