@@ -1224,4 +1224,4 @@ var pqm = (function () {
 
   return pqm;
 
-}());
+})();

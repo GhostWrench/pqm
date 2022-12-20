@@ -13,6 +13,10 @@ Feature Roadmap for PQM
 
 1.0.0
 --------------------------------------------------------------------------------
-- [ ] community testing
-- [ ] fix any discovered issues
-- [ ] respond to feedback
+- [x] community testing
+- [x] fix any discovered issues
+- [x] respond to feedback
+
+1.1.0
+--------------------------------------------------------------------------------
+- [ ] ???

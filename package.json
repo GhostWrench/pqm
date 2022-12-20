@@ -42,10 +42,9 @@
     "url": "https://github.com/GhostWrench/pqm/issues"
   },
   "homepage": "https://github.com/GhostWrench/pqm#readme",
-  "dependencies": {},
   "devDependencies": {
     "c8": "^7.1.2",
-    "rollup": "^2.16.0",
-    "terser": "^4.7.0"
+    "rollup": "^3.7.5",
+    "terser": "^5.16.1"
   }
 }

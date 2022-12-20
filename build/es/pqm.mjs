@@ -1219,4 +1219,4 @@ var pqm = {
   define: define,
 };
 
-export default pqm;
+export { pqm as default };
